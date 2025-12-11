@@ -1161,58 +1161,59 @@
 
     // ==================== FIXED SERVER FUNCTIONS ====================
     async function callServer(action, data = {}) {
-        const url = new URL(APPS_SCRIPT_URL);
+    try {
+        let url = APPS_SCRIPT_URL;
         
         if (action === 'get_data') {
             // Untuk GET request
-            url.searchParams.append('action', action);
+            url += '?action=' + encodeURIComponent(action);
             
-            try {
-                // Gunakan CORS proxy untuk menghindari CORS error
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url.toString())}`;
-                
-                const response = await fetch(proxyUrl);
-                const result = await response.json();
-                
-                if (result.contents) {
-                    return JSON.parse(result.contents);
-                }
-                return { success: false, error: 'No content' };
-            } catch (error) {
-                console.error('GET error with proxy:', error);
-                return { success: false, error: error.message };
+            // Tambah cache busting
+            url += '&_=' + Date.now();
+            
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error('HTTP error: ' + response.status);
             }
+            
+            const result = await response.json();
+            return result;
+            
         } else {
             // Untuk POST request (upload)
-            try {
-                // Method khusus untuk Google Apps Script
-                const formData = new FormData();
-                formData.append('action', action);
-                
-                // Convert data ke JSON string
-                const jsonData = JSON.stringify(data);
-                const blob = new Blob([jsonData], { type: 'application/json' });
-                formData.append('data', blob);
-                
-                // Kirim request
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Penting! no-cors untuk Google Apps Script
-                    body: formData
-                });
-                
-                // Karena no-cors, kita tidak bisa baca response
-                // Tapi request akan tetap terkirim
-                return { success: true, message: 'Request sent (no-cors mode)' };
-                
-            } catch (error) {
-                console.error('POST error:', error);
-                // Fallback ke localStorage
-                return { success: false, error: error.message };
-            }
+            const formData = new FormData();
+            formData.append('action', action);
+            
+            // Add all data as JSON string
+            const jsonData = JSON.stringify(data);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            formData.append('data', blob);
+            
+            // Simple POST without expecting response (to avoid CORS)
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            });
+            
+            // For POST, we can't read response in no-cors mode
+            // Just assume it worked
+            return { 
+                success: true, 
+                message: 'Request sent (no-cors mode)',
+                timestamp: new Date().toISOString()
+            };
         }
+    } catch (error) {
+        console.error('Server call error:', error);
+        return {
+            success: false,
+            error: error.message,
+            message: 'Failed to connect to server'
+        };
     }
-
+}
     // ==================== SIMPLE UPLOAD SOLUTION ====================
     async function simpleUploadToDrive(base64Data, fileName, type) {
         // Ini adalah cara sederhana upload ke Google Drive
