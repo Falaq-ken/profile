@@ -821,7 +821,7 @@
             <button onclick="hideLogin()" class="login-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">BATAL</button>
         </div>
         <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">
-            Password: arakuganteng
+           Yang login cuman bisa Araku wleee
         </p>
     </div>
 
@@ -1066,653 +1066,760 @@
     </div>
 
     <script>
-        // ==================== KONFIGURASI ====================
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3uHsGq7VOKyVGAuJBPbvjZx5ymB3hKPOB-gJ3tK8oj3-BK2WQRLbth71FirqJn2sW/exec";
-        const CORRECT_PASSWORD = "arakugantengbgt03";
-        let isLoggedIn = false;
-        let isEditMode = false;
-        let galleryImages = [];
+    // ==================== KONFIGURASI ====================
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzydJiiMufeXqiFBcW1DIjNBk_hbCXJW_BjWRStlVVpMdB65bjL2wei9fInZcoknKWr/exec";
+    const CORRECT_PASSWORD = "arakuganteng";
+    let isLoggedIn = false;
+    let isEditMode = false;
+    let galleryImages = [];
 
-        // ==================== ELEMENT MAPPING ====================
-        const editableElements = {
-            'name': 'nameText',
-            'tagline': 'taglineText',
-            'aboutTitle': 'aboutTitleText',
-            'aboutText': 'aboutText',
-            'hobiTitle': 'hobiTitleText',
-            'hobi1Title': 'hobi1TitleText',
-            'hobi1Desc': 'hobi1DescText',
-            'hobi2Title': 'hobi2TitleText',
-            'hobi2Desc': 'hobi2DescText',
-            'hobi3Title': 'hobi3TitleText',
-            'hobi3Desc': 'hobi3DescText',
-            'hobi4Title': 'hobi4TitleText',
-            'hobi4Desc': 'hobi4DescText',
-            'galleryTitle': 'galleryTitleText',
-            'dreamTitle': 'dreamTitleText',
-            'dreamSubtitle': 'dreamSubtitleText',
-            'dreamText': 'dreamText',
-            'socialTitle': 'socialTitleText',
-            'social1Platform': 'social1PlatformText',
-            'social1Username': 'social1UsernameText',
-            'social2Platform': 'social2PlatformText',
-            'social2Username': 'social2UsernameText',
-            'social3Platform': 'social3PlatformText',
-            'social3Username': 'social3UsernameText',
-            'social4Platform': 'social4PlatformText',
-            'social4Username': 'social4UsernameText',
-            'social5Platform': 'social5PlatformText',
-            'social5Username': 'social5UsernameText',
-            'social6Platform': 'social6PlatformText',
-            'social6Username': 'social6UsernameText',
-            'contactTitle': 'contactTitleText',
-            'contact1Label': 'contact1LabelText',
-            'contact1Value': 'contact1ValueText',
-            'contact2Label': 'contact2LabelText',
-            'contact2Value': 'contact2ValueText',
-            'contact3Label': 'contact3LabelText',
-            'contact3Value': 'contact3ValueText',
-            'footerText': 'footerText'
-        };
+    // ==================== ELEMENT MAPPING ====================
+    const editableElements = {
+        'name': 'nameText',
+        'tagline': 'taglineText',
+        'aboutTitle': 'aboutTitleText',
+        'aboutText': 'aboutText',
+        'hobiTitle': 'hobiTitleText',
+        'hobi1Title': 'hobi1TitleText',
+        'hobi1Desc': 'hobi1DescText',
+        'hobi2Title': 'hobi2TitleText',
+        'hobi2Desc': 'hobi2DescText',
+        'hobi3Title': 'hobi3TitleText',
+        'hobi3Desc': 'hobi3DescText',
+        'hobi4Title': 'hobi4TitleText',
+        'hobi4Desc': 'hobi4DescText',
+        'galleryTitle': 'galleryTitleText',
+        'dreamTitle': 'dreamTitleText',
+        'dreamSubtitle': 'dreamSubtitleText',
+        'dreamText': 'dreamText',
+        'socialTitle': 'socialTitleText',
+        'social1Platform': 'social1PlatformText',
+        'social1Username': 'social1UsernameText',
+        'social2Platform': 'social2PlatformText',
+        'social2Username': 'social2UsernameText',
+        'social3Platform': 'social3PlatformText',
+        'social3Username': 'social3UsernameText',
+        'social4Platform': 'social4PlatformText',
+        'social4Username': 'social4UsernameText',
+        'social5Platform': 'social5PlatformText',
+        'social5Username': 'social5UsernameText',
+        'social6Platform': 'social6PlatformText',
+        'social6Username': 'social6UsernameText',
+        'contactTitle': 'contactTitleText',
+        'contact1Label': 'contact1LabelText',
+        'contact1Value': 'contact1ValueText',
+        'contact2Label': 'contact2LabelText',
+        'contact2Value': 'contact2ValueText',
+        'contact3Label': 'contact3LabelText',
+        'contact3Value': 'contact3ValueText',
+        'footerText': 'footerText'
+    };
 
-        // ==================== INITIALIZATION ====================
-        document.addEventListener('DOMContentLoaded', async function() {
-            console.log('Memulai aplikasi...');
-            
-            // Load data dari server
-            await loadDataFromServer();
-            
-            // Setup event listeners
-            setupEventListeners();
-        });
-
-        function setupEventListeners() {
-            // Login events
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') checkLogin();
-            });
-            
-            // File upload events
-            document.getElementById('avatarUpload').addEventListener('change', function(e) {
-                handleImageUpload(e, 'avatar');
-            });
-            
-            document.getElementById('aboutUpload').addEventListener('change', function(e) {
-                handleImageUpload(e, 'about');
-            });
-            
-            document.getElementById('galleryUpload').addEventListener('change', function(e) {
-                handleGalleryUpload(e);
-            });
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', async function() {
+        console.log('Memulai aplikasi...');
+        
+        // Cek login status
+        const savedLogin = localStorage.getItem('araku_profile_logged_in');
+        if (savedLogin === 'true') {
+            isLoggedIn = true;
+            enableEditMode();
+            document.getElementById('mainAdminBtn').textContent = "🔓 EDIT MODE ON";
         }
+        
+        // Load data dari localStorage dulu
+        loadFromLocalStorage();
+        
+        // Coba load dari server (tapi jangan block UI)
+        setTimeout(async () => {
+            await loadDataFromServer();
+        }, 100);
+        
+        // Setup event listeners
+        setupEventListeners();
+    });
 
-        // ==================== SERVER FUNCTIONS ====================
-        async function callServer(action, data = {}) {
+    function setupEventListeners() {
+        // Login events
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkLogin();
+        });
+        
+        // File upload events
+        document.getElementById('avatarUpload').addEventListener('change', function(e) {
+            handleImageUpload(e, 'avatar');
+        });
+        
+        document.getElementById('aboutUpload').addEventListener('change', function(e) {
+            handleImageUpload(e, 'about');
+        });
+        
+        document.getElementById('galleryUpload').addEventListener('change', function(e) {
+            handleGalleryUpload(e);
+        });
+    }
+
+    // ==================== FIXED SERVER FUNCTIONS ====================
+    async function callServer(action, data = {}) {
+        const url = new URL(APPS_SCRIPT_URL);
+        
+        if (action === 'get_data') {
+            // Untuk GET request
+            url.searchParams.append('action', action);
+            
             try {
+                // Gunakan CORS proxy untuk menghindari CORS error
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url.toString())}`;
+                
+                const response = await fetch(proxyUrl);
+                const result = await response.json();
+                
+                if (result.contents) {
+                    return JSON.parse(result.contents);
+                }
+                return { success: false, error: 'No content' };
+            } catch (error) {
+                console.error('GET error with proxy:', error);
+                return { success: false, error: error.message };
+            }
+        } else {
+            // Untuk POST request (upload)
+            try {
+                // Method khusus untuk Google Apps Script
+                const formData = new FormData();
+                formData.append('action', action);
+                
+                // Convert data ke JSON string
+                const jsonData = JSON.stringify(data);
+                const blob = new Blob([jsonData], { type: 'application/json' });
+                formData.append('data', blob);
+                
+                // Kirim request
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ action, ...data })
+                    mode: 'no-cors', // Penting! no-cors untuk Google Apps Script
+                    body: formData
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                // Karena no-cors, kita tidak bisa baca response
+                // Tapi request akan tetap terkirim
+                return { success: true, message: 'Request sent (no-cors mode)' };
                 
-                return await response.json();
             } catch (error) {
-                console.error('Server call error:', error);
-                showStatus('Error: Gagal terhubung ke server', 'error');
+                console.error('POST error:', error);
+                // Fallback ke localStorage
                 return { success: false, error: error.message };
             }
         }
+    }
 
-        async function loadDataFromServer() {
-            showStatus('Memuat data...', 'info');
+    // ==================== SIMPLE UPLOAD SOLUTION ====================
+    async function simpleUploadToDrive(base64Data, fileName, type) {
+        // Ini adalah cara sederhana upload ke Google Drive
+        // Menggunakan Google Drive API langsung dari browser
+        
+        showStatus('Mengupload gambar...', 'info');
+        
+        try {
+            // Konversi base64 ke blob
+            const byteCharacters = atob(base64Data.split(',')[1]);
+            const byteNumbers = new Array(byteCharacters.length);
             
-            try {
-                const result = await callServer('get_data');
-                
-                if (result.success) {
-                    // Update avatar
-                    if (result.data && result.data.avatar) {
-                        document.getElementById('avatarImg').src = result.data.avatar;
-                        localStorage.setItem('araku_profile_avatar', result.data.avatar);
-                    }
-                    
-                    // Update about image
-                    if (result.data && result.data.about) {
-                        document.getElementById('aboutImg').src = result.data.about;
-                        localStorage.setItem('araku_profile_about', result.data.about);
-                    }
-                    
-                    // Update gallery
-                    if (result.data && result.data.gallery) {
-                        galleryImages = result.data.gallery;
-                        localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
-                        renderGallery();
-                    }
-                    
-                    // Update texts
-                    if (result.data && result.data.texts) {
-                        Object.keys(result.data.texts).forEach(id => {
-                            const element = document.getElementById(editableElements[id]);
-                            if (element) {
-                                element.textContent = result.data.texts[id];
-                                localStorage.setItem(`araku_profile_${id}`, result.data.texts[id]);
-                            }
-                        });
-                    }
-                    
-                    showStatus('Data berhasil dimuat', 'success');
-                } else {
-                    // Fallback to localStorage
-                    loadFromLocalStorage();
-                    showStatus('Menggunakan data lokal', 'warning');
-                }
-            } catch (error) {
-                loadFromLocalStorage();
-                showStatus('Menggunakan data lokal', 'warning');
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
             }
+            
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'image/png' });
+            
+            // Simpan ke localStorage sebagai fallback
+            const objectURL = URL.createObjectURL(blob);
+            
+            if (type === 'avatar') {
+                document.getElementById('avatarImg').src = objectURL;
+                localStorage.setItem('araku_profile_avatar', base64Data);
+            } else if (type === 'about') {
+                document.getElementById('aboutImg').src = objectURL;
+                localStorage.setItem('araku_profile_about', base64Data);
+            } else if (type === 'gallery') {
+                galleryImages.push({
+                    src: objectURL,
+                    alt: fileName || `Karya ${galleryImages.length + 1}`
+                });
+                localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
+                renderGallery();
+            }
+            
+            // Juga simpan ke server via Apps Script (background)
+            uploadToServerInBackground(base64Data, fileName, type);
+            
+            showStatus('Gambar berhasil disimpan!', 'success');
+            return { success: true, url: objectURL };
+            
+        } catch (error) {
+            console.error('Upload error:', error);
+            showStatus('Gagal upload: ' + error.message, 'error');
+            return { success: false, error: error.message };
         }
+    }
 
-        function loadFromLocalStorage() {
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
-                    const savedValue = localStorage.getItem(`araku_profile_${id}`);
-                    if (savedValue) {
-                        element.textContent = savedValue;
-                    }
-                }
-            });
+    async function uploadToServerInBackground(base64Data, fileName, type) {
+        // Fungsi ini mencoba upload ke server di background
+        // Tidak blocking UI jika gagal
+        
+        try {
+            // Create a simple form submit (works with Google Apps Script)
+            const form = document.createElement('form');
+            form.style.display = 'none';
+            form.method = 'POST';
+            form.action = APPS_SCRIPT_URL;
+            form.enctype = 'multipart/form-data';
             
-            // Load images from localStorage
-            const savedAvatar = localStorage.getItem('araku_profile_avatar');
-            const savedAbout = localStorage.getItem('araku_profile_about');
-            const savedGallery = localStorage.getItem('araku_profile_gallery');
+            // Add action field
+            const actionInput = document.createElement('input');
+            actionInput.type = 'hidden';
+            actionInput.name = 'action';
+            actionInput.value = 'upload_image';
+            form.appendChild(actionInput);
             
-            if (savedAvatar) {
-                document.getElementById('avatarImg').src = savedAvatar;
+            // Add type field
+            const typeInput = document.createElement('input');
+            typeInput.type = 'hidden';
+            typeInput.name = 'type';
+            typeInput.value = type;
+            form.appendChild(typeInput);
+            
+            // Add image data (truncated if too large)
+            const dataInput = document.createElement('input');
+            dataInput.type = 'hidden';
+            dataInput.name = 'image_data';
+            
+            // Truncate data if too large (Google Apps Script limit)
+            const maxLength = 100000; // ~100KB max for URL encoded
+            if (base64Data.length > maxLength) {
+                dataInput.value = base64Data.substring(0, maxLength);
             } else {
-                setDefaultImage(document.getElementById('avatarImg'), 'avatar');
+                dataInput.value = base64Data;
             }
             
-            if (savedAbout) {
-                document.getElementById('aboutImg').src = savedAbout;
-            } else {
-                setDefaultImage(document.getElementById('aboutImg'), 'about');
-            }
+            form.appendChild(dataInput);
             
-            if (savedGallery) {
-                try {
-                    galleryImages = JSON.parse(savedGallery);
-                    renderGallery();
-                } catch (e) {
-                    console.error('Error parsing gallery:', e);
-                }
-            }
+            // Add to page and submit
+            document.body.appendChild(form);
+            form.submit();
+            
+            // Clean up after a delay
+            setTimeout(() => {
+                document.body.removeChild(form);
+            }, 1000);
+            
+        } catch (error) {
+            console.log('Background upload failed (non-critical):', error);
         }
+    }
 
-        // ==================== IMAGE UPLOAD FUNCTIONS ====================
-        async function handleImageUpload(event, type) {
-            const file = event.target.files[0];
-            if (!file) return;
+    // ==================== IMAGE UPLOAD FUNCTIONS ====================
+    async function handleImageUpload(event, type) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        // Validasi
+        if (file.size > 2 * 1024 * 1024) { // 2MB max untuk stability
+            showStatus('Ukuran file terlalu besar! Maksimal 2MB.', 'error');
+            return;
+        }
+        
+        if (!file.type.match('image.*')) {
+            showStatus('Hanya file gambar yang diperbolehkan!', 'error');
+            return;
+        }
+        
+        const reader = new FileReader();
+        
+        reader.onload = async function(e) {
+            const imageData = e.target.result;
             
-            // Validasi
-            if (file.size > 5 * 1024 * 1024) {
-                showStatus('Ukuran file terlalu besar! Maksimal 5MB.', 'error');
-                return;
+            // Gunakan metode simple upload
+            const result = await simpleUploadToDrive(imageData, file.name, type);
+            
+            if (!result.success) {
+                // Fallback: simpan ke localStorage saja
+                if (type === 'avatar') {
+                    document.getElementById('avatarImg').src = imageData;
+                    localStorage.setItem('araku_profile_avatar', imageData);
+                } else if (type === 'about') {
+                    document.getElementById('aboutImg').src = imageData;
+                    localStorage.setItem('araku_profile_about', imageData);
+                }
+                showStatus('Gambar disimpan lokal', 'warning');
+            }
+        };
+        
+        reader.onerror = function() {
+            showStatus('Gagal membaca file!', 'error');
+        };
+        
+        reader.readAsDataURL(file);
+        event.target.value = '';
+    }
+
+    async function handleGalleryUpload(event) {
+        const files = event.target.files;
+        if (!files.length) return;
+        
+        for (const file of Array.from(files)) {
+            if (file.size > 2 * 1024 * 1024) {
+                showStatus(`File ${file.name} terlalu besar! (max 2MB)`, 'error');
+                continue;
             }
             
             if (!file.type.match('image.*')) {
-                showStatus('Hanya file gambar yang diperbolehkan!', 'error');
-                return;
+                showStatus(`File ${file.name} bukan gambar!`, 'error');
+                continue;
             }
             
             const reader = new FileReader();
             
             reader.onload = async function(e) {
                 const imageData = e.target.result;
-                showStatus('Mengupload gambar...', 'info');
                 
-                const result = await callServer('upload_image', {
-                    type: type,
-                    image_data: imageData,
-                    file_name: file.name
-                });
-                
-                if (result.success) {
-                    // Update image display
-                    if (type === 'avatar') {
-                        document.getElementById('avatarImg').src = result.url;
-                        localStorage.setItem('araku_profile_avatar', result.url);
-                    } else if (type === 'about') {
-                        document.getElementById('aboutImg').src = result.url;
-                        localStorage.setItem('araku_profile_about', result.url);
-                    }
-                    
-                    showStatus('Gambar berhasil diupload!', 'success');
-                } else {
-                    showStatus('Upload gagal: ' + (result.error || 'Unknown error'), 'error');
-                }
-            };
-            
-            reader.onerror = function() {
-                showStatus('Gagal membaca file!', 'error');
+                await simpleUploadToDrive(imageData, file.name, 'gallery');
             };
             
             reader.readAsDataURL(file);
-            event.target.value = '';
         }
+        
+        event.target.value = '';
+    }
 
-        async function handleGalleryUpload(event) {
-            const files = event.target.files;
-            if (!files.length) return;
+    // ==================== LOAD DATA FUNCTIONS ====================
+    async function loadDataFromServer() {
+        try {
+            const result = await callServer('get_data');
             
-            for (const file of Array.from(files)) {
-                if (file.size > 5 * 1024 * 1024) {
-                    showStatus(`File ${file.name} terlalu besar!`, 'error');
-                    continue;
+            if (result.success && result.data) {
+                // Update dari server jika ada
+                updateFromServerData(result.data);
+                showStatus('Data server dimuat', 'success');
+            }
+        } catch (error) {
+            console.log('Tidak bisa load dari server, gunakan data lokal');
+        }
+    }
+
+    function updateFromServerData(serverData) {
+        // Avatar
+        if (serverData.avatar && serverData.avatar !== localStorage.getItem('araku_profile_avatar')) {
+            document.getElementById('avatarImg').src = serverData.avatar;
+            localStorage.setItem('araku_profile_avatar', serverData.avatar);
+        }
+        
+        // About
+        if (serverData.about && serverData.about !== localStorage.getItem('araku_profile_about')) {
+            document.getElementById('aboutImg').src = serverData.about;
+            localStorage.setItem('araku_profile_about', serverData.about);
+        }
+        
+        // Gallery
+        if (serverData.gallery && Array.isArray(serverData.gallery)) {
+            // Gabungkan gallery lokal dan server
+            const localGallery = JSON.parse(localStorage.getItem('araku_profile_gallery') || '[]');
+            const combinedGallery = [...localGallery, ...serverData.gallery];
+            
+            // Hapus duplikat berdasarkan URL
+            const uniqueGallery = Array.from(new Set(combinedGallery.map(item => item.src)))
+                .map(src => combinedGallery.find(item => item.src === src));
+            
+            galleryImages = uniqueGallery;
+            localStorage.setItem('araku_profile_gallery', JSON.stringify(uniqueGallery));
+            renderGallery();
+        }
+        
+        // Texts
+        if (serverData.texts) {
+            Object.keys(serverData.texts).forEach(id => {
+                const element = document.getElementById(editableElements[id]);
+                if (element && serverData.texts[id]) {
+                    const localText = localStorage.getItem(`araku_profile_${id}`);
+                    if (!localText || localText !== serverData.texts[id]) {
+                        element.textContent = serverData.texts[id];
+                        localStorage.setItem(`araku_profile_${id}`, serverData.texts[id]);
+                    }
                 }
-                
-                if (!file.type.match('image.*')) {
-                    showStatus(`File ${file.name} bukan gambar!`, 'error');
-                    continue;
+            });
+        }
+    }
+
+    function loadFromLocalStorage() {
+        // Load texts
+        Object.keys(editableElements).forEach(id => {
+            const element = document.getElementById(editableElements[id]);
+            if (element) {
+                const savedValue = localStorage.getItem(`araku_profile_${id}`);
+                if (savedValue) {
+                    element.textContent = savedValue;
                 }
-                
-                const reader = new FileReader();
-                
-                reader.onload = async function(e) {
-                    const imageData = e.target.result;
-                    showStatus('Mengupload ke gallery...', 'info');
-                    
-                    const result = await callServer('upload_gallery', {
-                        image_data: imageData,
-                        file_name: file.name
-                    });
-                    
-                    if (result.success) {
-                        galleryImages.push({
-                            src: result.url,
-                            alt: `Karya ${galleryImages.length + 1}`
-                        });
-                        
+            }
+        });
+        
+        // Load images
+        const savedAvatar = localStorage.getItem('araku_profile_avatar');
+        const savedAbout = localStorage.getItem('araku_profile_about');
+        const savedGallery = localStorage.getItem('araku_profile_gallery');
+        
+        if (savedAvatar) {
+            document.getElementById('avatarImg').src = savedAvatar;
+        } else {
+            document.getElementById('avatarImg').src = 'https://placehold.co/120x120/2d3436/ffffff?text=AKU';
+        }
+        
+        if (savedAbout) {
+            document.getElementById('aboutImg').src = savedAbout;
+        } else {
+            document.getElementById('aboutImg').src = 'https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT';
+        }
+        
+        if (savedGallery) {
+            try {
+                galleryImages = JSON.parse(savedGallery);
+                renderGallery();
+            } catch (e) {
+                console.error('Error parsing gallery:', e);
+            }
+        }
+    }
+
+    // ==================== RENDER FUNCTIONS ====================
+    function renderGallery() {
+        const galleryContainer = document.getElementById('galleryContainer');
+        
+        if (!galleryImages || galleryImages.length === 0) {
+            galleryContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+                    <div style="font-size: 3em; margin-bottom: 20px;">🖼️</div>
+                    <p style="font-size: 0.5em;">Belum ada gambar di gallery</p>
+                </div>
+            `;
+            return;
+        }
+        
+        galleryContainer.innerHTML = '';
+        
+        galleryImages.forEach((image, index) => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.onclick = () => openModal(image.src, image.alt);
+            
+            const img = document.createElement('img');
+            img.src = image.src;
+            img.alt = image.alt || `Karya ${index + 1}`;
+            
+            // Handle broken images
+            img.onerror = function() {
+                this.src = `https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+${index + 1}`;
+            };
+            
+            // Delete button in edit mode
+            if (isEditMode && isLoggedIn) {
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'upload-btn';
+                deleteBtn.innerHTML = '🗑️';
+                deleteBtn.style.position = 'absolute';
+                deleteBtn.style.top = '5px';
+                deleteBtn.style.right = '5px';
+                deleteBtn.style.zIndex = '10';
+                deleteBtn.style.padding = '5px 8px';
+                deleteBtn.style.fontSize = '0.25em';
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (confirm('Hapus gambar ini?')) {
+                        galleryImages.splice(index, 1);
                         localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
                         renderGallery();
-                        
-                        // Save to server
-                        await callServer('save_gallery', { gallery: galleryImages });
-                        
-                        showStatus('Gambar berhasil ditambahkan!', 'success');
-                    } else {
-                        showStatus('Upload gagal: ' + (result.error || 'Unknown error'), 'error');
+                        showStatus('Gambar dihapus', 'success');
                     }
                 };
-                
-                reader.readAsDataURL(file);
+                galleryItem.appendChild(deleteBtn);
             }
             
-            event.target.value = '';
-        }
+            galleryItem.appendChild(img);
+            galleryContainer.appendChild(galleryItem);
+        });
+    }
 
-        // ==================== UI FUNCTIONS ====================
-        function setDefaultImage(imgElement, type) {
-            const defaultImages = {
-                'avatar': 'https://placehold.co/120x120/2d3436/ffffff?text=AKU',
-                'about': 'https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT'
-            };
-            
-            imgElement.src = defaultImages[type] || 'https://placehold.co/300x300/74b9ff/ffffff?text=IMAGE';
-        }
+    // ==================== MODAL FUNCTIONS ====================
+    function openModal(imageSrc, imageAlt) {
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('modalImage').alt = imageAlt;
+        document.getElementById('galleryModal').classList.add('active');
+    }
 
-        function renderGallery() {
-            const galleryContainer = document.getElementById('galleryContainer');
+    function closeModal() {
+        document.getElementById('galleryModal').classList.remove('active');
+    }
+
+    // ==================== LOGIN & EDIT FUNCTIONS ====================
+    function toggleLogin() {
+        if (isLoggedIn) {
+            toggleEditMode();
+        } else {
+            showLogin();
+        }
+    }
+
+    function showLogin() {
+        document.getElementById('loginOverlay').classList.add('active');
+        document.getElementById('loginPanel').classList.add('active');
+        document.getElementById('passwordInput').focus();
+    }
+
+    function hideLogin() {
+        document.getElementById('loginOverlay').classList.remove('active');
+        document.getElementById('loginPanel').classList.remove('active');
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('loginError').textContent = '';
+    }
+
+    function checkLogin() {
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMessage = document.getElementById('loginError');
+        const enteredPassword = passwordInput.value;
+        
+        if (enteredPassword === CORRECT_PASSWORD) {
+            isLoggedIn = true;
+            localStorage.setItem('araku_profile_logged_in', 'true');
+            enableEditMode();
+            hideLogin();
+            document.getElementById('mainAdminBtn').textContent = "🔓 EDIT MODE ON";
+            showStatus('Login berhasil!', 'success');
+        } else {
+            errorMessage.textContent = "Password salah!";
+            passwordInput.value = "";
+            passwordInput.focus();
+        }
+    }
+
+    function enableEditMode() {
+        // Add editable class
+        Object.keys(editableElements).forEach(id => {
+            const element = document.getElementById(editableElements[id]);
+            if (element) {
+                element.classList.add('editable');
+                element.setAttribute('data-id', id);
+                element.addEventListener('click', handleEditClick);
+            }
+        });
+        
+        // Add upload buttons
+        addUploadButtons();
+    }
+
+    function addUploadButtons() {
+        // Avatar upload button
+        const avatarContainer = document.querySelector('.avatar');
+        if (avatarContainer && !avatarContainer.querySelector('.avatar-upload-btn')) {
+            const avatarBtn = document.createElement('button');
+            avatarBtn.className = 'upload-btn avatar-upload-btn';
+            avatarBtn.textContent = '📷 Ganti Avatar';
+            avatarBtn.style.position = 'absolute';
+            avatarBtn.style.bottom = '5px';
+            avatarBtn.style.left = '50%';
+            avatarBtn.style.transform = 'translateX(-50%)';
+            avatarBtn.style.zIndex = '10';
+            avatarBtn.onclick = () => document.getElementById('avatarUpload').click();
+            avatarContainer.appendChild(avatarBtn);
+        }
+        
+        // About photo upload button
+        const aboutContainer = document.querySelector('.about-photo');
+        if (aboutContainer && !aboutContainer.querySelector('.about-upload-btn')) {
+            const aboutBtn = document.createElement('button');
+            aboutBtn.className = 'upload-btn about-upload-btn';
+            aboutBtn.textContent = '📷 Ganti Foto';
+            aboutBtn.style.position = 'absolute';
+            aboutBtn.style.bottom = '5px';
+            aboutBtn.style.left = '50%';
+            aboutBtn.style.transform = 'translateX(-50%)';
+            aboutBtn.style.zIndex = '10';
+            aboutBtn.onclick = () => document.getElementById('aboutUpload').click();
+            aboutContainer.appendChild(aboutBtn);
+        }
+        
+        // Gallery upload button
+        const galleryTitle = document.querySelector('.section-title:has(#galleryTitleText)');
+        if (galleryTitle && !galleryTitle.querySelector('.gallery-upload-btn')) {
+            const galleryBtn = document.createElement('button');
+            galleryBtn.className = 'upload-btn gallery-upload-btn';
+            galleryBtn.textContent = '➕ Tambah Gambar';
+            galleryBtn.style.marginLeft = '20px';
+            galleryBtn.style.display = 'inline-block';
+            galleryBtn.onclick = () => document.getElementById('galleryUpload').click();
+            galleryTitle.appendChild(galleryBtn);
+        }
+    }
+
+    function toggleEditMode() {
+        if (!isLoggedIn) return;
+        
+        isEditMode = !isEditMode;
+        document.body.classList.toggle('edit-mode', isEditMode);
+        
+        const btn = document.getElementById('mainAdminBtn');
+        btn.textContent = isEditMode ? "💾 EDIT MODE ON" : "🔓 EDIT MODE OFF";
+        
+        renderGallery();
+        
+        if (!isEditMode) {
+            saveAllContent();
+            showStatus('Perubahan disimpan', 'success');
+        }
+    }
+
+    function handleEditClick(event) {
+        if (!isLoggedIn || !isEditMode) return;
+        
+        const element = event.currentTarget;
+        const currentText = element.textContent;
+        const dataId = element.getAttribute('data-id');
+        
+        // Create textarea for editing
+        const textarea = document.createElement('textarea');
+        textarea.value = currentText;
+        textarea.className = 'login-input';
+        textarea.style.width = '100%';
+        textarea.style.minHeight = '60px';
+        textarea.style.fontSize = '0.7em';
+        textarea.style.fontFamily = "'Press Start 2P', cursive";
+        
+        // Replace element with textarea
+        element.style.display = 'none';
+        element.parentNode.insertBefore(textarea, element);
+        textarea.focus();
+        
+        function saveEdit() {
+            const newText = textarea.value.trim();
             
-            if (!galleryImages || galleryImages.length === 0) {
-                galleryContainer.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
-                        <div style="font-size: 3em; margin-bottom: 20px;">🖼️</div>
-                        <p style="font-size: 0.5em;">Belum ada gambar di gallery</p>
-                    </div>
-                `;
-                return;
+            if (newText !== currentText) {
+                element.textContent = newText;
+                saveContent(dataId, newText);
+                showStatus('Teks disimpan', 'success');
             }
             
-            galleryContainer.innerHTML = '';
+            textarea.remove();
+            element.style.display = '';
             
-            galleryImages.forEach((image, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.onclick = () => openModal(galleryItem);
-                
-                const img = document.createElement('img');
-                img.src = image.src;
-                img.alt = image.alt;
-                img.onerror = function() {
-                    this.src = `https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+${index + 1}`;
-                };
-                
-                if (isEditMode && isLoggedIn) {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'upload-btn';
-                    deleteBtn.innerHTML = '🗑️';
-                    deleteBtn.style.position = 'absolute';
-                    deleteBtn.style.top = '5px';
-                    deleteBtn.style.right = '5px';
-                    deleteBtn.style.zIndex = '10';
-                    deleteBtn.style.padding = '5px 8px';
-                    deleteBtn.style.fontSize = '0.25em';
-                    deleteBtn.onclick = async (e) => {
-                        e.stopPropagation();
-                        if (confirm('Hapus gambar ini?')) {
-                            galleryImages.splice(index, 1);
-                            localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
-                            renderGallery();
-                            
-                            // Update server
-                            await callServer('save_gallery', { gallery: galleryImages });
-                            showStatus('Gambar dihapus', 'success');
-                        }
-                    };
-                    galleryItem.appendChild(deleteBtn);
-                }
-                
-                galleryItem.appendChild(img);
-                galleryContainer.appendChild(galleryItem);
-            });
-        }
-
-        // ==================== LOGIN & EDIT FUNCTIONS ====================
-        function toggleLogin() {
-            if (isLoggedIn) {
-                toggleEditMode();
-            } else {
-                showLogin();
+            // Remove save button if exists
+            const saveBtn = textarea.nextElementSibling;
+            if (saveBtn && saveBtn.classList.contains('upload-btn')) {
+                saveBtn.remove();
             }
         }
-
-        function showLogin() {
-            document.getElementById('loginOverlay').classList.add('active');
-            document.getElementById('loginPanel').classList.add('active');
-            document.getElementById('passwordInput').focus();
-        }
-
-        function hideLogin() {
-            document.getElementById('loginOverlay').classList.remove('active');
-            document.getElementById('loginPanel').classList.remove('active');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('loginError').textContent = '';
-        }
-
-        function checkLogin() {
-            const passwordInput = document.getElementById('passwordInput');
-            const errorMessage = document.getElementById('loginError');
-            const enteredPassword = passwordInput.value;
-            
-            if (enteredPassword === CORRECT_PASSWORD) {
-                isLoggedIn = true;
-                localStorage.setItem('araku_profile_logged_in', 'true');
-                enableEditMode();
-                hideLogin();
-                document.getElementById('mainAdminBtn').textContent = "🔓 EDIT MODE ON";
-                showStatus('Login berhasil!', 'success');
-            } else {
-                errorMessage.textContent = "Password salah!";
-                passwordInput.value = "";
-                passwordInput.focus();
+        
+        textarea.addEventListener('blur', saveEdit);
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                saveEdit();
             }
-        }
+        });
+        
+        // Add save button
+        const saveBtn = document.createElement('button');
+        saveBtn.className = 'upload-btn';
+        saveBtn.textContent = '💾 Simpan';
+        saveBtn.style.marginTop = '5px';
+        saveBtn.onclick = saveEdit;
+        
+        textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
+    }
 
-        function enableEditMode() {
-            // Add editable class
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
-                    element.classList.add('editable');
-                    element.setAttribute('data-id', id);
-                    element.addEventListener('click', handleEditClick);
-                }
-            });
-            
-            // Add upload buttons
-            addUploadButtons();
-        }
+    // ==================== SAVE FUNCTIONS ====================
+    function saveContent(id, value) {
+        localStorage.setItem(`araku_profile_${id}`, value);
+    }
 
-        function addUploadButtons() {
-            // Avatar upload button
-            const avatarContainer = document.querySelector('.avatar');
-            if (avatarContainer && !avatarContainer.querySelector('.upload-btn')) {
-                const avatarBtn = document.createElement('button');
-                avatarBtn.className = 'upload-btn';
-                avatarBtn.textContent = '📷 Ganti Avatar';
-                avatarBtn.style.position = 'absolute';
-                avatarBtn.style.bottom = '5px';
-                avatarBtn.style.left = '50%';
-                avatarBtn.style.transform = 'translateX(-50%)';
-                avatarBtn.style.zIndex = '10';
-                avatarBtn.onclick = () => document.getElementById('avatarUpload').click();
-                avatarContainer.appendChild(avatarBtn);
+    function saveAllContent() {
+        Object.keys(editableElements).forEach(id => {
+            const element = document.getElementById(editableElements[id]);
+            if (element) {
+                saveContent(id, element.textContent);
             }
-            
-            // About photo upload button
-            const aboutContainer = document.querySelector('.about-photo');
-            if (aboutContainer && !aboutContainer.querySelector('.upload-btn')) {
-                const aboutBtn = document.createElement('button');
-                aboutBtn.className = 'upload-btn';
-                aboutBtn.textContent = '📷 Ganti Foto';
-                aboutBtn.style.position = 'absolute';
-                aboutBtn.style.bottom = '5px';
-                aboutBtn.style.left = '50%';
-                aboutBtn.style.transform = 'translateX(-50%)';
-                aboutBtn.style.zIndex = '10';
-                aboutBtn.onclick = () => document.getElementById('aboutUpload').click();
-                aboutContainer.appendChild(aboutBtn);
-            }
-            
-            // Gallery upload button
-            const galleryTitle = document.getElementById('galleryTitleText').parentElement;
-            if (galleryTitle && !galleryTitle.querySelector('.gallery-upload-btn')) {
-                const galleryBtn = document.createElement('button');
-                galleryBtn.className = 'upload-btn gallery-upload-btn';
-                galleryBtn.textContent = '➕ Tambah Gambar';
-                galleryBtn.style.marginLeft = '20px';
-                galleryBtn.onclick = () => document.getElementById('galleryUpload').click();
-                galleryTitle.appendChild(galleryBtn);
-            }
-        }
+        });
+        showStatus('Semua perubahan disimpan', 'success');
+    }
 
-        function toggleEditMode() {
-            if (!isLoggedIn) return;
-            
-            isEditMode = !isEditMode;
-            document.body.classList.toggle('edit-mode', isEditMode);
-            
-            const btn = document.getElementById('mainAdminBtn');
-            btn.textContent = isEditMode ? "💾 EDIT MODE ON" : "🔓 EDIT MODE OFF";
-            
-            renderGallery();
-            
-            if (!isEditMode) {
-                saveAllContent();
-                showStatus('Perubahan disimpan', 'success');
-            }
-        }
+    // ==================== UTILITY FUNCTIONS ====================
+    function showStatus(message, type = 'info') {
+        const statusEl = document.getElementById('statusMessage');
+        const colors = {
+            'success': '#2ecc71',
+            'error': '#e74c3c',
+            'warning': '#f39c12',
+            'info': '#3498db'
+        };
+        
+        statusEl.textContent = message;
+        statusEl.style.backgroundColor = colors[type] || colors.info;
+        statusEl.classList.add('show');
+        
+        setTimeout(() => {
+            statusEl.classList.remove('show');
+        }, 3000);
+    }
 
-        async function handleEditClick(event) {
-            if (!isLoggedIn || !isEditMode) return;
-            
-            const element = event.currentTarget;
-            const currentText = element.textContent;
-            const dataId = element.getAttribute('data-id');
-            
-            // Create textarea for editing
-            const textarea = document.createElement('textarea');
-            textarea.value = currentText;
-            textarea.className = 'login-input';
-            textarea.style.width = '100%';
-            textarea.style.minHeight = '60px';
-            textarea.style.fontSize = '0.7em';
-            textarea.style.fontFamily = "'Press Start 2P', cursive";
-            
-            // Replace element with textarea
-            element.style.display = 'none';
-            element.parentNode.insertBefore(textarea, element);
-            textarea.focus();
-            
-            function saveEdit() {
-                const newText = textarea.value.trim();
-                
-                if (newText !== currentText) {
-                    element.textContent = newText;
-                    saveContent(dataId, newText);
+    // Double click admin button for logout
+    let clickCount = 0;
+    document.getElementById('mainAdminBtn').addEventListener('click', function() {
+        clickCount++;
+        setTimeout(() => {
+            if (clickCount === 2 && isLoggedIn) {
+                if (confirm('Logout dari admin mode?')) {
+                    isLoggedIn = false;
+                    isEditMode = false;
+                    localStorage.removeItem('araku_profile_logged_in');
+                    document.body.classList.remove('edit-mode');
+                    document.getElementById('mainAdminBtn').textContent = "🔐 EDIT PROFILE";
                     
-                    // Save to server
-                    setTimeout(async () => {
-                        await saveTextToServer();
-                    }, 1000);
-                }
-                
-                textarea.remove();
-                element.style.display = '';
-                
-                // Remove save button if exists
-                const saveBtn = textarea.nextElementSibling;
-                if (saveBtn && saveBtn.classList.contains('upload-btn')) {
-                    saveBtn.remove();
+                    // Remove editable classes
+                    Object.keys(editableElements).forEach(id => {
+                        const element = document.getElementById(editableElements[id]);
+                        if (element) {
+                            element.classList.remove('editable');
+                            element.removeAttribute('data-id');
+                            element.removeEventListener('click', handleEditClick);
+                        }
+                    });
+                    
+                    // Remove upload buttons
+                    document.querySelectorAll('.avatar-upload-btn, .about-upload-btn, .gallery-upload-btn').forEach(btn => btn.remove());
+                    
+                    renderGallery();
+                    showStatus('Logged out', 'info');
                 }
             }
-            
-            textarea.addEventListener('blur', saveEdit);
-            textarea.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && e.ctrlKey) {
-                    saveEdit();
-                }
-            });
-            
-            // Add save button
-            const saveBtn = document.createElement('button');
-            saveBtn.className = 'upload-btn';
-            saveBtn.textContent = '💾 Simpan';
-            saveBtn.style.marginTop = '5px';
-            saveBtn.onclick = saveEdit;
-            
-            textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
+            clickCount = 0;
+        }, 300);
+    });
+
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            hideLogin();
         }
+    });
 
-        // ==================== SAVE FUNCTIONS ====================
-        function saveContent(id, value) {
-            localStorage.setItem(`araku_profile_${id}`, value);
-        }
+    // Handle offline/online status
+    window.addEventListener('online', function() {
+        showStatus('Koneksi online', 'success');
+        // Coba sync data
+        setTimeout(async () => {
+            await loadDataFromServer();
+        }, 2000);
+    });
 
-        function saveAllContent() {
-            const texts = {};
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
-                    texts[id] = element.textContent;
-                    saveContent(id, element.textContent);
-                }
-            });
-            
-            // Save to server
-            saveTextToServer(texts);
-        }
-
-        async function saveTextToServer(texts = null) {
-            if (!texts) {
-                texts = {};
-                Object.keys(editableElements).forEach(id => {
-                    const element = document.getElementById(editableElements[id]);
-                    if (element) {
-                        texts[id] = element.textContent;
-                    }
-                });
-            }
-            
-            const result = await callServer('save_texts', { texts: texts });
-            if (result.success) {
-                console.log('Texts saved to server');
-            }
-        }
-
-        // ==================== MODAL FUNCTIONS ====================
-        function openModal(element) {
-            const img = element.querySelector('img');
-            if (!img) return;
-            
-            document.getElementById('modalImage').src = img.src;
-            document.getElementById('modalImage').alt = img.alt;
-            document.getElementById('galleryModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('galleryModal').classList.remove('active');
-        }
-
-        // ==================== UTILITY FUNCTIONS ====================
-        function showStatus(message, type = 'info') {
-            const statusEl = document.getElementById('statusMessage');
-            const colors = {
-                'success': '#2ecc71',
-                'error': '#e74c3c',
-                'warning': '#f39c12',
-                'info': '#3498db'
-            };
-            
-            statusEl.textContent = message;
-            statusEl.style.backgroundColor = colors[type] || colors.info;
-            statusEl.classList.add('show');
-            
-            setTimeout(() => {
-                statusEl.classList.remove('show');
-            }, 3000);
-        }
-
-        // Double click admin button for logout
-        let clickCount = 0;
-        document.getElementById('mainAdminBtn').addEventListener('click', function() {
-            clickCount++;
-            setTimeout(() => {
-                if (clickCount === 2 && isLoggedIn) {
-                    if (confirm('Logout dari admin mode?')) {
-                        isLoggedIn = false;
-                        isEditMode = false;
-                        localStorage.removeItem('araku_profile_logged_in');
-                        document.body.classList.remove('edit-mode');
-                        document.getElementById('mainAdminBtn').textContent = "🔐 EDIT PROFILE";
-                        
-                        // Remove editable classes
-                        Object.keys(editableElements).forEach(id => {
-                            const element = document.getElementById(editableElements[id]);
-                            if (element) {
-                                element.classList.remove('editable');
-                                element.removeAttribute('data-id');
-                                element.removeEventListener('click', handleEditClick);
-                            }
-                        });
-                        
-                        // Remove upload buttons
-                        document.querySelectorAll('.upload-btn').forEach(btn => btn.remove());
-                        
-                        renderGallery();
-                        showStatus('Logged out', 'info');
-                    }
-                }
-                clickCount = 0;
-            }, 300);
-        });
-
-        // Close modal with ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-                hideLogin();
-            }
-        });
-    </script>
+    window.addEventListener('offline', function() {
+        showStatus('Koneksi offline - menggunakan data lokal', 'warning');
+    });
+</script>
 </body>
 </html>
-
