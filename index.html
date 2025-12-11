@@ -54,12 +54,11 @@
             z-index: 1;
         }
 
-        /* Edit Mode Styles */
+        /* Edit Mode Simple Styles */
         .edit-mode .editable {
             position: relative;
             cursor: pointer;
             transition: all 0.3s ease;
-            min-height: 20px;
         }
 
         .edit-mode .editable:hover {
@@ -69,7 +68,7 @@
             margin: -2px;
         }
 
-        /* Admin Button */
+        /* Admin Button Simple */
         .admin-btn {
             position: fixed;
             bottom: 20px;
@@ -91,7 +90,7 @@
             box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
         }
 
-        /* Login Panel */
+        /* Login Panel Simple */
         .login-panel {
             position: fixed;
             top: 50%;
@@ -141,7 +140,7 @@
             min-height: 15px;
         }
 
-        /* Upload Button */
+        /* Upload Button Simple */
         .upload-btn {
             background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
             border: 2px solid #2d3436;
@@ -152,12 +151,6 @@
             cursor: pointer;
             margin: 5px 0;
             display: block;
-            transition: all 0.3s ease;
-        }
-
-        .upload-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
         }
 
         .hidden {
@@ -216,7 +209,6 @@
             animation: bounce 3s ease-in-out infinite;
             overflow: hidden;
             position: relative;
-            background: #dfe6e9;
         }
 
         @keyframes bounce {
@@ -641,46 +633,6 @@
             display: block;
         }
 
-        /* Loading spinner */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #3498db;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Status messages */
-        .status-message {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: #2d3436;
-            color: white;
-            padding: 10px 15px;
-            font-size: 0.35em;
-            border-radius: 5px;
-            z-index: 100;
-            animation: slideIn 0.3s ease;
-            display: none;
-        }
-
-        .status-message.show {
-            display: block;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -804,13 +756,10 @@
     </style>
 </head>
 <body>
-    <!-- Status Message -->
-    <div class="status-message" id="statusMessage"></div>
-
-    <!-- Admin Button -->
+    <!-- Simple Admin Button -->
     <button class="admin-btn" id="mainAdminBtn" onclick="toggleLogin()">🔐 EDIT PROFILE</button>
 
-    <!-- Login Panel -->
+    <!-- Simple Login Panel -->
     <div id="loginOverlay" class="overlay"></div>
     <div id="loginPanel" class="login-panel">
         <h2 style="font-size: 0.8em; margin-bottom: 20px;">LOGIN ADMIN</h2>
@@ -825,25 +774,23 @@
         </p>
     </div>
 
-    <!-- Floating Shapes -->
     <div class="floating-shapes">
         <div class="shape" style="font-size: 80px;">🌸</div>
         <div class="shape" style="font-size: 70px;">💮</div>
         <div class="shape" style="font-size: 90px;">🌺</div>
     </div>
 
-    <!-- Hidden File Inputs -->
+    <!-- File Input Hidden -->
     <input type="file" id="avatarUpload" class="hidden" accept="image/*">
     <input type="file" id="aboutUpload" class="hidden" accept="image/*">
     <input type="file" id="galleryUpload" class="hidden" accept="image/*" multiple>
 
-    <!-- Main Content -->
     <div class="container">
         <!-- Profile Card -->
         <div class="profile-card">
             <div class="hero">
                 <div class="avatar">
-                    <img src="" alt="Avatar" id="avatarImg" onerror="this.onerror=null; this.src='https://placehold.co/120x120/2d3436/ffffff?text=AKU'">
+                    <img src="avatar.png" alt="Avatar" id="avatarImg" onerror="this.src='https://placehold.co/120x120/2d3436/ffffff?text=AKU'">
                 </div>
                 <h1 id="nameText">Araku</h1>
                 <p id="taglineText">Suka Anime • Keren • Sop boi • Suka Gambar (kalau mau)</p>
@@ -858,10 +805,14 @@
             </div>
             <div class="about-box">
                 <div class="about-photo">
-                    <img src="" alt="Foto Profil" id="aboutImg" onerror="this.onerror=null; this.src='https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT'">
+                    <img src="about.jpeg" alt="Foto Profil" id="aboutImg" onerror="this.src='https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT'">
                 </div>
                 <div class="about-text">
-                    <p id="aboutText">ssasasas Saya pecinta anime dan seni yang passionate dalam menggambar. Saya percaya setiap goresan pensil adalah ekspresi jiwa, dan setiap karya adalah perjalanan menuju mimpi!</p>
+                    <p id="aboutText">Halo! Namaku Araku, lahir tahun 2006. Dari kecil aku udah akrab banget sama dunia gambar, walaupun sekarang aku lagi jarang ngelakuin itu karena kadang ngerasa males atau kerasa susah banget. Sampai sekarang aku masih cuma bisa gambar kalau ada referensi, tapi aku tetap nyoba buat ningkatin skill aku pelan-pelan… itu pun kalau nggak males, hehe.
+
+Dulu aku sempat lumayan wibu, tapi sekarang udah jarang banget ngikutin anime. Walaupun begitu, inspirasinya masih suka nempel tanpa aku sadari. Sekarang aku lebih gambar sesuai mood aja—lebih santai dan nggak maksa, yang penting aku tetep menikmati prosesnya.
+
+Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequent dulu, setiap kali aku mulai lagi, rasanya tuh kayak balik ke rumah. Perjalanan aku buat ningkatin kemampuan menggambar masih panjang banget, tapi aku tetep coba, semampu aku, dengan hati yang setengah niat setengah mager… tapi masih maju kok, pelan-pelan.</p>
                 </div>
             </div>
         </div>
@@ -929,7 +880,93 @@
                 <span id="socialTitleText">Social Media</span>
             </div>
             <div class="social-grid">
-                <!-- [KEEP ALL SOCIAL MEDIA LINKS] -->
+                <a href="https://x.com/Arakuken" class="social-item" target="_blank">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 3 L12 8 L16 3" fill="#74b9ff" stroke="#2d3436" stroke-width="2"/>
+                            <circle cx="12" cy="10" r="6" fill="#74b9ff" stroke="#2d3436" stroke-width="2"/>
+                            <circle cx="10" cy="9" r="1.5" fill="#2d3436"/>
+                            <circle cx="14" cy="9" r="1.5" fill="#2d3436"/>
+                            <path d="M 9 12 Q 12 13.5 15 12" stroke="#2d3436" stroke-width="1.5" fill="none"/>
+                            <path d="M 6 14 L 4 16" stroke="#2d3436" stroke-width="2"/>
+                            <path d="M 18 14 L 20 16" stroke="#2d3436" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <div class="platform" id="social1PlatformText">Twitter</div>
+                        <div class="username" id="social1UsernameText">@Arakuken</div>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/araku_ken?igsh=eHA4dWVvcGloOWo=" class="social-item" target="_blank">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <rect x="6" y="7" width="12" height="12" rx="3" fill="#fd79a8" stroke="#2d3436" stroke-width="2"/>
+                            <circle cx="12" cy="13" r="3" fill="white" stroke="#2d3436" stroke-width="2"/>
+                            <circle cx="16" cy="9" r="1" fill="white"/>
+                            <rect x="9" y="4" width="6" height="3" fill="#fd79a8" stroke="#2d3436" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <div class="platform" id="social2PlatformText">Instagram</div>
+                        <div class="username" id="social2UsernameText">@araku_ken</div>
+                    </div>
+                </a>
+                <a href="https://youtube.com/@araku-ken?si=YGon5AGmYyKTMEoL" class="social-item" target="_blank">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="6" width="16" height="12" rx="2" fill="#ff6b6b" stroke="#2d3436" stroke-width="2"/>
+                            <path d="M 10 9 L 10 15 L 16 12 Z" fill="white" stroke="#2d3436" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <div class="platform" id="social3PlatformText">YouTube</div>
+                        <div class="username" id="social3UsernameText">@Araku</div>
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@araku_ken?_r=1&_t=ZS-924bOUosZDc" class="social-item" target="_blank">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <circle cx="10" cy="14" r="4" fill="#a29bfe" stroke="#2d3436" stroke-width="2"/>
+                            <circle cx="16" cy="10" r="3" fill="#a29bfe" stroke="#2d3436" stroke-width="2"/>
+                            <path d="M 14 10 L 14 14" stroke="#2d3436" stroke-width="2"/>
+                            <path d="M 14 6 L 14 10 L 17 8" stroke="#2d3436" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <div class="platform" id="social4PlatformText">TikTok</div>
+                        <div class="username" id="social4UsernameText">@araku_ken</div>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/share/1Cjb4WxBZT/" class="social-item" target="_blank">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <rect x="6" y="4" width="12" height="16" rx="2" fill="#74b9ff" stroke="#2d3436" stroke-width="2"/>
+                            <path d="M 10 8 L 14 8 M 10 12 L 14 12 M 10 8 L 10 16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <div class="platform" id="social5PlatformText">Facebook</div>
+                        <div class="username" id="social5UsernameText">araku ken</div>
+                    </div>
+                </a>
+                <a href="https://mangaplus-creators.jp/authors/27270741" class="social-item" target="_blank">
+                    <div class="icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                            <rect x="5" y="3" width="14" height="18" rx="1" fill="white" stroke="#2d3436" stroke-width="2"/>
+                            <path d="M 19 3 L 19 7 L 15 7 Z" fill="#ffeaa7" stroke="#2d3436" stroke-width="1.5"/>
+                            <line x1="15" y1="7" x2="19" y2="3" stroke="#2d3436" stroke-width="1.5"/>
+                            <line x1="8" y1="10" x2="16" y2="10" stroke="#ff6b6b" stroke-width="2"/>
+                            <line x1="8" y1="13" x2="16" y2="13" stroke="#74b9ff" stroke-width="2"/>
+                            <line x1="8" y1="16" x2="13" y2="16" stroke="#a29bfe" stroke-width="2"/>
+                            <circle cx="9" cy="10" r="0.8" fill="#ff6b6b"/>
+                            <circle cx="15" cy="13" r="0.8" fill="#74b9ff"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <div class="platform" id="social6PlatformText">Manga Plus</div>
+                        <div class="username" id="social6UsernameText">Araku</div>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -940,7 +977,27 @@
                 <span id="contactTitleText">Kontak</span>
             </div>
             <div class="contact-grid">
-                <!-- [KEEP ALL CONTACT INFO] -->
+                <div class="contact-item">
+                    <div class="icon">✉️</div>
+                    <div class="info">
+                        <div class="label" id="contact1LabelText">Email</div>
+                        <div class="value" id="contact1ValueText">arakuken@gmail.com</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <div class="info">
+                        <div class="label" id="contact2LabelText">Phone</div>
+                        <div class="value" id="contact2ValueText">+62 857 1926 2088</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <div class="info">
+                        <div class="label" id="contact3LabelText">Location</div>
+                        <div class="value" id="contact3ValueText">Karawang, Indonesia</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -951,7 +1008,7 @@
         </div>
     </div>
 
-    <!-- Gallery Modal -->
+    <!-- Modal for Gallery -->
     <div id="galleryModal" class="modal">
         <div class="close-modal" onclick="closeModal()">✕</div>
         <div class="modal-content">
@@ -960,431 +1017,98 @@
     </div>
 
     <script>
-        // ==================== KONFIGURASI ====================
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxENYB1Z_TO6CHudaj75icyqPAUnaAeCP5XBpzoWgu2-qPX-tO0xJrGBVDeuEhh5rVTcA/exec";
+        // Password sederhana
         const CORRECT_PASSWORD = "arakuganteng";
         
-        // State
+        // State variables
         let isLoggedIn = false;
         let isEditMode = false;
-        let galleryImages = [];
-        let serverData = null;
-
-        // ==================== INITIALIZATION ====================
-        document.addEventListener('DOMContentLoaded', async function() {
-            console.log('=== ARAKU PROFILE SYSTEM ===');
-            
-            // Cek login
-            if (localStorage.getItem('araku_profile_logged_in') === 'true') {
+        let galleryImages = [
+            { src: "gambar1.png", alt: "Karya 1" },
+            { src: "gambar2.png", alt: "Karya 2" },
+            { src: "gambar3.jpeg", alt: "Karya 3" }
+        ];
+        
+        // Element IDs mapping
+        const editableElements = {
+            'name': 'nameText',
+            'tagline': 'taglineText',
+            'aboutTitle': 'aboutTitleText',
+            'aboutText': 'aboutText',
+            'hobiTitle': 'hobiTitleText',
+            'hobi1Title': 'hobi1TitleText',
+            'hobi1Desc': 'hobi1DescText',
+            'hobi2Title': 'hobi2TitleText',
+            'hobi2Desc': 'hobi2DescText',
+            'hobi3Title': 'hobi3TitleText',
+            'hobi3Desc': 'hobi3DescText',
+            'hobi4Title': 'hobi4TitleText',
+            'hobi4Desc': 'hobi4DescText',
+            'galleryTitle': 'galleryTitleText',
+            'dreamTitle': 'dreamTitleText',
+            'dreamSubtitle': 'dreamSubtitleText',
+            'dreamText': 'dreamText',
+            'socialTitle': 'socialTitleText',
+            'social1Platform': 'social1PlatformText',
+            'social1Username': 'social1UsernameText',
+            'social2Platform': 'social2PlatformText',
+            'social2Username': 'social2UsernameText',
+            'social3Platform': 'social3PlatformText',
+            'social3Username': 'social3UsernameText',
+            'social4Platform': 'social4PlatformText',
+            'social4Username': 'social4UsernameText',
+            'social5Platform': 'social5PlatformText',
+            'social5Username': 'social5UsernameText',
+            'social6Platform': 'social6PlatformText',
+            'social6Username': 'social6UsernameText',
+            'contactTitle': 'contactTitleText',
+            'contact1Label': 'contact1LabelText',
+            'contact1Value': 'contact1ValueText',
+            'contact2Label': 'contact2LabelText',
+            'contact2Value': 'contact2ValueText',
+            'contact3Label': 'contact3LabelText',
+            'contact3Value': 'contact3ValueText',
+            'footerText': 'footerText'
+        };
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if already logged in from localStorage
+            const savedLogin = localStorage.getItem('araku_profile_logged_in');
+            if (savedLogin === 'true') {
                 isLoggedIn = true;
                 enableEditMode();
                 document.getElementById('mainAdminBtn').textContent = "🔓 EDIT MODE ON";
             }
             
-            // Load data dari server TERLEBIH DAHULU
-            await loadDataFromServer();
+            // Load saved content from localStorage
+            loadSavedContent();
             
-            // Setup listeners
-            setupEventListeners();
+            // Setup event listeners
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkLogin();
+                }
+            });
             
-            // Auto refresh data setiap 30 detik
-            setInterval(async () => {
-                await loadDataFromServer();
-            }, 30000);
+            // Setup file upload listeners
+            document.getElementById('avatarUpload').addEventListener('change', function(e) {
+                handleImageUpload(e, 'avatar');
+            });
+            
+            document.getElementById('aboutUpload').addEventListener('change', function(e) {
+                handleImageUpload(e, 'about');
+            });
+            
+            document.getElementById('galleryUpload').addEventListener('change', function(e) {
+                handleGalleryUpload(e);
+            });
+            
+            // Render gallery
+            renderGallery();
         });
-
-        // ==================== SERVER FUNCTIONS ====================
-        async function loadDataFromServer() {
-            try {
-                const url = APPS_SCRIPT_URL + '?action=get_data&_=' + Date.now();
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error('HTTP ' + response.status);
-                }
-                
-                const result = await response.json();
-                
-                if (result.success && result.data) {
-                    serverData = result.data;
-                    updateUIFromServerData();
-                    showStatus('Data server dimuat', 'success');
-                    console.log('Server data loaded:', result.data);
-                }
-            } catch (error) {
-                console.log('Gagal load dari server:', error.message);
-                // Tetap tampilkan data lokal
-                loadLocalData();
-            }
-        }
-
-        async function saveToServer(type, data, fileName = '') {
-            try {
-                showStatus('Menyimpan ke server...', 'info');
-                
-                // Buat payload
-                const payload = {
-                    action: 'save_data',
-                    type: type,
-                    data: data,
-                    file_name: fileName,
-                    timestamp: new Date().toISOString()
-                };
-                
-                // Kirim ke server
-                const formData = new FormData();
-                formData.append('payload', JSON.stringify(payload));
-                
-                await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                });
-                
-                // Refresh data dari server
-                setTimeout(async () => {
-                    await loadDataFromServer();
-                }, 1000);
-                
-                return true;
-            } catch (error) {
-                console.error('Save to server error:', error);
-                return false;
-            }
-        }
-
-        async function uploadImageToServer(imageData, type, fileName) {
-            try {
-                // Untuk gambar besar, kita perlu compress
-                let compressedData = await compressImage(imageData, 0.7); // 70% quality
-                
-                const payload = {
-                    action: 'upload_image',
-                    type: type,
-                    image_data: compressedData,
-                    file_name: fileName || `${type}_${Date.now()}`
-                };
-                
-                // Kirim via FormData
-                const formData = new FormData();
-                for (const key in payload) {
-                    formData.append(key, payload[key]);
-                }
-                
-                // Kirim request
-                await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                });
-                
-                console.log('Image upload attempted');
-                return true;
-            } catch (error) {
-                console.error('Image upload error:', error);
-                return false;
-            }
-        }
-
-        // ==================== IMAGE COMPRESSION ====================
-        async function compressImage(dataUrl, quality = 0.7) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    
-                    // Compress
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-                    resolve(compressedDataUrl);
-                };
-                img.src = dataUrl;
-            });
-        }
-
-        // ==================== UI UPDATE FUNCTIONS ====================
-        function updateUIFromServerData() {
-            if (!serverData) return;
-            
-            // Update avatar
-            if (serverData.avatar && serverData.avatar.startsWith('data:image')) {
-                document.getElementById('avatarImg').src = serverData.avatar;
-                localStorage.setItem('araku_profile_avatar', serverData.avatar);
-            }
-            
-            // Update about
-            if (serverData.about && serverData.about.startsWith('data:image')) {
-                document.getElementById('aboutImg').src = serverData.about;
-                localStorage.setItem('araku_profile_about', serverData.about);
-            }
-            
-            // Update gallery
-            if (serverData.gallery && Array.isArray(serverData.gallery)) {
-                galleryImages = serverData.gallery;
-                localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
-                renderGallery();
-            }
-            
-            // Update texts
-            if (serverData.texts) {
-                updateTextsFromServer(serverData.texts);
-            }
-        }
-
-        function updateTextsFromServer(texts) {
-            const textMap = {
-                'name': 'nameText',
-                'tagline': 'taglineText',
-                'aboutText': 'aboutText',
-                'aboutTitle': 'aboutTitleText',
-                'hobiTitle': 'hobiTitleText',
-                'hobi1Title': 'hobi1TitleText',
-                'hobi1Desc': 'hobi1DescText',
-                'hobi2Title': 'hobi2TitleText',
-                'hobi2Desc': 'hobi2DescText',
-                'hobi3Title': 'hobi3TitleText',
-                'hobi3Desc': 'hobi3DescText',
-                'hobi4Title': 'hobi4TitleText',
-                'hobi4Desc': 'hobi4DescText',
-                'galleryTitle': 'galleryTitleText',
-                'dreamTitle': 'dreamTitleText',
-                'dreamSubtitle': 'dreamSubtitleText',
-                'dreamText': 'dreamText',
-                'socialTitle': 'socialTitleText',
-                'footerText': 'footerText'
-            };
-            
-            Object.keys(texts).forEach(key => {
-                const elementId = textMap[key];
-                if (elementId) {
-                    const element = document.getElementById(elementId);
-                    if (element && texts[key]) {
-                        element.textContent = texts[key];
-                        localStorage.setItem('araku_profile_' + key, texts[key]);
-                    }
-                }
-            });
-        }
-
-        function loadLocalData() {
-            // Fallback ke data lokal jika server down
-            const avatar = localStorage.getItem('araku_profile_avatar');
-            const about = localStorage.getItem('araku_profile_about');
-            const gallery = localStorage.getItem('araku_profile_gallery');
-            
-            if (avatar) document.getElementById('avatarImg').src = avatar;
-            if (about) document.getElementById('aboutImg').src = about;
-            if (gallery) {
-                try {
-                    galleryImages = JSON.parse(gallery);
-                    renderGallery();
-                } catch (e) {
-                    galleryImages = [];
-                }
-            }
-        }
-
-        // ==================== IMAGE UPLOAD HANDLERS ====================
-        async function handleImageUpload(event, type) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            // Validasi
-            if (file.size > 2 * 1024 * 1024) {
-                showStatus('Maksimal 2MB!', 'error');
-                return;
-            }
-            
-            if (!file.type.startsWith('image/')) {
-                showStatus('File harus gambar!', 'error');
-                return;
-            }
-            
-            const reader = new FileReader();
-            
-            reader.onload = async function(e) {
-                const imageData = e.target.result;
-                
-                // Update UI langsung
-                if (type === 'avatar') {
-                    document.getElementById('avatarImg').src = imageData;
-                } else if (type === 'about') {
-                    document.getElementById('aboutImg').src = imageData;
-                }
-                
-                // Simpan ke localStorage sebagai cache
-                localStorage.setItem('araku_profile_' + type, imageData);
-                
-                // Upload ke server
-                const uploadSuccess = await uploadImageToServer(imageData, type, file.name);
-                
-                if (uploadSuccess) {
-                    showStatus('Gambar berhasil diupload ke server!', 'success');
-                    
-                    // Refresh data dari server
-                    setTimeout(async () => {
-                        await loadDataFromServer();
-                    }, 1500);
-                } else {
-                    showStatus('Upload gagal, coba lagi nanti', 'error');
-                }
-            };
-            
-            reader.onerror = function() {
-                showStatus('Gagal membaca file', 'error');
-            };
-            
-            reader.readAsDataURL(file);
-            event.target.value = '';
-        }
-
-        async function handleGalleryUpload(event) {
-            const files = event.target.files;
-            if (!files.length) return;
-            
-            showStatus(`Mengupload ${files.length} gambar...`, 'info');
-            
-            for (const file of Array.from(files)) {
-                if (file.size > 2 * 1024 * 1024) {
-                    showStatus(`${file.name}: Terlalu besar (>2MB)`, 'warning');
-                    continue;
-                }
-                
-                if (!file.type.startsWith('image/')) {
-                    showStatus(`${file.name}: Bukan gambar`, 'warning');
-                    continue;
-                }
-                
-                const reader = new FileReader();
-                
-                reader.onload = async function(e) {
-                    const imageData = e.target.result;
-                    
-                    // Upload ke server
-                    await uploadImageToServer(imageData, 'gallery', file.name);
-                    
-                    // Refresh gallery dari server
-                    setTimeout(async () => {
-                        await loadDataFromServer();
-                    }, 1000);
-                };
-                
-                reader.readAsDataURL(file);
-                
-                // Delay antar file
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-            
-            showStatus('Upload selesai!', 'success');
-            event.target.value = '';
-        }
-
-        // ==================== RENDER GALLERY ====================
-        function renderGallery() {
-            const container = document.getElementById('galleryContainer');
-            
-            if (!galleryImages || galleryImages.length === 0) {
-                container.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
-                        <div style="font-size: 3em; margin-bottom: 20px;">🖼️</div>
-                        <p style="font-size: 0.5em;">Belum ada gambar di gallery</p>
-                        ${isLoggedIn ? '<p style="font-size: 0.3em; margin-top: 10px; opacity: 0.7;">Klik "Tambah Gambar" untuk upload</p>' : ''}
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = '';
-            
-            galleryImages.forEach((image, index) => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.onclick = () => openModal(image.src);
-                
-                const img = document.createElement('img');
-                img.src = image.src;
-                img.alt = image.alt || `Karya ${index + 1}`;
-                img.loading = 'lazy';
-                
-                // Handle broken images
-                img.onerror = function() {
-                    this.src = 'https://placehold.co/300x300/74b9ff/ffffff?text=Gambar';
-                };
-                
-                // Delete button in edit mode
-                if (isEditMode && isLoggedIn) {
-                    const delBtn = document.createElement('button');
-                    delBtn.className = 'upload-btn';
-                    delBtn.innerHTML = '🗑️';
-                    delBtn.style.cssText = `
-                        position: absolute;
-                        top: 5px;
-                        left: 5px;
-                        z-index: 10;
-                        padding: 5px 8px;
-                        font-size: 0.25em;
-                    `;
-                    delBtn.onclick = async (e) => {
-                        e.stopPropagation();
-                        if (confirm('Hapus gambar ini?')) {
-                            // Hapus dari server
-                            await deleteGalleryImage(index);
-                        }
-                    };
-                    item.appendChild(delBtn);
-                }
-                
-                item.appendChild(img);
-                container.appendChild(item);
-            });
-        }
-
-        async function deleteGalleryImage(index) {
-            try {
-                showStatus('Menghapus gambar...', 'info');
-                
-                // Kirim request delete ke server
-                const payload = {
-                    action: 'delete_image',
-                    index: index,
-                    timestamp: new Date().toISOString()
-                };
-                
-                const formData = new FormData();
-                formData.append('payload', JSON.stringify(payload));
-                
-                await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                });
-                
-                // Refresh data
-                await loadDataFromServer();
-                showStatus('Gambar dihapus', 'success');
-                
-            } catch (error) {
-                showStatus('Gagal menghapus', 'error');
-            }
-        }
-
-        // ==================== MODAL FUNCTIONS ====================
-        function openModal(imageSrc) {
-            document.getElementById('modalImage').src = imageSrc;
-            document.getElementById('galleryModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('galleryModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // ==================== LOGIN & EDIT FUNCTIONS ====================
+        
+        // Toggle login panel
         function toggleLogin() {
             if (isLoggedIn) {
                 toggleEditMode();
@@ -1392,20 +1116,23 @@
                 showLogin();
             }
         }
-
+        
+        // Show login panel
         function showLogin() {
             document.getElementById('loginOverlay').classList.add('active');
             document.getElementById('loginPanel').classList.add('active');
             document.getElementById('passwordInput').focus();
         }
-
+        
+        // Hide login panel
         function hideLogin() {
             document.getElementById('loginOverlay').classList.remove('active');
             document.getElementById('loginPanel').classList.remove('active');
             document.getElementById('passwordInput').value = '';
             document.getElementById('loginError').textContent = '';
         }
-
+        
+        // Check login credentials
         function checkLogin() {
             const passwordInput = document.getElementById('passwordInput');
             const errorMessage = document.getElementById('loginError');
@@ -1417,73 +1144,38 @@
                 enableEditMode();
                 hideLogin();
                 document.getElementById('mainAdminBtn').textContent = "🔓 EDIT MODE ON";
-                showStatus('Login berhasil! Mode edit aktif', 'success');
+                errorMessage.textContent = "";
             } else {
                 errorMessage.textContent = "Password salah!";
                 passwordInput.value = "";
                 passwordInput.focus();
-                showStatus('Password salah', 'error');
             }
         }
-
+        
+        // Enable edit mode
         function enableEditMode() {
-            // Add upload buttons
+            // Add editable class to elements
+            Object.keys(editableElements).forEach(id => {
+                const element = document.getElementById(editableElements[id]);
+                if (element) {
+                    element.classList.add('editable');
+                    element.setAttribute('data-id', id);
+                }
+            });
+            
+            // Add click events
+            Object.keys(editableElements).forEach(id => {
+                const element = document.getElementById(editableElements[id]);
+                if (element) {
+                    element.addEventListener('click', handleEditClick);
+                }
+            });
+            
+            // Add upload buttons for images
             addUploadButtons();
-            
-            // Add text editing
-            document.body.classList.add('edit-mode');
-            
-            // Re-render gallery with delete buttons
-            renderGallery();
         }
-
-        function addUploadButtons() {
-            // Avatar button
-            const avatarContainer = document.querySelector('.avatar');
-            if (avatarContainer && !avatarContainer.querySelector('.edit-btn')) {
-                const btn = document.createElement('button');
-                btn.className = 'upload-btn edit-btn';
-                btn.textContent = '📷 Ganti';
-                btn.style.cssText = `
-                    position: absolute;
-                    bottom: 5px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    z-index: 10;
-                `;
-                btn.onclick = () => document.getElementById('avatarUpload').click();
-                avatarContainer.appendChild(btn);
-            }
-            
-            // About button
-            const aboutContainer = document.querySelector('.about-photo');
-            if (aboutContainer && !aboutContainer.querySelector('.edit-btn')) {
-                const btn = document.createElement('button');
-                btn.className = 'upload-btn edit-btn';
-                btn.textContent = '📷 Ganti';
-                btn.style.cssText = `
-                    position: absolute;
-                    bottom: 5px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    z-index: 10;
-                `;
-                btn.onclick = () => document.getElementById('aboutUpload').click();
-                aboutContainer.appendChild(btn);
-            }
-            
-            // Gallery button
-            const galleryTitle = document.querySelector('.section-title:has(#galleryTitleText)');
-            if (galleryTitle && !galleryTitle.querySelector('.edit-btn')) {
-                const btn = document.createElement('button');
-                btn.className = 'upload-btn edit-btn';
-                btn.textContent = '➕ Tambah Gambar';
-                btn.style.marginLeft = '20px';
-                btn.onclick = () => document.getElementById('galleryUpload').click();
-                galleryTitle.appendChild(btn);
-            }
-        }
-
+        
+        // Toggle edit mode on/off
         function toggleEditMode() {
             if (!isLoggedIn) return;
             
@@ -1493,85 +1185,322 @@
             const btn = document.getElementById('mainAdminBtn');
             btn.textContent = isEditMode ? "💾 EDIT MODE ON" : "🔓 EDIT MODE OFF";
             
+            // Show/hide delete buttons in gallery
             renderGallery();
-        }
-
-        // ==================== UTILITY FUNCTIONS ====================
-        function showStatus(message, type = 'info') {
-            const el = document.getElementById('statusMessage');
-            el.textContent = message;
-            el.style.backgroundColor = 
-                type === 'success' ? '#2ecc71' :
-                type === 'error' ? '#e74c3c' :
-                type === 'warning' ? '#f39c12' : '#3498db';
-            el.classList.add('show');
             
-            setTimeout(() => {
-                el.classList.remove('show');
-            }, 3000);
+            if (!isEditMode) {
+                // Auto-save when turning off edit mode
+                saveAllContent();
+            }
         }
-
-        function setupEventListeners() {
-            // File inputs
-            document.getElementById('avatarUpload').addEventListener('change', (e) => handleImageUpload(e, 'avatar'));
-            document.getElementById('aboutUpload').addEventListener('change', (e) => handleImageUpload(e, 'about'));
-            document.getElementById('galleryUpload').addEventListener('change', (e) => handleGalleryUpload(e));
+        
+        // Add upload buttons to images
+        function addUploadButtons() {
+            // Add upload button for avatar
+            const avatarContainer = document.querySelector('.avatar');
+            const avatarBtn = document.createElement('button');
+            avatarBtn.className = 'upload-btn';
+            avatarBtn.textContent = 'Ganti Foto';
+            avatarBtn.style.position = 'absolute';
+            avatarBtn.style.bottom = '5px';
+            avatarBtn.style.left = '50%';
+            avatarBtn.style.transform = 'translateX(-50%)';
+            avatarBtn.style.zIndex = '10';
+            avatarBtn.onclick = () => document.getElementById('avatarUpload').click();
+            avatarContainer.appendChild(avatarBtn);
             
-            // Login
-            document.getElementById('passwordInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') checkLogin();
+            // Add upload button for about photo
+            const aboutContainer = document.querySelector('.about-photo');
+            const aboutBtn = document.createElement('button');
+            aboutBtn.className = 'upload-btn';
+            aboutBtn.textContent = 'Ganti Foto';
+            aboutBtn.style.position = 'absolute';
+            aboutBtn.style.bottom = '5px';
+            aboutBtn.style.left = '50%';
+            aboutBtn.style.transform = 'translateX(-50%)';
+            aboutBtn.style.zIndex = '10';
+            aboutBtn.onclick = () => document.getElementById('aboutUpload').click();
+            aboutContainer.appendChild(aboutBtn);
+            
+            // Add upload button for gallery
+            const galleryTitle = document.getElementById('galleryTitleText').parentElement;
+            const galleryBtn = document.createElement('button');
+            galleryBtn.className = 'upload-btn';
+            galleryBtn.textContent = '+ Tambah Gambar';
+            galleryBtn.style.marginLeft = '20px';
+            galleryBtn.onclick = () => document.getElementById('galleryUpload').click();
+            galleryTitle.appendChild(galleryBtn);
+        }
+        
+        // Handle click on editable element
+        function handleEditClick(event) {
+            if (!isLoggedIn || !document.body.classList.contains('edit-mode')) return;
+            
+            const element = event.currentTarget;
+            const currentText = element.textContent;
+            const dataId = element.getAttribute('data-id');
+            
+            // Create simple textarea for editing
+            const textarea = document.createElement('textarea');
+            textarea.value = currentText;
+            textarea.className = 'login-input';
+            textarea.style.width = '100%';
+            textarea.style.height = '100px';
+            textarea.style.fontSize = '0.7em';
+            textarea.style.fontFamily = "'Press Start 2P', cursive";
+            
+            // Replace element with textarea
+            element.style.display = 'none';
+            element.parentNode.insertBefore(textarea, element);
+            textarea.focus();
+            
+            // Handle save
+            function saveEdit() {
+                const newText = textarea.value.trim();
+                
+                if (newText !== currentText) {
+                    element.textContent = newText;
+                    saveContent(dataId, newText);
+                }
+                
+                // Remove textarea and show element again
+                textarea.remove();
+                element.style.display = '';
+            }
+            
+            // Event listeners
+            textarea.addEventListener('blur', saveEdit);
+            textarea.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    saveEdit();
+                }
             });
             
-            // Modal close
-            document.querySelector('.close-modal').addEventListener('click', closeModal);
-            document.getElementById('galleryModal').addEventListener('click', (e) => {
-                if (e.target === e.currentTarget) closeModal();
-            });
+            // Add save button
+            const saveBtn = document.createElement('button');
+            saveBtn.className = 'upload-btn';
+            saveBtn.textContent = '💾 Save';
+            saveBtn.style.marginTop = '5px';
+            saveBtn.onclick = saveEdit;
             
-            // ESC key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeModal();
-                    hideLogin();
+            textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
+        }
+        
+        // Save all content
+        function saveAllContent() {
+            Object.keys(editableElements).forEach(id => {
+                const element = document.getElementById(editableElements[id]);
+                if (element) {
+                    saveContent(id, element.textContent);
                 }
             });
         }
-
-        // Double click logout
+        
+        // Save content to localStorage
+        function saveContent(id, value) {
+            localStorage.setItem(`araku_profile_${id}`, value);
+        }
+        
+        // Load saved content from localStorage
+        function loadSavedContent() {
+            Object.keys(editableElements).forEach(id => {
+                const element = document.getElementById(editableElements[id]);
+                if (element) {
+                    const savedValue = localStorage.getItem(`araku_profile_${id}`);
+                    if (savedValue) {
+                        element.textContent = savedValue;
+                    }
+                }
+            });
+            
+            // Load saved images
+            const savedAvatar = localStorage.getItem('araku_profile_avatar');
+            const savedAbout = localStorage.getItem('araku_profile_about');
+            const savedGallery = localStorage.getItem('araku_profile_gallery');
+            
+            if (savedAvatar) {
+                document.getElementById('avatarImg').src = savedAvatar;
+            }
+            
+            if (savedAbout) {
+                document.getElementById('aboutImg').src = savedAbout;
+            }
+            
+            if (savedGallery) {
+                try {
+                    galleryImages = JSON.parse(savedGallery);
+                } catch (e) {
+                    console.error('Error parsing gallery:', e);
+                }
+            }
+        }
+        
+        // Handle image upload
+        function handleImageUpload(event, type) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Check file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                
+                if (type === 'avatar') {
+                    document.getElementById('avatarImg').src = imageUrl;
+                    localStorage.setItem('araku_profile_avatar', imageUrl);
+                } else if (type === 'about') {
+                    document.getElementById('aboutImg').src = imageUrl;
+                    localStorage.setItem('araku_profile_about', imageUrl);
+                }
+            };
+            reader.readAsDataURL(file);
+            
+            // Reset file input
+            event.target.value = '';
+        }
+        
+        // Handle gallery upload
+        function handleGalleryUpload(event) {
+            const files = event.target.files;
+            if (!files.length) return;
+            
+            Array.from(files).forEach(file => {
+                // Check file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert(`File ${file.name} terlalu besar! Maksimal 5MB.`);
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    
+                    // Add new image to gallery
+                    galleryImages.push({
+                        src: imageUrl,
+                        alt: `Karya ${galleryImages.length + 1}`
+                    });
+                    
+                    // Save to localStorage
+                    localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
+                    
+                    // Re-render gallery
+                    renderGallery();
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            // Reset file input
+            event.target.value = '';
+        }
+        
+        // Render gallery images
+        function renderGallery() {
+            const galleryContainer = document.getElementById('galleryContainer');
+            galleryContainer.innerHTML = '';
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.onclick = () => openModal(galleryItem);
+                
+                const img = document.createElement('img');
+                img.src = image.src;
+                img.alt = image.alt;
+                img.onerror = function() {
+                    this.src = `https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+${index + 1}`;
+                };
+                
+                // Add delete button in edit mode
+                if (isEditMode && isLoggedIn) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'upload-btn';
+                    deleteBtn.style.position = 'absolute';
+                    deleteBtn.style.top = '5px';
+                    deleteBtn.style.left = '5px';
+                    deleteBtn.style.zIndex = '10';
+                    deleteBtn.style.padding = '5px 8px';
+                    deleteBtn.style.fontSize = '0.25em';
+                    deleteBtn.textContent = 'X';
+                    deleteBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        deleteGalleryImage(index);
+                    };
+                    galleryItem.appendChild(deleteBtn);
+                }
+                
+                galleryItem.appendChild(img);
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+        
+        // Delete gallery image
+        function deleteGalleryImage(index) {
+            if (confirm('Hapus gambar ini?')) {
+                galleryImages.splice(index, 1);
+                localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
+                renderGallery();
+            }
+        }
+        
+        // Gallery modal functions
+        function openModal(element) {
+            const img = element.querySelector('img');
+            if (!img) return;
+            
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('modalImage').alt = img.alt;
+            document.getElementById('galleryModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('galleryModal').classList.remove('active');
+        }
+        
+        // Logout function (for emergency)
+        function forceLogout() {
+            if (confirm('Logout dari admin mode?')) {
+                isLoggedIn = false;
+                isEditMode = false;
+                localStorage.removeItem('araku_profile_logged_in');
+                document.body.classList.remove('edit-mode');
+                document.getElementById('mainAdminBtn').textContent = "🔐 EDIT PROFILE";
+                
+                // Remove editable classes
+                Object.keys(editableElements).forEach(id => {
+                    const element = document.getElementById(editableElements[id]);
+                    if (element) {
+                        element.classList.remove('editable');
+                        element.removeAttribute('data-id');
+                        element.removeEventListener('click', handleEditClick);
+                    }
+                });
+                
+                // Remove upload buttons
+                const uploadBtns = document.querySelectorAll('.upload-btn');
+                uploadBtns.forEach(btn => btn.remove());
+                
+                // Re-render gallery without delete buttons
+                renderGallery();
+            }
+        }
+        
+        // Add force logout with double-click on admin button
         let clickCount = 0;
         document.getElementById('mainAdminBtn').addEventListener('click', function() {
             clickCount++;
             setTimeout(() => {
                 if (clickCount === 2 && isLoggedIn) {
-                    if (confirm('Logout dari admin mode?')) {
-                        isLoggedIn = false;
-                        isEditMode = false;
-                        localStorage.removeItem('araku_profile_logged_in');
-                        document.body.classList.remove('edit-mode');
-                        this.textContent = "🔐 EDIT PROFILE";
-                        
-                        // Remove edit buttons
-                        document.querySelectorAll('.edit-btn').forEach(btn => btn.remove());
-                        
-                        renderGallery();
-                        showStatus('Logged out', 'info');
-                    }
+                    forceLogout();
                 }
                 clickCount = 0;
             }, 300);
         });
-
-        // Manual sync button (via console)
-        window.syncNow = async function() {
-            showStatus('Menyinkronkan...', 'info');
-            await loadDataFromServer();
-        };
-
-        console.log('=== SYSTEM READY ===');
-        console.log('Server URL:', APPS_SCRIPT_URL);
-        console.log('Commands:');
-        console.log('- syncNow() - Force sync from server');
-        console.log('- serverData - View server data');
     </script>
 </body>
 </html>
