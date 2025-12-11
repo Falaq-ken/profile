@@ -21,6 +21,187 @@
             position: relative;
         }
 
+        /* ============================== */
+        /* NAVBAR STYLES - TAMBAHAN BARU */
+        /* ============================== */
+        .navbar {
+            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+            border: 4px solid #2d3436;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .navbar::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            background: #ffeaa7;
+            border: 2px solid #2d3436;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border: 3px solid #2d3436;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .navbar-brand h1 {
+            color: white;
+            font-size: 0.9em;
+            text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border: 3px solid #2d3436;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+            position: relative;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .nav-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 6px;
+            height: 6px;
+            background: #ff6b6b;
+            border: 2px solid #2d3436;
+        }
+
+        .nav-icon {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .nav-text {
+            font-size: 0.45em;
+            color: #2d3436;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border: 3px solid #2d3436;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .navbar-brand {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .navbar-menu {
+                width: 100%;
+                justify-content: center;
+                display: flex;
+                gap: 8px;
+            }
+
+            .nav-item {
+                min-width: 80px;
+                padding: 8px 10px;
+            }
+
+            .nav-text {
+                font-size: 0.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-menu {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav-item {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .navbar-menu.mobile-hidden {
+                display: none;
+            }
+        }
+
+        /* ============================== */
+        /* STYLES SEBELUMNYA TETAP SAMA  */
+        /* ============================== */
         .floating-shapes {
             position: fixed;
             width: 100%;
@@ -756,6 +937,51 @@
     </style>
 </head>
 <body>
+    <!-- ============================== -->
+    <!-- NAVBAR BARU - TAMBAHAN KODE -->
+    <!-- ============================== -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="navbar-logo">A</div>
+                <h1>ARAKU PORTFOLIO</h1>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <div class="navbar-menu" id="navbarMenu">
+                <div class="nav-item active" onclick="scrollToSection('hero')">
+                    <div class="nav-icon">🏠</div>
+                    <div class="nav-text">HOME</div>
+                </div>
+                <div class="nav-item" onclick="scrollToSection('about')">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-text">ABOUT</div>
+                </div>
+                <div class="nav-item" onclick="scrollToSection('hobi')">
+                    <div class="nav-icon">🎨</div>
+                    <div class="nav-text">HOBI</div>
+                </div>
+                <div class="nav-item" onclick="scrollToSection('gallery')">
+                    <div class="nav-icon">🖼️</div>
+                    <div class="nav-text">GALLERY</div>
+                </div>
+                <div class="nav-item" onclick="scrollToSection('dream')">
+                    <div class="nav-icon">⭐</div>
+                    <div class="nav-text">CITA-CITA</div>
+                </div>
+                <div class="nav-item" onclick="scrollToSection('social')">
+                    <div class="nav-icon">🌐</div>
+                    <div class="nav-text">SOCIAL</div>
+                </div>
+                <div class="nav-item" onclick="scrollToSection('contact')">
+                    <div class="nav-icon">📧</div>
+                    <div class="nav-text">KONTAK</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- Simple Admin Button -->
     <button class="admin-btn" id="mainAdminBtn" onclick="toggleLogin()">🔐 EDIT PROFILE</button>
 
@@ -788,7 +1014,7 @@
     <div class="container">
         <!-- Profile Card -->
         <div class="profile-card">
-            <div class="hero">
+            <div class="hero" id="hero">
                 <div class="avatar">
                     <img src="avatar.png" alt="Avatar" id="avatarImg" onerror="this.src='https://placehold.co/120x120/2d3436/ffffff?text=AKU'">
                 </div>
@@ -798,7 +1024,7 @@
         </div>
 
         <!-- About Section -->
-        <div class="section">
+        <div class="section" id="about">
             <div class="section-title">
                 <span>👤</span>
                 <span id="aboutTitleText">About Me</span>
@@ -808,17 +1034,13 @@
                     <img src="about.jpeg" alt="Foto Profil" id="aboutImg" onerror="this.src='https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT'">
                 </div>
                 <div class="about-text">
-                    <p id="aboutText">Halo! Namaku Araku, lahir tahun 2006. Dari kecil aku udah akrab banget sama dunia gambar, walaupun sekarang aku lagi jarang ngelakuin itu karena kadang ngerasa males atau kerasa susah banget. Sampai sekarang aku masih cuma bisa gambar kalau ada referensi, tapi aku tetap nyoba buat ningkatin skill aku pelan-pelan… itu pun kalau nggak males, hehe.
-
-Dulu aku sempat lumayan wibu, tapi sekarang udah jarang banget ngikutin anime. Walaupun begitu, inspirasinya masih suka nempel tanpa aku sadari. Sekarang aku lebih gambar sesuai mood aja—lebih santai dan nggak maksa, yang penting aku tetep menikmati prosesnya.
-
-Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequent dulu, setiap kali aku mulai lagi, rasanya tuh kayak balik ke rumah. Perjalanan aku buat ningkatin kemampuan menggambar masih panjang banget, tapi aku tetep coba, semampu aku, dengan hati yang setengah niat setengah mager… tapi masih maju kok, pelan-pelan.</p>
+                    <p id="aboutText">ssasasas Saya pecinta anime dan seni yang passionate dalam menggambar. Saya percaya setiap goresan pensil adalah ekspresi jiwa, dan setiap karya adalah perjalanan menuju mimpi!</p>
                 </div>
             </div>
         </div>
 
         <!-- Hobi Section -->
-        <div class="section">
+        <div class="section" id="hobi">
             <div class="section-title">
                 <span>🎨</span>
                 <span id="hobiTitleText">Hobi</span>
@@ -847,7 +1069,7 @@ Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequ
             </div>
             
             <!-- Gallery Section -->
-            <div style="margin-top: 35px;">
+            <div style="margin-top: 35px;" id="gallery">
                 <div class="section-title">
                     <span>🖼️</span>
                     <span id="galleryTitleText">Sedikit gambaran ku</span>
@@ -860,7 +1082,7 @@ Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequ
         </div>
 
         <!-- Cita-Cita Section -->
-        <div class="section">
+        <div class="section" id="dream">
             <div class="section-title">
                 <span>⭐</span>
                 <span id="dreamTitleText">Cita-Cita</span>
@@ -874,7 +1096,7 @@ Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequ
         </div>
 
         <!-- Social Media Section -->
-        <div class="section">
+        <div class="section" id="social">
             <div class="section-title">
                 <span>🌐</span>
                 <span id="socialTitleText">Social Media</span>
@@ -971,7 +1193,7 @@ Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequ
         </div>
 
         <!-- Kontak Section -->
-        <div class="section">
+        <div class="section" id="contact">
             <div class="section-title">
                 <span>📧</span>
                 <span id="contactTitleText">Kontak</span>
@@ -1104,9 +1326,130 @@ Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequ
                 handleGalleryUpload(e);
             });
             
+            // Setup navbar active state based on scroll
+            setupNavbarScroll();
+            
             // Render gallery
             renderGallery();
+            
+            // Setup mobile menu for small screens
+            setupMobileMenu();
         });
+        
+        // ==============================
+        // NAVBAR FUNCTIONS - TAMBAHAN BARU
+        // ==============================
+        
+        // Setup mobile menu toggle
+        function setupMobileMenu() {
+            const navbarMenu = document.getElementById('navbarMenu');
+            // On mobile, hide menu initially
+            if (window.innerWidth <= 480) {
+                navbarMenu.classList.add('mobile-hidden');
+            }
+            
+            // Update on resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 480) {
+                    navbarMenu.classList.remove('mobile-hidden');
+                }
+            });
+        }
+        
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const navbarMenu = document.getElementById('navbarMenu');
+            navbarMenu.classList.toggle('mobile-hidden');
+        }
+        
+        // Setup navbar scroll behavior
+        function setupNavbarScroll() {
+            // Update active nav item on scroll
+            window.addEventListener('scroll', function() {
+                updateActiveNavItem();
+            });
+            
+            // Initial update
+            updateActiveNavItem();
+        }
+        
+        // Update active nav item based on scroll position
+        function updateActiveNavItem() {
+            const sections = ['hero', 'about', 'hobi', 'gallery', 'dream', 'social', 'contact'];
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let currentSection = '';
+            const scrollPosition = window.scrollY + 100;
+            
+            // Find current section
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetHeight = element.offsetHeight;
+                    
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        currentSection = section;
+                    }
+                }
+            });
+            
+            // Update active class
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const section = getSectionFromNavItem(item);
+                if (section === currentSection) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Get section name from nav item
+        function getSectionFromNavItem(navItem) {
+            const text = navItem.querySelector('.nav-text').textContent.toLowerCase();
+            
+            const sectionMap = {
+                'home': 'hero',
+                'about': 'about',
+                'hobi': 'hobi',
+                'gallery': 'gallery',
+                'cita-cita': 'dream',
+                'social': 'social',
+                'kontak': 'contact'
+            };
+            
+            return sectionMap[text] || '';
+        }
+        
+        // Scroll to specific section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                // Close mobile menu if open
+                if (window.innerWidth <= 480) {
+                    document.getElementById('navbarMenu').classList.add('mobile-hidden');
+                }
+                
+                // Smooth scroll
+                window.scrollTo({
+                    top: element.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav item
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (getSectionFromNavItem(item) === sectionId) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        }
+        
+        // ==============================
+        // FUNGSI SEBELUMNYA TETAP SAMA
+        // ==============================
         
         // Toggle login panel
         function toggleLogin() {
