@@ -24,812 +24,428 @@
         }
 
         /* ============================== */
-        /* NAVBAR TOGGLE STYLES - KIRI ATAS */
+        /* NAVBAR DESKTOP GAME STYLE */
         /* ============================== */
-        .navbar-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px; /* Pindah ke kiri */
-            z-index: 1001;
-        }
-
-        .toggle-btn {
-            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-            border: 4px solid #2d3436;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-        }
-
-        .toggle-btn:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0px rgba(45, 52, 54, 0.3);
-        }
-
-        .toggle-btn.active {
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-        }
-
-        .toggle-line {
-            width: 30px;
-            height: 4px;
-            background: #2d3436;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .toggle-btn.active .toggle-line {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: 0;
-        }
-
-        .toggle-btn.active .toggle-line:nth-child(1) {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        .toggle-btn.active .toggle-line:nth-child(2) {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0);
-        }
-
-        .toggle-btn.active .toggle-line:nth-child(3) {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-
-
-/* ============================== */
-/* ANIMASI LOGIN/LOGOUT BARU */
-/* ============================== */
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-
-@keyframes pixelSuccess {
-    0% { 
-        transform: scale(0.8) rotate(-5deg);
-        opacity: 0;
-    }
-    50% { 
-        transform: scale(1.1) rotate(5deg);
-    }
-    100% { 
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
-}
-
-@keyframes gameOver {
-    0% { 
-        transform: translateY(-50px) scale(0.5);
-        opacity: 0;
-        filter: blur(5px);
-    }
-    50% { 
-        transform: translateY(10px) scale(1.1);
-    }
-    100% { 
-        transform: translateY(0) scale(1);
-        opacity: 1;
-        filter: blur(0);
-    }
-}
-
-@keyframes confetti {
-    0% { 
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-    }
-    100% { 
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes glowPulse {
-    0%, 100% { 
-        box-shadow: 0 0 5px #ffeaa7, 
-                   0 0 10px #fdcb6e,
-                   0 0 15px #ff7675;
-    }
-    50% { 
-        box-shadow: 0 0 10px #ffeaa7, 
-                   0 0 20px #fdcb6e,
-                   0 0 30px #ff7675;
-    }
-}
-
-/* Login Panel Animation */
-.login-panel.shake {
-    animation: shake 0.5s ease-in-out;
-}
-
-/* Success Popup */
-.success-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-    border: 4px solid #2d3436;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
-                0 0 20px rgba(255, 234, 167, 0.5);
-    text-align: center;
-    z-index: 1100;
-    display: none;
-    animation: pixelSuccess 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.success-popup.active {
-    display: block;
-}
-
-.success-popup::before {
-    content: '🎉';
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 3em;
-    animation: bounce 1s infinite alternate;
-}
-
-.success-popup h2 {
-    color: #d63031;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-}
-
-.success-popup p {
-    color: #2d3436;
-    font-size: 0.45em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.success-btn {
-    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-    border: 3px solid #2d3436;
-    color: white;
-    padding: 12px 25px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.5em;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-    transition: all 0.3s;
-    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-}
-
-.success-btn:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
-    background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
-}
-
-/* Logout Confirmation Popup */
-.logout-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-    border: 4px solid #2d3436;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
-                0 0 20px rgba(255, 118, 117, 0.5);
-    text-align: center;
-    z-index: 1100;
-    display: none;
-    animation: gameOver 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.logout-popup.active {
-    display: block;
-}
-
-.logout-popup::before {
-    content: '⚠️';
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2.5em;
-    animation: pulse 1s infinite;
-}
-
-.logout-popup h2 {
-    color: white;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
-}
-
-.logout-popup p {
-    color: white;
-    font-size: 0.45em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-}
-
-.logout-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.logout-btn {
-    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-    border: 3px solid #2d3436;
-    color: white;
-    padding: 12px 20px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.45em;
-    cursor: pointer;
-    flex: 1;
-    transition: all 0.3s;
-    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-}
-
-.logout-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
-}
-
-.logout-btn.cancel {
-    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-}
-
-.logout-btn.confirm {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    animation: glowPulse 1.5s infinite;
-}
-
-/* Confetti Effect */
-.confetti-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1001;
-    display: none;
-}
-
-.confetti-container.active {
-    display: block;
-}
-
-.confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #ff6b6b;
-    top: -10px;
-    animation: confetti 3s linear forwards;
-}
-
-.confetti:nth-child(2n) {
-    background: #74b9ff;
-    animation-delay: 0.5s;
-}
-
-.confetti:nth-child(3n) {
-    background: #ffeaa7;
-    animation-delay: 1s;
-}
-
-.confetti:nth-child(4n) {
-    background: #a29bfe;
-    animation-delay: 1.5s;
-}
-
-.confetti:nth-child(5n) {
-    background: #fd79a8;
-    animation-delay: 2s;
-}
-
-
-
-/* ============================== */
-/* NAVBAR DESKTOP GAME STYLE */
-/* ============================== */
-@media (min-width: 769px) {
-    .navbar-toggle {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1001;
-        width: auto;
-        height: auto;
-    }
-
-    .toggle-btn {
-        display: none; /* Sembunyikan hamburger di desktop */
-    }
-
-    /* Navbar game style untuk desktop */
-    .nav-dropdown {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-        border: 4px solid #2d3436;
-        padding: 15px;
-        box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-        z-index: 1000;
-        min-width: 220px;
-        display: block !important; /* Selalu tampil di desktop */
-        border-radius: 10px;
-        transform: none !important;
-        animation: none !important;
-        opacity: 1 !important;
-    }
-
-    /* Header menu game */
-    .nav-brand {
-        color: white;
-        font-size: 0.8em;
-        text-align: center;
-        margin-bottom: 15px;
-        padding: 10px;
-        border: 3px solid #2d3436;
-        background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-        text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
-        box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.2);
-        position: relative;
-    }
-
-    .nav-brand::before {
-        content: '🎮';
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .nav-brand::after {
-        content: '⚙️';
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    /* Game menu items */
-    .nav-items {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .nav-item {
-        background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-        border: 3px solid #2d3436;
-        padding: 12px 15px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        position: relative;
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-    }
-
-    /* Pixel effect pada item */
-    .nav-item::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        z-index: -1;
-    }
-
-    /* Efek hover game style */
-    .nav-item:hover {
-        transform: translate(-2px, -2px) !important;
-        box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
-        background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
-        z-index: 2;
-    }
-
-    .nav-item.active {
-        background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-        transform: translate(-1px, -1px) !important;
-        box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
-    }
-
-    /* Icon game style */
-    .nav-icon {
-        font-size: 1.2em;
-        flex-shrink: 0;
-        min-width: 25px;
-        text-align: center;
-        text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-    }
-
-    .nav-text {
-        font-size: 0.5em;
-        color: #2d3436;
-        font-weight: bold;
-        flex: 1;
-        line-height: 1.4;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* Edit mode untuk desktop */
-    .nav-item.edit-mode-active {
-        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-        animation: pulseEdit 1.5s infinite;
-    }
-
-    /* Indikator pixel di pojok */
-    .nav-item::after {
-        content: '';
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        width: 6px;
-        height: 6px;
-        background: #ff6b6b;
-        border: 1.5px solid #2d3436;
-    }
-
-    .nav-item.edit-mode-active::after {
-        background: #ffeaa7;
-        animation: blink 1s infinite;
-    }
-
-    /* Hilangkan overlay di desktop */
-    .nav-overlay {
-        display: none !important;
-    }
-
-    /* Animasi khusus untuk desktop */
-    @keyframes pixelGlow {
-        0%, 100% {
-            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
-                        0 0 5px rgba(116, 185, 255, 0.5);
-        }
-        50% {
-            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
-                        0 0 10px rgba(116, 185, 255, 0.8);
-        }
-    }
-
-    /* Tambah efek pixel border */
-    .nav-dropdown::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border: 2px dashed rgba(255, 234, 167, 0.3);
-        border-radius: 12px;
-        pointer-events: none;
-    }
-
-    /* Responsive adjustment untuk desktop besar */
-    @media (min-width: 1200px) {
-        .nav-dropdown {
-            min-width: 250px;
-        }
-        
-        .nav-text {
-            font-size: 0.55em;
-        }
-    }
-}
-
-/* ============================== */
-/* NAVBAR MOBILE - TETAP SAMA */
-/* ============================== */
-@media (max-width: 768px) {
-    /* Semua style mobile tetap persis seperti sebelumnya */
-    .navbar-toggle {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1001;
-    }
-
-    .toggle-btn {
-        display: flex; /* Tampilkan hamburger di mobile */
-        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-        border: 4px solid #2d3436;
-        width: 60px;
-        height: 60px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-        box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
-        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        position: relative;
-    }
-
-    .toggle-btn:hover {
-        transform: translate(-3px, -3px);
-        box-shadow: 9px 9px 0px rgba(45, 52, 54, 0.3);
-    }
-
-    .toggle-btn.active {
-        background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-        transform: translate(-2px, -2px);
-        box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-    }
-
-    .toggle-line {
-        width: 30px;
-        height: 4px;
-        background: #2d3436;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .toggle-btn.active .toggle-line {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: 0;
-    }
-
-    .toggle-btn.active .toggle-line:nth-child(1) {
-        transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    .toggle-btn.active .toggle-line:nth-child(2) {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
-    }
-
-    .toggle-btn.active .toggle-line:nth-child(3) {
-        transform: translate(-50%, -50%) rotate(-45deg);
-    }
-
-    .nav-dropdown {
-        position: fixed;
-        top: 90px;
-        left: 20px;
-        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-        border: 4px solid #2d3436;
-        padding: 20px;
-        box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-        z-index: 1000;
-        min-width: 250px;
-        display: none;
-        border-radius: 10px 10px 10px 10px;
-    }
-
-    .nav-dropdown.active {
-        display: block;
-        animation: expandBox 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    /* ... dan semua style mobile lainnya tetap sama ... */
-}
-
-
-
-        /* Dropdown Menu - Pindah ke kiri */
-        .nav-dropdown {
-            position: fixed;
-            top: 90px;
-            left: 20px; /* Pindah ke kiri */
-            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-            border: 4px solid #2d3436;
-            padding: 20px;
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-            z-index: 1000;
-            min-width: 250px;
-            display: none;
-            border-radius: 0 10px 10px 10px; /* Sudut diubah */
-        }
-
-        .nav-dropdown.active {
-            display: block;
-            animation: expandBox 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes expandBox {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(-20px);
+        @media (min-width: 769px) {
+            .navbar-toggle {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                width: auto;
+                height: auto;
             }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
+
+            .toggle-btn {
+                display: none;
+            }
+
+            .nav-dropdown {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+                border: 4px solid #2d3436;
+                padding: 15px;
+                box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+                z-index: 1000;
+                min-width: 220px;
+                display: block !important;
+                border-radius: 10px;
+                transform: none !important;
+                animation: none !important;
+                opacity: 1 !important;
+            }
+
+            .nav-brand {
+                color: white;
+                font-size: 0.8em;
+                text-align: center;
+                margin-bottom: 15px;
+                padding: 10px;
+                border: 3px solid #2d3436;
+                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+                text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
+                box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.2);
+                position: relative;
+            }
+
+            .nav-brand::before {
+                content: '🎮';
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .nav-brand::after {
+                content: '⚙️';
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .nav-items {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .nav-item {
+                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+                border: 3px solid #2d3436;
+                padding: 12px 15px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+                position: relative;
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .nav-item::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                z-index: -1;
+            }
+
+            .nav-item:hover {
+                transform: translate(-2px, -2px) !important;
+                box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
+                background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+                z-index: 2;
+            }
+
+            .nav-item.active {
+                background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+                transform: translate(-1px, -1px) !important;
+                box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
+            }
+
+            .nav-icon {
+                font-size: 1.2em;
+                flex-shrink: 0;
+                min-width: 25px;
+                text-align: center;
+                text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+            }
+
+            .nav-text {
+                font-size: 0.5em;
+                color: #2d3436;
+                font-weight: bold;
+                flex: 1;
+                line-height: 1.4;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .nav-item.edit-mode-active {
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+                animation: pulseEdit 1.5s infinite;
+            }
+
+            .nav-item::after {
+                content: '';
+                position: absolute;
+                top: 4px;
+                right: 4px;
+                width: 6px;
+                height: 6px;
+                background: #ff6b6b;
+                border: 1.5px solid #2d3436;
+            }
+
+            .nav-item.edit-mode-active::after {
+                background: #ffeaa7;
+                animation: blink 1s infinite;
+            }
+
+            .nav-overlay {
+                display: none !important;
+            }
+
+            @keyframes pixelGlow {
+                0%, 100% {
+                    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
+                                0 0 5px rgba(116, 185, 255, 0.5);
+                }
+                50% {
+                    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
+                                0 0 10px rgba(116, 185, 255, 0.8);
+                }
+            }
+
+            .nav-dropdown::before {
+                content: '';
+                position: absolute;
+                top: -8px;
+                left: -8px;
+                right: -8px;
+                bottom: -8px;
+                border: 2px dashed rgba(255, 234, 167, 0.3);
+                border-radius: 12px;
+                pointer-events: none;
+            }
+
+            @media (min-width: 1200px) {
+                .nav-dropdown {
+                    min-width: 250px;
+                }
+                
+                .nav-text {
+                    font-size: 0.55em;
+                }
             }
         }
 
-        /* Pindah titik ke kiri */
-        .nav-dropdown::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 5px; /* Pindah ke kiri */
-            width: 12px;
-            height: 12px;
-            background: #ffeaa7;
-            border: 2px solid #2d3436;
-        }
-
-        .nav-brand {
-            color: white;
-            font-size: 0.7em;
-            text-align: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
-        }
-
-        .nav-items {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .nav-item {
-            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-            border: 3px solid #2d3436;
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            position: relative;
-            opacity: 0;
-        }
-
-        .nav-dropdown.active .nav-item {
-            animation: slideInLeft 0.5s ease forwards;
-        }
-
-        /* Animasi untuk item navbar */
-        .nav-dropdown.active .nav-item:nth-child(1) { animation-delay: 0.1s; }
-        .nav-dropdown.active .nav-item:nth-child(2) { animation-delay: 0.15s; }
-        .nav-dropdown.active .nav-item:nth-child(3) { animation-delay: 0.2s; }
-        .nav-dropdown.active .nav-item:nth-child(4) { animation-delay: 0.25s; }
-        .nav-dropdown.active .nav-item:nth-child(5) { animation-delay: 0.3s; }
-        .nav-dropdown.active .nav-item:nth-child(6) { animation-delay: 0.35s; }
-        .nav-dropdown.active .nav-item:nth-child(7) { animation-delay: 0.4s; }
-        .nav-dropdown.active .nav-item:nth-child(8) { animation-delay: 0.45s; }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
+        /* ============================== */
+        /* NAVBAR MOBILE */
+        /* ============================== */
+        @media (max-width: 768px) {
+            .navbar-toggle {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+
+            .toggle-btn {
+                display: flex;
+                background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+                border: 4px solid #2d3436;
+                width: 60px;
+                height: 60px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+                box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
+                transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                position: relative;
             }
-        }
 
-        .nav-item:hover {
-            transform: translate(-5px, -3px) scale(1.02);
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
-            z-index: 2;
-        }
+            .toggle-btn:hover {
+                transform: translate(-3px, -3px);
+                box-shadow: 9px 9px 0px rgba(45, 52, 54, 0.3);
+            }
 
-        .nav-item.active {
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
-        }
-
-        /* Style khusus untuk menu Edit Profile */
-        .nav-item.edit-mode-active {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            animation: pulseEdit 1.5s infinite;
-        }
-
-        @keyframes pulseEdit {
-            0%, 100% {
+            .toggle-btn.active {
+                background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
                 transform: translate(-2px, -2px);
+                box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
             }
-            50% {
-                transform: translate(-2px, -2px) scale(1.02);
+
+            .toggle-line {
+                width: 30px;
+                height: 4px;
+                background: #2d3436;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .toggle-btn.active .toggle-line {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: 0;
+            }
+
+            .toggle-btn.active .toggle-line:nth-child(1) {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            .toggle-btn.active .toggle-line:nth-child(2) {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            .toggle-btn.active .toggle-line:nth-child(3) {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            .nav-dropdown {
+                position: fixed;
+                top: 90px;
+                left: 20px;
+                background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+                border: 4px solid #2d3436;
+                padding: 20px;
+                box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+                z-index: 1000;
+                min-width: 250px;
+                display: none;
+                border-radius: 10px 10px 10px 10px;
+            }
+
+            .nav-dropdown.active {
+                display: block;
+                animation: expandBox 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .nav-dropdown::before {
+                content: '';
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                width: 12px;
+                height: 12px;
+                background: #ffeaa7;
+                border: 2px solid #2d3436;
+            }
+
+            .nav-brand {
+                color: white;
+                font-size: 0.7em;
+                text-align: center;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
+            }
+
+            .nav-items {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-item {
+                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+                border: 3px solid #2d3436;
+                padding: 12px 15px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+                position: relative;
+                opacity: 0;
+            }
+
+            .nav-dropdown.active .nav-item {
+                animation: slideInLeft 0.5s ease forwards;
+            }
+
+            .nav-dropdown.active .nav-item:nth-child(1) { animation-delay: 0.1s; }
+            .nav-dropdown.active .nav-item:nth-child(2) { animation-delay: 0.15s; }
+            .nav-dropdown.active .nav-item:nth-child(3) { animation-delay: 0.2s; }
+            .nav-dropdown.active .nav-item:nth-child(4) { animation-delay: 0.25s; }
+            .nav-dropdown.active .nav-item:nth-child(5) { animation-delay: 0.3s; }
+            .nav-dropdown.active .nav-item:nth-child(6) { animation-delay: 0.35s; }
+            .nav-dropdown.active .nav-item:nth-child(7) { animation-delay: 0.4s; }
+            .nav-dropdown.active .nav-item:nth-child(8) { animation-delay: 0.45s; }
+
+            @keyframes slideInLeft {
+                from {
+                    opacity: 0;
+                    transform: translateX(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .nav-item:hover {
+                transform: translate(-5px, -3px) scale(1.02);
+                box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+                background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+                z-index: 2;
+            }
+
+            .nav-item.active {
+                background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+                transform: translate(-2px, -2px);
+                box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
+            }
+
+            .nav-item.edit-mode-active {
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+                animation: pulseEdit 1.5s infinite;
+            }
+
+            @keyframes pulseEdit {
+                0%, 100% {
+                    transform: translate(-2px, -2px);
+                }
+                50% {
+                    transform: translate(-2px, -2px) scale(1.02);
+                }
+            }
+
+            .nav-item::after {
+                content: '';
+                position: absolute;
+                top: 4px;
+                right: 4px;
+                width: 6px;
+                height: 6px;
+                background: #ff6b6b;
+                border: 1.5px solid #2d3436;
+            }
+
+            .nav-item.edit-mode-active::after {
+                background: #ffeaa7;
+                animation: blink 1s infinite;
+            }
+
+            @keyframes blink {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.3;
+                }
+            }
+
+            .nav-icon {
+                font-size: 1.2em;
+                flex-shrink: 0;
+                min-width: 25px;
+                text-align: center;
+            }
+
+            .nav-text {
+                font-size: 0.45em;
+                color: #2d3436;
+                font-weight: bold;
+                flex: 1;
+                line-height: 1.4;
+            }
+
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                display: none;
+                backdrop-filter: blur(2px);
+            }
+
+            .nav-overlay.active {
+                display: block;
             }
         }
 
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            width: 6px;
-            height: 6px;
-            background: #ff6b6b;
-            border: 1.5px solid #2d3436;
-        }
-
-        .nav-item.edit-mode-active::after {
-            background: #ffeaa7;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
-        }
-
-        .nav-icon {
-            font-size: 1.2em;
-            flex-shrink: 0;
-            min-width: 25px;
-            text-align: center;
-        }
-
-        .nav-text {
-            font-size: 0.45em;
-            color: #2d3436;
-            font-weight: bold;
-            flex: 1;
-            line-height: 1.4;
-        }
-
-        /* Close overlay */
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-            backdrop-filter: blur(2px);
-        }
-
-        .nav-overlay.active {
-            display: block;
-        }
-
-        /* Responsive untuk navbar di kiri */
         @media (max-width: 768px) {
             body {
                 padding-top: 70px;
@@ -906,7 +522,265 @@
         }
 
         /* ============================== */
-        /* STYLES UNTUK KONTEN UTAMA */
+        /* ANIMASI LOGIN/LOGOUT BARU */
+        /* ============================== */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes pixelSuccess {
+            0% { 
+                transform: scale(0.8) rotate(-5deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gameOver {
+            0% { 
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+                filter: blur(5px);
+            }
+            50% { 
+                transform: translateY(10px) scale(1.1);
+            }
+            100% { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        @keyframes confetti {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { 
+                box-shadow: 0 0 5px #ffeaa7, 
+                           0 0 10px #fdcb6e,
+                           0 0 15px #ff7675;
+            }
+            50% { 
+                box-shadow: 0 0 10px #ffeaa7, 
+                           0 0 20px #fdcb6e,
+                           0 0 30px #ff7675;
+            }
+        }
+
+        .login-panel.shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .success-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border: 4px solid #2d3436;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
+                        0 0 20px rgba(255, 234, 167, 0.5);
+            text-align: center;
+            z-index: 1100;
+            display: none;
+            animation: pixelSuccess 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .success-popup.active {
+            display: block;
+        }
+
+        .success-popup::before {
+            content: '🎉';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            animation: bounce 1s infinite alternate;
+        }
+
+        .success-popup h2 {
+            color: #d63031;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        .success-popup p {
+            color: #2d3436;
+            font-size: 0.45em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .success-btn {
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border: 3px solid #2d3436;
+            color: white;
+            padding: 12px 25px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5em;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.3s;
+            text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        .success-btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
+            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+        }
+
+        .logout-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+            border: 4px solid #2d3436;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
+                        0 0 20px rgba(255, 118, 117, 0.5);
+            text-align: center;
+            z-index: 1100;
+            display: none;
+            animation: gameOver 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logout-popup.active {
+            display: block;
+        }
+
+        .logout-popup::before {
+            content: '⚠️';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5em;
+            animation: pulse 1s infinite;
+        }
+
+        .logout-popup h2 {
+            color: white;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
+        }
+
+        .logout-popup p {
+            color: white;
+            font-size: 0.45em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        .logout-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border: 3px solid #2d3436;
+            color: white;
+            padding: 12px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45em;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s;
+            text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        .logout-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+        }
+
+        .logout-btn.cancel {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        }
+
+        .logout-btn.confirm {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            animation: glowPulse 1.5s infinite;
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+            display: none;
+        }
+
+        .confetti-container.active {
+            display: block;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            top: -10px;
+            animation: confetti 3s linear forwards;
+        }
+
+        .confetti:nth-child(2n) {
+            background: #74b9ff;
+            animation-delay: 0.5s;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #ffeaa7;
+            animation-delay: 1s;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #a29bfe;
+            animation-delay: 1.5s;
+        }
+
+        .confetti:nth-child(5n) {
+            background: #fd79a8;
+            animation-delay: 2s;
+        }
+
+        /* ============================== */
+        /* STYLES SEBELUMNYA TETAP SAMA */
         /* ============================== */
         .floating-shapes {
             position: fixed;
@@ -959,7 +833,6 @@
             z-index: 1;
         }
 
-        /* Edit Mode Styles */
         .edit-mode .editable {
             position: relative;
             cursor: pointer;
@@ -973,7 +846,6 @@
             margin: -2px;
         }
 
-        /* Login Panel */
         .login-panel {
             position: fixed;
             top: 50%;
@@ -1023,7 +895,6 @@
             min-height: 15px;
         }
 
-        /* Upload Button */
         .upload-btn {
             background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
             border: 2px solid #2d3436;
@@ -1040,7 +911,6 @@
             display: none !important;
         }
 
-        /* Profile Card Styles */
         .profile-card {
             background: white;
             border: 4px solid #2d3436;
@@ -1312,7 +1182,6 @@
             object-fit: cover;
         }
 
-        /* Gallery Modal */
         .modal {
             display: none;
             position: fixed;
@@ -1516,7 +1385,6 @@
             line-height: 2;
         }
 
-        /* Overlay for modal background */
         .overlay {
             position: fixed;
             top: 0;
@@ -1532,7 +1400,6 @@
             display: block;
         }
 
-        /* Responsive styles tetap sama */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -1650,30 +1517,6 @@
 </head>
 
 <body>
-
-
-<!-- Success Popup -->
-<div id="successPopup" class="success-popup">
-    <h2>🎮 LOGIN BERHASIL! 🎮</h2>
-    <p>Selamat datang di mode edit! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
-    <p>💡 Tips: Klik 2x cepat pada menu EDIT PROFILE untuk logout!</p>
-    <button onclick="closeSuccessPopup()" class="success-btn">LANJUTKAN →</button>
-</div>
-
-<!-- Logout Confirmation Popup -->
-<div id="logoutPopup" class="logout-popup">
-    <h2>⏸️ PAUSE GAME? ⏸️</h2>
-    <p>Yakin mau keluar dari mode edit?</p>
-    <p>Semua perubahan yang belum disimpan akan hilang!</p>
-    <div class="logout-buttons">
-        <button onclick="cancelLogout()" class="logout-btn cancel">❌ BATAL</button>
-        <button onclick="confirmLogout()" class="logout-btn confirm">✅ LOGOUT</button>
-    </div>
-</div>
-
-<!-- Confetti Container -->
-<div id="confettiContainer" class="confetti-container"></div>
-
     <!-- ============================== -->
     <!-- NAVBAR TOGGLE DI POJOK KIRI ATAS -->
     <!-- ============================== -->
@@ -1738,6 +1581,28 @@
             Password: arakuganteng
         </p>
     </div>
+
+    <!-- Success Popup -->
+    <div id="successPopup" class="success-popup">
+        <h2>🎮 LOGIN BERHASIL! 🎮</h2>
+        <p>Selamat datang di mode edit! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
+        <p>💡 Tips: Klik 2x cepat pada menu EDIT PROFILE untuk logout!</p>
+        <button onclick="closeSuccessPopup()" class="success-btn">LANJUTKAN →</button>
+    </div>
+
+    <!-- Logout Confirmation Popup -->
+    <div id="logoutPopup" class="logout-popup">
+        <h2>⏸️ PAUSE GAME? ⏸️</h2>
+        <p>Yakin mau keluar dari mode edit?</p>
+        <p>Semua perubahan yang belum disimpan akan hilang!</p>
+        <div class="logout-buttons">
+            <button onclick="cancelLogout()" class="logout-btn cancel">❌ BATAL</button>
+            <button onclick="confirmLogout()" class="logout-btn confirm">✅ LOGOUT</button>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer" class="confetti-container"></div>
 
     <div class="floating-shapes">
         <div class="shape" style="font-size: 80px;">🌸</div>
@@ -2035,196 +1900,106 @@
             'footerText': 'footerText'
         };
 
-
-// ==============================
-// FUNGSI ANIMASI LOGIN/LOGOUT BARU
-// ==============================
-
-// Fungsi createConfetti untuk efek kemenangan
-function createConfetti() {
-    const container = document.getElementById('confettiContainer');
-    container.innerHTML = '';
-    container.classList.add('active');
-    
-    // Buat 50 confetti
-    for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        confetti.style.width = (Math.random() * 10 + 5) + 'px';
-        confetti.style.height = confetti.style.width;
-        container.appendChild(confetti);
-    }
-    
-    // Hapus confetti setelah 3 detik
-    setTimeout(() => {
-        container.classList.remove('active');
-    }, 3000);
-}
-
-// Fungsi showSuccessPopup
-function showSuccessPopup() {
-    createConfetti();
-    document.getElementById('successPopup').classList.add('active');
-    // Auto close setelah 5 detik
-    setTimeout(closeSuccessPopup, 5000);
-}
-
-// Fungsi closeSuccessPopup
-function closeSuccessPopup() {
-    document.getElementById('successPopup').classList.remove('active');
-}
-
-// Fungsi showLogoutPopup
-function showLogoutPopup() {
-    document.getElementById('logoutPopup').classList.add('active');
-}
-
-// Fungsi cancelLogout
-function cancelLogout() {
-    document.getElementById('logoutPopup').classList.remove('active');
-}
-
-// Fungsi confirmLogout
-function confirmLogout() {
-    // Hapus confetti dulu
-    document.getElementById('confettiContainer').classList.remove('active');
-    
-    // Animasi logout
-    const logoutPopup = document.getElementById('logoutPopup');
-    logoutPopup.style.animation = 'gameOver 0.5s reverse forwards';
-    
-    setTimeout(() => {
-        logoutPopup.classList.remove('active');
-        logoutPopup.style.animation = '';
-        
-        // Proses logout
-        isLoggedIn = false;
-        isEditMode = false;
-        document.body.classList.remove('edit-mode');
-        updateEditProfileMenuItem();
-        
-        // Tampilkan alert sederhana
-        const alertDiv = document.createElement('div');
-        alertDiv.style.cssText = `
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-            border: 3px solid #2d3436;
-            padding: 15px 25px;
-            color: white;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5em;
-            z-index: 1100;
-            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
-            animation: pixelSuccess 0.5s;
-        `;
-        alertDiv.textContent = '👋 LOGOUT BERHASIL!';
-        document.body.appendChild(alertDiv);
-        
-        setTimeout(() => {
-            alertDiv.style.animation = 'gameOver 0.5s reverse forwards';
-            setTimeout(() => alertDiv.remove(), 500);
-        }, 2000);
-        
-    }, 500);
-}
-
-// ==============================
-// UPDATE FUNGSI YANG SUDAH ADA
-// ==============================
-
-// Update fungsi checkLogin() - cari fungsi ini dan ganti dengan:
-function checkLogin() {
-    const passwordInput = document.getElementById('passwordInput');
-    const errorMessage = document.getElementById('loginError');
-    const enteredPassword = passwordInput.value;
-
-    if (enteredPassword === CORRECT_PASSWORD) {
-        isLoggedIn = true;
-        enableEditMode();
-        updateEditProfileMenuItem();
-        hideLogin();
-        errorMessage.textContent = "";
-        
-        // Tampilkan popup sukses dengan animasi
-        showSuccessPopup();
-        
-    } else {
-        // Animasi shake untuk password salah
-        const loginPanel = document.getElementById('loginPanel');
-        loginPanel.classList.add('shake');
-        errorMessage.textContent = "❌ Password salah! Coba lagi.";
-        passwordInput.value = "";
-        passwordInput.focus();
-        
-        // Hapus class shake setelah animasi selesai
-        setTimeout(() => {
-            loginPanel.classList.remove('shake');
-        }, 500);
-    }
-}
-
-// Update fungsi handleLogout() - cari fungsi ini dan ganti dengan:
-function handleLogout() {
-    if (!isLoggedIn) {
-        showLogin();
-        return;
-    }
-    
-    clickCount++;
-    if (clickCount === 1) {
-        clickTimer = setTimeout(function() {
-            clickCount = 0;
-        }, 300);
-    } else if (clickCount === 2) {
-        clearTimeout(clickTimer);
-        // Double click terdeteksi - tampilkan popup logout
-        showLogoutPopup();
-        clickCount = 0;
-    }
-}
-
-
-
-// Di bagian JavaScript, tambahkan fungsi ini:
-function setupDesktopNavbar() {
-    if (window.innerWidth > 768) {
-        // Di desktop, langsung tampilkan menu
-        document.getElementById('navDropdown').classList.add('active');
-        // Sembunyikan toggle button di desktop
-        document.getElementById('toggleBtn').style.display = 'none';
-    } else {
-        // Di mobile, kembalikan ke semula
-        document.getElementById('navDropdown').classList.remove('active');
-        document.getElementById('toggleBtn').style.display = 'flex';
-    }
-}
-
-// Panggil saat load dan resize
-document.addEventListener('DOMContentLoaded', function() {
-    setupDesktopNavbar();
-    window.addEventListener('resize', setupDesktopNavbar);
-});
-
-// Update fungsi toggleMenu untuk mobile only
-function toggleMenu() {
-    if (window.innerWidth <= 768) {
-        const toggleBtn = document.getElementById('toggleBtn');
-        const navDropdown = document.getElementById('navDropdown');
-        const navOverlay = document.getElementById('navOverlay');
-        toggleBtn.classList.toggle('active');
-        navDropdown.classList.toggle('active');
-        navOverlay.classList.toggle('active');
-    }
-}
-
         // Double click counter untuk logout
         let clickCount = 0;
         let clickTimer = null;
+
+        // ==============================
+        // FUNGSI ANIMASI LOGIN/LOGOUT BARU
+        // ==============================
+
+        // Fungsi createConfetti untuk efek kemenangan
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.innerHTML = '';
+            container.classList.add('active');
+            
+            // Buat 50 confetti
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = confetti.style.width;
+                container.appendChild(confetti);
+            }
+            
+            // Hapus confetti setelah 3 detik
+            setTimeout(() => {
+                container.classList.remove('active');
+            }, 3000);
+        }
+
+        // Fungsi showSuccessPopup
+        function showSuccessPopup() {
+            createConfetti();
+            document.getElementById('successPopup').classList.add('active');
+            // Auto close setelah 5 detik
+            setTimeout(closeSuccessPopup, 5000);
+        }
+
+        // Fungsi closeSuccessPopup
+        function closeSuccessPopup() {
+            document.getElementById('successPopup').classList.remove('active');
+        }
+
+        // Fungsi showLogoutPopup
+        function showLogoutPopup() {
+            document.getElementById('logoutPopup').classList.add('active');
+        }
+
+        // Fungsi cancelLogout
+        function cancelLogout() {
+            document.getElementById('logoutPopup').classList.remove('active');
+        }
+
+        // Fungsi confirmLogout
+        function confirmLogout() {
+            // Hapus confetti dulu
+            document.getElementById('confettiContainer').classList.remove('active');
+            
+            // Animasi logout
+            const logoutPopup = document.getElementById('logoutPopup');
+            logoutPopup.style.animation = 'gameOver 0.5s reverse forwards';
+            
+            setTimeout(() => {
+                logoutPopup.classList.remove('active');
+                logoutPopup.style.animation = '';
+                
+                // Proses logout
+                isLoggedIn = false;
+                isEditMode = false;
+                document.body.classList.remove('edit-mode');
+                updateEditProfileMenuItem();
+                
+                // Tampilkan alert sederhana
+                const alertDiv = document.createElement('div');
+                alertDiv.style.cssText = `
+                    position: fixed;
+                    top: 20%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+                    border: 3px solid #2d3436;
+                    padding: 15px 25px;
+                    color: white;
+                    font-family: 'Press Start 2P', cursive;
+                    font-size: 0.5em;
+                    z-index: 1100;
+                    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+                    animation: pixelSuccess 0.5s;
+                `;
+                alertDiv.textContent = '👋 LOGOUT BERHASIL!';
+                document.body.appendChild(alertDiv);
+                
+                setTimeout(() => {
+                    alertDiv.style.animation = 'gameOver 0.5s reverse forwards';
+                    setTimeout(() => alertDiv.remove(), 500);
+                }, 2000);
+                
+            }, 500);
+        }
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -2248,6 +2023,9 @@ function toggleMenu() {
                 handleGalleryUpload(e);
             });
 
+            // Setup navbar untuk desktop/mobile
+            setupDesktopNavbar();
+
             // Setup navbar scroll behavior
             setupNavbarScroll();
 
@@ -2255,17 +2033,33 @@ function toggleMenu() {
             renderGallery();
         });
 
+        // Setup navbar untuk desktop/mobile
+        function setupDesktopNavbar() {
+            if (window.innerWidth > 768) {
+                // Di desktop, langsung tampilkan menu
+                document.getElementById('navDropdown').classList.add('active');
+                // Sembunyikan toggle button di desktop
+                document.getElementById('toggleBtn').style.display = 'none';
+            } else {
+                // Di mobile, kembalikan ke semula
+                document.getElementById('navDropdown').classList.remove('active');
+                document.getElementById('toggleBtn').style.display = 'flex';
+            }
+        }
+
         // ==============================
         // NAVBAR TOGGLE FUNCTIONS
         // ==============================
         // Toggle menu open/close
         function toggleMenu() {
-            const toggleBtn = document.getElementById('toggleBtn');
-            const navDropdown = document.getElementById('navDropdown');
-            const navOverlay = document.getElementById('navOverlay');
-            toggleBtn.classList.toggle('active');
-            navDropdown.classList.toggle('active');
-            navOverlay.classList.toggle('active');
+            if (window.innerWidth <= 768) {
+                const toggleBtn = document.getElementById('toggleBtn');
+                const navDropdown = document.getElementById('navDropdown');
+                const navOverlay = document.getElementById('navOverlay');
+                toggleBtn.classList.toggle('active');
+                navDropdown.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+            }
         }
 
         // Close menu
@@ -2389,14 +2183,8 @@ function toggleMenu() {
                 }, 300); // Double click timeout
             } else if (clickCount === 2) {
                 clearTimeout(clickTimer);
-                // Double click terdeteksi - lakukan logout
-                if (confirm('Yakin mau logout?')) {
-                    isLoggedIn = false;
-                    isEditMode = false;
-                    document.body.classList.remove('edit-mode');
-                    updateEditProfileMenuItem();
-                    alert('Anda telah logout!');
-                }
+                // Double click terdeteksi - tampilkan popup logout
+                showLogoutPopup();
                 clickCount = 0;
             }
         }
@@ -2456,11 +2244,22 @@ function toggleMenu() {
                 updateEditProfileMenuItem();
                 hideLogin();
                 errorMessage.textContent = "";
-                alert('Login berhasil! Klik sekali untuk edit, double klik untuk logout.');
+                
+                // Tampilkan popup sukses dengan animasi
+                showSuccessPopup();
+                
             } else {
-                errorMessage.textContent = "Password salah!";
+                // Animasi shake untuk password salah
+                const loginPanel = document.getElementById('loginPanel');
+                loginPanel.classList.add('shake');
+                errorMessage.textContent = "❌ Password salah! Coba lagi.";
                 passwordInput.value = "";
                 passwordInput.focus();
+                
+                // Hapus class shake setelah animasi selesai
+                setTimeout(() => {
+                    loginPanel.classList.remove('shake');
+                }, 500);
             }
         }
 
@@ -2712,6 +2511,11 @@ function toggleMenu() {
         function closeModal() {
             document.getElementById('galleryModal').classList.remove('active');
         }
+
+        // Handle window resize untuk navbar
+        window.addEventListener('resize', function() {
+            setupDesktopNavbar();
+        });
     </script>
 </body>
 </html>
