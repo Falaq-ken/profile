@@ -176,17 +176,6 @@
                 display: none !important;
             }
 
-            @keyframes pixelGlow {
-                0%, 100% {
-                    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
-                                0 0 5px rgba(116, 185, 255, 0.5);
-                }
-                50% {
-                    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
-                                0 0 10px rgba(116, 185, 255, 0.8);
-                }
-            }
-
             .nav-dropdown::before {
                 content: '';
                 position: absolute;
@@ -294,6 +283,17 @@
             .nav-dropdown.active {
                 display: block;
                 animation: expandBox 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            @keyframes expandBox {
+                from {
+                    opacity: 0;
+                    transform: scale(0.8) translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
             }
 
             .nav-dropdown::before {
@@ -522,219 +522,188 @@
         }
 
         /* ============================== */
-        /* ANIMASI LOGIN/LOGOUT BARU */
+        /* ANIMASI POPUP RAPIH */
         /* ============================== */
+
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+            0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) translateX(-8px); }
+            20%, 40%, 60%, 80% { transform: translate(-50%, -50%) translateX(8px); }
         }
 
-        @keyframes pixelSuccess {
+        @keyframes popupIn {
             0% { 
-                transform: scale(0.8) rotate(-5deg);
+                transform: translate(-50%, -50%) scale(0.8);
                 opacity: 0;
             }
-            50% { 
-                transform: scale(1.1) rotate(5deg);
-            }
             100% { 
-                transform: scale(1) rotate(0deg);
+                transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
             }
         }
 
-        @keyframes gameOver {
+        @keyframes popupOut {
             0% { 
-                transform: translateY(-50px) scale(0.5);
-                opacity: 0;
-                filter: blur(5px);
-            }
-            50% { 
-                transform: translateY(10px) scale(1.1);
-            }
-            100% { 
-                transform: translateY(0) scale(1);
-                opacity: 1;
-                filter: blur(0);
-            }
-        }
-
-        @keyframes confetti {
-            0% { 
-                transform: translateY(-100px) rotate(0deg);
+                transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
             }
             100% { 
-                transform: translateY(100vh) rotate(360deg);
+                transform: translate(-50%, -50%) scale(0.8);
                 opacity: 0;
             }
         }
 
-        @keyframes glowPulse {
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes buttonPulse {
             0%, 100% { 
-                box-shadow: 0 0 5px #ffeaa7, 
-                           0 0 10px #fdcb6e,
-                           0 0 15px #ff7675;
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
             }
             50% { 
-                box-shadow: 0 0 10px #ffeaa7, 
-                           0 0 20px #fdcb6e,
-                           0 0 30px #ff7675;
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
             }
         }
 
-        .login-panel.shake {
-            animation: shake 0.5s ease-in-out;
+        /* ============================== */
+        /* STYLE UNTUK SEMUA POPUP */
+        /* ============================== */
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1098;
+            display: none;
+            backdrop-filter: blur(3px);
         }
 
-        .success-popup {
+        .popup-overlay.active {
+            display: block;
+        }
+
+        .popup-container {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            z-index: 1099;
+            display: none;
+        }
+
+        .popup-container.active {
+            display: block;
+            animation: popupIn 0.3s ease-out forwards;
+        }
+
+        .popup-container.closing {
+            animation: popupOut 0.2s ease-in forwards;
+        }
+
+        /* Base Popup Style */
+        .popup {
+            background: white;
             border: 4px solid #2d3436;
             padding: 30px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
-                        0 0 20px rgba(255, 234, 167, 0.5);
+            min-width: 300px;
+            max-width: 90vw;
+            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5);
             text-align: center;
-            z-index: 1100;
-            display: none;
-            animation: pixelSuccess 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
         }
 
-        .success-popup.active {
-            display: block;
+        /* Popup Header */
+        .popup-header {
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .success-popup::before {
-            content: '🎉';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3em;
-            animation: bounce 1s infinite alternate;
+        .popup-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: iconBounce 1s infinite;
         }
 
-        .success-popup h2 {
+        .popup-title {
             color: #d63031;
             font-size: 0.9em;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+            line-height: 1.4;
         }
 
-        .success-popup p {
+        /* Popup Content */
+        .popup-content {
+            margin-bottom: 25px;
+        }
+
+        .popup-message {
             color: #2d3436;
             font-size: 0.45em;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        .success-btn {
-            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-            border: 3px solid #2d3436;
-            color: white;
-            padding: 12px 25px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5em;
-            cursor: pointer;
-            margin-top: 15px;
-            width: 100%;
-            transition: all 0.3s;
-            text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-        }
-
-        .success-btn:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
-            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
-        }
-
-        .logout-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-            border: 4px solid #2d3436;
-            padding: 30px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
-                        0 0 20px rgba(255, 118, 117, 0.5);
-            text-align: center;
-            z-index: 1100;
-            display: none;
-            animation: gameOver 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .logout-popup.active {
-            display: block;
-        }
-
-        .logout-popup::before {
-            content: '⚠️';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2.5em;
-            animation: pulse 1s infinite;
-        }
-
-        .logout-popup h2 {
-            color: white;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
-        }
-
-        .logout-popup p {
-            color: white;
-            font-size: 0.45em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-        }
-
-        .logout-buttons {
+        /* Popup Buttons */
+        .popup-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
             margin-top: 20px;
         }
 
-        .logout-btn {
+        .popup-btn {
             background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
             border: 3px solid #2d3436;
             color: white;
-            padding: 12px 20px;
+            padding: 12px 25px;
             font-family: 'Press Start 2P', cursive;
             font-size: 0.45em;
             cursor: pointer;
             flex: 1;
             transition: all 0.3s;
             text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+            min-width: 120px;
         }
 
-        .logout-btn:hover {
+        .popup-btn:hover {
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
         }
 
-        .logout-btn.cancel {
+        .popup-btn.primary {
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+        }
+
+        .popup-btn.secondary {
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
         }
 
-        .logout-btn.confirm {
+        .popup-btn.danger {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            animation: glowPulse 1.5s infinite;
+            animation: buttonPulse 1.5s infinite;
         }
 
+        /* Specific Popup Styles */
+        .login-success-popup .popup {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        }
+
+        .logout-confirm-popup .popup {
+            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        }
+
+        .delete-confirm-popup .popup {
+            background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);
+        }
+
+        /* Confetti Effect */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -742,7 +711,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1001;
+            z-index: 1100;
             display: none;
         }
 
@@ -756,27 +725,80 @@
             height: 10px;
             background: #ff6b6b;
             top: -10px;
-            animation: confetti 3s linear forwards;
+            animation: confettiFall 3s linear forwards;
         }
 
-        .confetti:nth-child(2n) {
-            background: #74b9ff;
-            animation-delay: 0.5s;
+        @keyframes confettiFall {
+            0% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        .confetti:nth-child(3n) {
-            background: #ffeaa7;
-            animation-delay: 1s;
+        .confetti:nth-child(2n) { background: #74b9ff; animation-delay: 0.5s; }
+        .confetti:nth-child(3n) { background: #ffeaa7; animation-delay: 1s; }
+        .confetti:nth-child(4n) { background: #a29bfe; animation-delay: 1.5s; }
+        .confetti:nth-child(5n) { background: #fd79a8; animation-delay: 2s; }
+
+        /* ============================== */
+        /* LOGIN PANEL */
+        /* ============================== */
+        .login-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 4px solid #2d3436;
+            padding: 30px;
+            width: 90%;
+            max-width: 350px;
+            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5);
+            text-align: center;
+            z-index: 1100;
+            display: none;
         }
 
-        .confetti:nth-child(4n) {
-            background: #a29bfe;
-            animation-delay: 1.5s;
+        .login-panel.active {
+            display: block;
+            animation: popupIn 0.3s ease-out;
         }
 
-        .confetti:nth-child(5n) {
-            background: #fd79a8;
-            animation-delay: 2s;
+        .login-panel.shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 3px solid #2d3436;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5em;
+            outline: none;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border: 3px solid #2d3436;
+            color: white;
+            padding: 12px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5em;
+            cursor: pointer;
+            margin: 5px;
+            width: calc(50% - 10px);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.35em;
+            margin-bottom: 10px;
+            min-height: 15px;
         }
 
         /* ============================== */
@@ -844,55 +866,6 @@
             outline: 2px dashed #74b9ff;
             padding: 2px;
             margin: -2px;
-        }
-
-        .login-panel {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 4px solid #2d3436;
-            padding: 30px;
-            width: 90%;
-            max-width: 350px;
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5);
-            text-align: center;
-            z-index: 1000;
-            display: none;
-        }
-
-        .login-panel.active {
-            display: block;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 3px solid #2d3436;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5em;
-            outline: none;
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-            border: 3px solid #2d3436;
-            color: white;
-            padding: 12px 20px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5em;
-            cursor: pointer;
-            margin: 5px;
-            width: calc(50% - 10px);
-        }
-
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.35em;
-            margin-bottom: 10px;
-            min-height: 15px;
         }
 
         .upload-btn {
@@ -1385,21 +1358,6 @@
             line-height: 2;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 999;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -1470,6 +1428,20 @@
             .login-panel {
                 padding: 20px;
                 width: 95%;
+            }
+
+            .popup {
+                padding: 20px;
+                min-width: 250px;
+            }
+
+            .popup-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .popup-btn {
+                width: 100%;
             }
         }
 
@@ -1558,7 +1530,7 @@
                     <span class="nav-icon">📧</span>
                     <span class="nav-text">KONTAK</span>
                 </div>
-                <!-- Edit Profile Menu Item dengan double click untuk logout -->
+                <!-- Edit Profile Menu Item -->
                 <div class="nav-item" id="editProfileMenuItem" ondblclick="handleLogout()" onclick="toggleEditProfile()">
                     <span class="nav-icon">🔐</span>
                     <span class="nav-text" id="editProfileText">EDIT PROFILE</span>
@@ -1567,8 +1539,12 @@
         </div>
     </div>
 
-    <!-- Simple Login Panel -->
-    <div id="loginOverlay" class="overlay"></div>
+    <!-- ============================== -->
+    <!-- SEMUA POPUP DI SINI -->
+    <!-- ============================== -->
+    
+    <!-- Login Panel -->
+    <div id="loginOverlay" class="popup-overlay"></div>
     <div id="loginPanel" class="login-panel">
         <h2 style="font-size: 0.8em; margin-bottom: 20px;">LOGIN ADMIN</h2>
         <div class="error-message" id="loginError"></div>
@@ -1583,27 +1559,65 @@
     </div>
 
     <!-- Success Popup -->
-    <div id="successPopup" class="success-popup">
-        <h2>🎮 LOGIN BERHASIL! 🎮</h2>
-        <p>Selamat datang di mode edit! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
-        <p>💡 Tips: Klik 2x cepat pada menu EDIT PROFILE untuk logout!</p>
-        <button onclick="closeSuccessPopup()" class="success-btn">LANJUTKAN →</button>
+    <div id="successPopup" class="popup-overlay"></div>
+    <div id="successPopupContainer" class="popup-container login-success-popup">
+        <div class="popup">
+            <div class="popup-header">
+                <div class="popup-icon">🎉</div>
+                <div class="popup-title">LOGIN BERHASIL!</div>
+            </div>
+            <div class="popup-content">
+                <p class="popup-message">Selamat datang di mode edit! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
+                <p class="popup-message">💡 Tips: Klik 2x cepat pada menu EDIT PROFILE untuk logout!</p>
+            </div>
+            <div class="popup-buttons">
+                <button onclick="closeSuccessPopup()" class="popup-btn primary">LANJUTKAN →</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Logout Confirmation Popup -->
-    <div id="logoutPopup" class="logout-popup">
-        <h2>⏸️ PAUSE GAME? ⏸️</h2>
-        <p>Yakin mau keluar dari mode edit?</p>
-        <p>Semua perubahan yang belum disimpan akan hilang!</p>
-        <div class="logout-buttons">
-            <button onclick="cancelLogout()" class="logout-btn cancel">❌ BATAL</button>
-            <button onclick="confirmLogout()" class="logout-btn confirm">✅ LOGOUT</button>
+    <!-- Logout Confirm Popup -->
+    <div id="logoutPopup" class="popup-overlay"></div>
+    <div id="logoutPopupContainer" class="popup-container logout-confirm-popup">
+        <div class="popup">
+            <div class="popup-header">
+                <div class="popup-icon">⚠️</div>
+                <div class="popup-title">PAUSE GAME?</div>
+            </div>
+            <div class="popup-content">
+                <p class="popup-message">Yakin mau keluar dari mode edit?</p>
+                <p class="popup-message">Semua perubahan yang belum disimpan akan hilang!</p>
+            </div>
+            <div class="popup-buttons">
+                <button onclick="cancelLogout()" class="popup-btn secondary">❌ BATAL</button>
+                <button onclick="confirmLogout()" class="popup-btn danger">✅ LOGOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Image Confirm Popup -->
+    <div id="deleteImagePopup" class="popup-overlay"></div>
+    <div id="deleteImagePopupContainer" class="popup-container delete-confirm-popup">
+        <div class="popup">
+            <div class="popup-header">
+                <div class="popup-icon">🗑️</div>
+                <div class="popup-title">HAPUS GAMBAR?</div>
+            </div>
+            <div class="popup-content">
+                <p class="popup-message" id="deleteImageMessage">Apakah kamu yakin ingin menghapus gambar ini?</p>
+                <p class="popup-message">Gambar yang sudah dihapus tidak dapat dikembalikan!</p>
+            </div>
+            <div class="popup-buttons">
+                <button onclick="cancelDeleteImage()" class="popup-btn secondary">❌ BATAL</button>
+                <button onclick="confirmDeleteImage()" class="popup-btn danger">🗑️ HAPUS</button>
+            </div>
         </div>
     </div>
 
     <!-- Confetti Container -->
     <div id="confettiContainer" class="confetti-container"></div>
 
+    <!-- Floating Shapes -->
     <div class="floating-shapes">
         <div class="shape" style="font-size: 80px;">🌸</div>
         <div class="shape" style="font-size: 70px;">💮</div>
@@ -1620,7 +1634,6 @@
         <div class="profile-card">
             <div class="hero" id="hero">
                 <div class="avatar">
-                    <!-- Ganti dengan link gambar online -->
                     <img src="https://placehold.co/120x120/2d3436/ffffff?text=AKU" alt="Avatar" id="avatarImg">
                 </div>
                 <h1 id="nameText">Araku</h1>
@@ -1636,7 +1649,6 @@
             </div>
             <div class="about-box">
                 <div class="about-photo">
-                    <!-- Ganti dengan link gambar online -->
                     <img src="https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT" alt="Foto Profil" id="aboutImg">
                 </div>
                 <div class="about-text">
@@ -1850,13 +1862,14 @@
         // State variables
         let isLoggedIn = false;
         let isEditMode = false;
-        
-        // Gallery images dengan link online
         let galleryImages = [
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+1", alt: "Karya 1" },
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+2", alt: "Karya 2" },
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+3", alt: "Karya 3" }
         ];
+
+        // Variables untuk delete image
+        let currentImageIndex = -1;
 
         // Element IDs mapping
         const editableElements = {
@@ -1904,17 +1917,15 @@
         let clickCount = 0;
         let clickTimer = null;
 
-        // ==============================
-        // FUNGSI ANIMASI LOGIN/LOGOUT BARU
-        // ==============================
+        // ============================== //
+        // FUNGSI POPUP RAPIH //
+        // ============================== //
 
-        // Fungsi createConfetti untuk efek kemenangan
         function createConfetti() {
             const container = document.getElementById('confettiContainer');
             container.innerHTML = '';
             container.classList.add('active');
             
-            // Buat 50 confetti
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -1925,92 +1936,142 @@
                 container.appendChild(confetti);
             }
             
-            // Hapus confetti setelah 3 detik
             setTimeout(() => {
                 container.classList.remove('active');
             }, 3000);
         }
 
-        // Fungsi showSuccessPopup
-        function showSuccessPopup() {
-            createConfetti();
-            document.getElementById('successPopup').classList.add('active');
-            // Auto close setelah 5 detik
-            setTimeout(closeSuccessPopup, 5000);
+        function showPopup(popupId, overlayId) {
+            document.getElementById(overlayId).classList.add('active');
+            const popup = document.getElementById(popupId);
+            popup.classList.remove('closing');
+            popup.classList.add('active');
         }
 
-        // Fungsi closeSuccessPopup
-        function closeSuccessPopup() {
-            document.getElementById('successPopup').classList.remove('active');
-        }
-
-        // Fungsi showLogoutPopup
-        function showLogoutPopup() {
-            document.getElementById('logoutPopup').classList.add('active');
-        }
-
-        // Fungsi cancelLogout
-        function cancelLogout() {
-            document.getElementById('logoutPopup').classList.remove('active');
-        }
-
-        // Fungsi confirmLogout
-        function confirmLogout() {
-            // Hapus confetti dulu
-            document.getElementById('confettiContainer').classList.remove('active');
-            
-            // Animasi logout
-            const logoutPopup = document.getElementById('logoutPopup');
-            logoutPopup.style.animation = 'gameOver 0.5s reverse forwards';
+        function closePopup(popupId, overlayId) {
+            const popup = document.getElementById(popupId);
+            popup.classList.add('closing');
             
             setTimeout(() => {
-                logoutPopup.classList.remove('active');
-                logoutPopup.style.animation = '';
-                
-                // Proses logout
+                popup.classList.remove('active');
+                popup.classList.remove('closing');
+                document.getElementById(overlayId).classList.remove('active');
+            }, 200);
+        }
+
+        // Login Success Popup
+        function showSuccessPopup() {
+            createConfetti();
+            showPopup('successPopupContainer', 'successPopup');
+            setTimeout(() => closeSuccessPopup(), 5000);
+        }
+
+        function closeSuccessPopup() {
+            closePopup('successPopupContainer', 'successPopup');
+        }
+
+        // Logout Confirm Popup
+        function showLogoutPopup() {
+            showPopup('logoutPopupContainer', 'logoutPopup');
+        }
+
+        function cancelLogout() {
+            closePopup('logoutPopupContainer', 'logoutPopup');
+        }
+
+        // Delete Image Popup
+        function showDeleteImagePopup(index, alt) {
+            currentImageIndex = index;
+            document.getElementById('deleteImageMessage').textContent = 
+                `Apakah kamu yakin ingin menghapus gambar "${alt}"?`;
+            showPopup('deleteImagePopupContainer', 'deleteImagePopup');
+        }
+
+        function cancelDeleteImage() {
+            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
+            currentImageIndex = -1;
+        }
+
+        function confirmDeleteImage() {
+            if (currentImageIndex >= 0) {
+                galleryImages.splice(currentImageIndex, 1);
+                renderGallery();
+                showDeleteSuccessNotification();
+            }
+            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
+            currentImageIndex = -1;
+        }
+
+        function showDeleteSuccessNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+                border: 3px solid #2d3436;
+                padding: 15px 25px;
+                color: white;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 0.4em;
+                z-index: 1100;
+                box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+                text-align: center;
+                animation: popupIn 0.3s forwards;
+            `;
+            notification.innerHTML = '<div>✅</div><div>Gambar berhasil dihapus!</div>';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'popupOut 0.3s forwards';
+                setTimeout(() => notification.remove(), 300);
+            }, 1500);
+        }
+
+        // Logout Function
+        function confirmLogout() {
+            closePopup('logoutPopupContainer', 'logoutPopup');
+            
+            setTimeout(() => {
                 isLoggedIn = false;
                 isEditMode = false;
                 document.body.classList.remove('edit-mode');
                 updateEditProfileMenuItem();
                 
-                // Tampilkan alert sederhana
-                const alertDiv = document.createElement('div');
-                alertDiv.style.cssText = `
+                const notification = document.createElement('div');
+                notification.style.cssText = `
                     position: fixed;
-                    top: 20%;
+                    top: 50%;
                     left: 50%;
-                    transform: translateX(-50%);
+                    transform: translate(-50%, -50%);
                     background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
                     border: 3px solid #2d3436;
                     padding: 15px 25px;
                     color: white;
                     font-family: 'Press Start 2P', cursive;
-                    font-size: 0.5em;
+                    font-size: 0.4em;
                     z-index: 1100;
                     box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
-                    animation: pixelSuccess 0.5s;
+                    text-align: center;
+                    animation: popupIn 0.3s forwards;
                 `;
-                alertDiv.textContent = '👋 LOGOUT BERHASIL!';
-                document.body.appendChild(alertDiv);
+                notification.innerHTML = '<div>👋</div><div>LOGOUT BERHASIL!</div>';
+                document.body.appendChild(notification);
                 
                 setTimeout(() => {
-                    alertDiv.style.animation = 'gameOver 0.5s reverse forwards';
-                    setTimeout(() => alertDiv.remove(), 500);
-                }, 2000);
-                
-            }, 500);
+                    notification.style.animation = 'popupOut 0.3s forwards';
+                    setTimeout(() => notification.remove(), 300);
+                }, 1500);
+            }, 300);
         }
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Setup event listeners
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkLogin();
-                }
+                if (e.key === 'Enter') checkLogin();
             });
 
-            // Setup file upload listeners
             document.getElementById('avatarUpload').addEventListener('change', function(e) {
                 handleImageUpload(e, 'avatar');
             });
@@ -2023,34 +2084,25 @@
                 handleGalleryUpload(e);
             });
 
-            // Setup navbar untuk desktop/mobile
             setupDesktopNavbar();
-
-            // Setup navbar scroll behavior
             setupNavbarScroll();
-
-            // Render gallery
             renderGallery();
         });
 
-        // Setup navbar untuk desktop/mobile
+        // ============================== //
+        // NAVBAR FUNCTIONS //
+        // ============================== //
+
         function setupDesktopNavbar() {
             if (window.innerWidth > 768) {
-                // Di desktop, langsung tampilkan menu
                 document.getElementById('navDropdown').classList.add('active');
-                // Sembunyikan toggle button di desktop
                 document.getElementById('toggleBtn').style.display = 'none';
             } else {
-                // Di mobile, kembalikan ke semula
                 document.getElementById('navDropdown').classList.remove('active');
                 document.getElementById('toggleBtn').style.display = 'flex';
             }
         }
 
-        // ==============================
-        // NAVBAR TOGGLE FUNCTIONS
-        // ==============================
-        // Toggle menu open/close
         function toggleMenu() {
             if (window.innerWidth <= 768) {
                 const toggleBtn = document.getElementById('toggleBtn');
@@ -2062,7 +2114,6 @@
             }
         }
 
-        // Close menu
         function closeMenu() {
             const toggleBtn = document.getElementById('toggleBtn');
             const navDropdown = document.getElementById('navDropdown');
@@ -2072,25 +2123,17 @@
             navOverlay.classList.remove('active');
         }
 
-        // Setup navbar scroll behavior
         function setupNavbarScroll() {
-            // Update active nav item on scroll
-            window.addEventListener('scroll', function() {
-                updateActiveNavItem();
-            });
-            // Initial update
+            window.addEventListener('scroll', updateActiveNavItem);
             updateActiveNavItem();
         }
 
-        // Update active nav item based on scroll position
         function updateActiveNavItem() {
             const sections = ['hero', 'about', 'hobi', 'gallery-section', 'dream', 'social', 'contact'];
             const navItems = document.querySelectorAll('.nav-item:not(#editProfileMenuItem)');
             let currentSection = '';
-            // Offset agak besar karena header tinggi
             const scrollPosition = window.scrollY + 200;
 
-            // Find current section
             sections.forEach(section => {
                 const element = document.getElementById(section);
                 if (element) {
@@ -2102,7 +2145,6 @@
                 }
             });
 
-            // Update active class (exclude edit profile menu item)
             navItems.forEach(item => {
                 item.classList.remove('active');
                 const section = getSectionFromNavItem(item);
@@ -2112,7 +2154,6 @@
             });
         }
 
-        // Get section name from nav item
         function getSectionFromNavItem(navItem) {
             const text = navItem.querySelector('.nav-text').textContent.toLowerCase();
             const sectionMap = {
@@ -2127,49 +2168,39 @@
             return sectionMap[text] || '';
         }
 
-        // Scroll to specific section
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
-                // Close menu first
                 closeMenu();
-                // Smooth scroll
                 window.scrollTo({
-                    top: element.offsetTop - 100, // Offset disesuaikan
+                    top: element.offsetTop - 100,
                     behavior: 'smooth'
                 });
-                // Update active nav item
-                setTimeout(updateActiveNavItem, 500); // Wait for scroll to finish
+                setTimeout(updateActiveNavItem, 500);
             }
         }
 
-        // ==============================
-        // EDIT PROFILE & LOGOUT FUNCTIONS
-        // ==============================
-        // Toggle edit profile mode (single click)
+        // ============================== //
+        // EDIT PROFILE & LOGOUT FUNCTIONS //
+        // ============================== //
+
         function toggleEditProfile() {
             if (!isLoggedIn) {
-                // Jika belum login, tampilkan login panel
                 showLogin();
                 return;
             }
             
-            // Single click untuk toggle edit mode
-            if (clickTimer) {
-                clearTimeout(clickTimer);
-            }
+            if (clickTimer) clearTimeout(clickTimer);
             
             clickCount = 1;
             clickTimer = setTimeout(function() {
-                // Ini adalah single click
                 toggleEditMode();
                 updateEditProfileMenuItem();
                 closeMenu();
                 clickCount = 0;
-            }, 250); // Delay 250ms untuk mendeteksi double click
+            }, 250);
         }
 
-        // Handle logout (double click)
         function handleLogout() {
             if (!isLoggedIn) {
                 showLogin();
@@ -2178,18 +2209,14 @@
             
             clickCount++;
             if (clickCount === 1) {
-                clickTimer = setTimeout(function() {
-                    clickCount = 0;
-                }, 300); // Double click timeout
+                clickTimer = setTimeout(() => clickCount = 0, 300);
             } else if (clickCount === 2) {
                 clearTimeout(clickTimer);
-                // Double click terdeteksi - tampilkan popup logout
                 showLogoutPopup();
                 clickCount = 0;
             }
         }
 
-        // Update edit profile menu item appearance
         function updateEditProfileMenuItem() {
             const editProfileItem = document.getElementById('editProfileMenuItem');
             const editProfileText = document.getElementById('editProfileText');
@@ -2213,10 +2240,10 @@
             }
         }
 
-        // ==============================
-        // FUNGSI UMUM LAINNYA
-        // ==============================
-        // Toggle login panel
+        // ============================== //
+        // LOGIN FUNCTIONS //
+        // ============================== //
+
         function showLogin() {
             closeMenu();
             document.getElementById('loginOverlay').classList.add('active');
@@ -2224,7 +2251,6 @@
             document.getElementById('passwordInput').focus();
         }
 
-        // Hide login panel
         function hideLogin() {
             document.getElementById('loginOverlay').classList.remove('active');
             document.getElementById('loginPanel').classList.remove('active');
@@ -2232,7 +2258,6 @@
             document.getElementById('loginError').textContent = '';
         }
 
-        // Check login credentials
         function checkLogin() {
             const passwordInput = document.getElementById('passwordInput');
             const errorMessage = document.getElementById('loginError');
@@ -2245,90 +2270,79 @@
                 hideLogin();
                 errorMessage.textContent = "";
                 
-                // Tampilkan popup sukses dengan animasi
-                showSuccessPopup();
+                setTimeout(() => {
+                    showSuccessPopup();
+                }, 300);
                 
             } else {
-                // Animasi shake untuk password salah
                 const loginPanel = document.getElementById('loginPanel');
-                loginPanel.classList.add('shake');
+                
+                // Reset animation
+                loginPanel.style.animation = 'none';
+                loginPanel.offsetHeight;
+                
+                // Apply shake animation
+                loginPanel.style.animation = 'shake 0.5s ease-in-out';
+                
                 errorMessage.textContent = "❌ Password salah! Coba lagi.";
+                errorMessage.style.animation = 'shake 0.5s ease-in-out';
                 passwordInput.value = "";
                 passwordInput.focus();
                 
-                // Hapus class shake setelah animasi selesai
                 setTimeout(() => {
-                    loginPanel.classList.remove('shake');
+                    loginPanel.style.animation = '';
+                    errorMessage.style.animation = '';
                 }, 500);
             }
         }
 
-        // Enable edit mode
+        // ============================== //
+        // EDIT MODE FUNCTIONS //
+        // ============================== //
+
         function enableEditMode() {
-            // Add editable class to elements
             Object.keys(editableElements).forEach(id => {
                 const element = document.getElementById(editableElements[id]);
                 if (element) {
                     element.classList.add('editable');
                     element.setAttribute('data-id', id);
-                }
-            });
-
-            // Add click events
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
                     element.addEventListener('click', handleEditClick);
                 }
             });
-
-            // Add upload buttons for images
             addUploadButtons();
         }
 
-        // Toggle edit mode on/off
         function toggleEditMode() {
             if (!isLoggedIn) return;
             isEditMode = !isEditMode;
             document.body.classList.toggle('edit-mode', isEditMode);
-            // Show/hide delete buttons in gallery
             renderGallery();
         }
 
-        // Add upload buttons to images
         function addUploadButtons() {
-            // Add upload button for avatar
+            // Avatar upload button
             const avatarContainer = document.querySelector('.avatar');
-            // Check if button already exists
             if (!avatarContainer.querySelector('.upload-btn')) {
                 const avatarBtn = document.createElement('button');
                 avatarBtn.className = 'upload-btn';
                 avatarBtn.textContent = 'Ganti Foto';
-                avatarBtn.style.position = 'absolute';
-                avatarBtn.style.bottom = '5px';
-                avatarBtn.style.left = '50%';
-                avatarBtn.style.transform = 'translateX(-50%)';
-                avatarBtn.style.zIndex = '10';
+                avatarBtn.style.cssText = 'position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 10;';
                 avatarBtn.onclick = () => document.getElementById('avatarUpload').click();
                 avatarContainer.appendChild(avatarBtn);
             }
 
-            // Add upload button for about photo
+            // About photo upload button
             const aboutContainer = document.querySelector('.about-photo');
             if (!aboutContainer.querySelector('.upload-btn')) {
                 const aboutBtn = document.createElement('button');
                 aboutBtn.className = 'upload-btn';
                 aboutBtn.textContent = 'Ganti Foto';
-                aboutBtn.style.position = 'absolute';
-                aboutBtn.style.bottom = '5px';
-                aboutBtn.style.left = '50%';
-                aboutBtn.style.transform = 'translateX(-50%)';
-                aboutBtn.style.zIndex = '10';
+                aboutBtn.style.cssText = 'position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 10;';
                 aboutBtn.onclick = () => document.getElementById('aboutUpload').click();
                 aboutContainer.appendChild(aboutBtn);
             }
 
-            // Add upload button for gallery
+            // Gallery upload button
             const galleryTitle = document.getElementById('galleryTitleText').parentElement;
             if (!galleryTitle.querySelector('.upload-btn')) {
                 const galleryBtn = document.createElement('button');
@@ -2340,48 +2354,35 @@
             }
         }
 
-        // Handle click on editable element
         function handleEditClick(event) {
             if (!isLoggedIn || !document.body.classList.contains('edit-mode')) return;
             const element = event.currentTarget;
             const currentText = element.textContent;
             const dataId = element.getAttribute('data-id');
 
-            // Create simple textarea for editing
             const textarea = document.createElement('textarea');
             textarea.value = currentText;
             textarea.className = 'login-input';
-            textarea.style.width = '100%';
-            textarea.style.height = '100px';
-            textarea.style.fontSize = '0.7em';
-            textarea.style.fontFamily = "'Press Start 2P', cursive";
+            textarea.style.cssText = 'width: 100%; height: 100px; font-size: 0.7em; font-family: "Press Start 2P", cursive;';
 
-            // Replace element with textarea
             element.style.display = 'none';
             element.parentNode.insertBefore(textarea, element);
             textarea.focus();
 
-            // Handle save
             function saveEdit() {
                 const newText = textarea.value.trim();
                 if (newText !== currentText) {
                     element.textContent = newText;
-                    // TANPA localStorage
                 }
-                // Remove textarea and show element again
                 textarea.remove();
                 element.style.display = '';
             }
 
-            // Event listeners
             textarea.addEventListener('blur', saveEdit);
             textarea.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && e.ctrlKey) {
-                    saveEdit();
-                }
+                if (e.key === 'Enter' && e.ctrlKey) saveEdit();
             });
 
-            // Add save button
             const saveBtn = document.createElement('button');
             saveBtn.className = 'upload-btn';
             saveBtn.textContent = '💾 Save';
@@ -2390,12 +2391,14 @@
             textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
         }
 
-        // Handle image upload
+        // ============================== //
+        // IMAGE UPLOAD FUNCTIONS //
+        // ============================== //
+
         function handleImageUpload(event, type) {
             const file = event.target.files[0];
             if (!file) return;
 
-            // Check file size (max 5MB)
             if (file.size > 5 * 1024 * 1024) {
                 alert('Ukuran file terlalu besar! Maksimal 5MB.');
                 return;
@@ -2406,24 +2409,19 @@
                 const imageUrl = e.target.result;
                 if (type === 'avatar') {
                     document.getElementById('avatarImg').src = imageUrl;
-                    // TANPA localStorage
                 } else if (type === 'about') {
                     document.getElementById('aboutImg').src = imageUrl;
-                    // TANPA localStorage
                 }
             };
             reader.readAsDataURL(file);
-            // Reset file input
             event.target.value = '';
         }
 
-        // Handle gallery upload
         function handleGalleryUpload(event) {
             const files = event.target.files;
             if (!files.length) return;
 
             Array.from(files).forEach(file => {
-                // Check file size (max 5MB)
                 if (file.size > 5 * 1024 * 1024) {
                     alert(`File ${file.name} terlalu besar! Maksimal 5MB.`);
                     return;
@@ -2432,25 +2430,22 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const imageUrl = e.target.result;
-                    // Add new image to gallery
                     galleryImages.push({
                         src: imageUrl,
                         alt: `Karya ${galleryImages.length + 1}`
                     });
-
-                    // TANPA localStorage
-
-                    // Re-render gallery
                     renderGallery();
                 };
                 reader.readAsDataURL(file);
             });
 
-            // Reset file input
             event.target.value = '';
         }
 
-        // Render gallery images
+        // ============================== //
+        // GALLERY FUNCTIONS //
+        // ============================== //
+
         function renderGallery() {
             const galleryContainer = document.getElementById('galleryContainer');
             galleryContainer.innerHTML = '';
@@ -2471,16 +2466,18 @@
                 if (isEditMode && isLoggedIn) {
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'upload-btn';
-                    deleteBtn.style.position = 'absolute';
-                    deleteBtn.style.top = '5px';
-                    deleteBtn.style.left = '5px';
-                    deleteBtn.style.zIndex = '10';
-                    deleteBtn.style.padding = '5px 8px';
-                    deleteBtn.style.fontSize = '0.25em';
+                    deleteBtn.style.cssText = `
+                        position: absolute;
+                        top: 5px;
+                        left: 5px;
+                        z-index: 10;
+                        padding: 5px 8px;
+                        font-size: 0.25em;
+                    `;
                     deleteBtn.textContent = 'X';
                     deleteBtn.onclick = (e) => {
                         e.stopPropagation();
-                        deleteGalleryImage(index);
+                        showDeleteImagePopup(index, image.alt);
                     };
                     galleryItem.appendChild(deleteBtn);
                 }
@@ -2490,16 +2487,10 @@
             });
         }
 
-        // Delete gallery image
-        function deleteGalleryImage(index) {
-            if (confirm('Hapus gambar ini?')) {
-                galleryImages.splice(index, 1);
-                // TANPA localStorage
-                renderGallery();
-            }
-        }
+        // ============================== //
+        // MODAL FUNCTIONS //
+        // ============================== //
 
-        // Gallery modal functions
         function openModal(element) {
             const img = element.querySelector('img');
             if (!img) return;
@@ -2512,7 +2503,10 @@
             document.getElementById('galleryModal').classList.remove('active');
         }
 
-        // Handle window resize untuk navbar
+        // ============================== //
+        // WINDOW RESIZE HANDLER //
+        // ============================== //
+
         window.addEventListener('resize', function() {
             setupDesktopNavbar();
         });
