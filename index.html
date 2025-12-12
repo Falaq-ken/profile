@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,12 +24,12 @@
         }
 
         /* ============================== */
-        /* NAVBAR TOGGLE STYLES - FIXED */
+        /* NAVBAR TOGGLE STYLES - KIRI ATAS */
         /* ============================== */
         .navbar-toggle {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 20px; /* Pindah ke kiri */
             z-index: 1001;
         }
 
@@ -90,11 +89,304 @@
             transform: translate(-50%, -50%) rotate(-45deg);
         }
 
-        /* Dropdown Menu */
+
+
+/* ============================== */
+/* NAVBAR DESKTOP GAME STYLE */
+/* ============================== */
+@media (min-width: 769px) {
+    .navbar-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+        width: auto;
+        height: auto;
+    }
+
+    .toggle-btn {
+        display: none; /* Sembunyikan hamburger di desktop */
+    }
+
+    /* Navbar game style untuk desktop */
+    .nav-dropdown {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        border: 4px solid #2d3436;
+        padding: 15px;
+        box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+        z-index: 1000;
+        min-width: 220px;
+        display: block !important; /* Selalu tampil di desktop */
+        border-radius: 10px;
+        transform: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    /* Header menu game */
+    .nav-brand {
+        color: white;
+        font-size: 0.8em;
+        text-align: center;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 3px solid #2d3436;
+        background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+        text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
+        box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.2);
+        position: relative;
+    }
+
+    .nav-brand::before {
+        content: '🎮';
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .nav-brand::after {
+        content: '⚙️';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Game menu items */
+    .nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .nav-item {
+        background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+        border: 3px solid #2d3436;
+        padding: 12px 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        position: relative;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    /* Pixel effect pada item */
+    .nav-item::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        z-index: -1;
+    }
+
+    /* Efek hover game style */
+    .nav-item:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
+        background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+        z-index: 2;
+    }
+
+    .nav-item.active {
+        background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        transform: translate(-1px, -1px) !important;
+        box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
+    }
+
+    /* Icon game style */
+    .nav-icon {
+        font-size: 1.2em;
+        flex-shrink: 0;
+        min-width: 25px;
+        text-align: center;
+        text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+    }
+
+    .nav-text {
+        font-size: 0.5em;
+        color: #2d3436;
+        font-weight: bold;
+        flex: 1;
+        line-height: 1.4;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Edit mode untuk desktop */
+    .nav-item.edit-mode-active {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        animation: pulseEdit 1.5s infinite;
+    }
+
+    /* Indikator pixel di pojok */
+    .nav-item::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 6px;
+        height: 6px;
+        background: #ff6b6b;
+        border: 1.5px solid #2d3436;
+    }
+
+    .nav-item.edit-mode-active::after {
+        background: #ffeaa7;
+        animation: blink 1s infinite;
+    }
+
+    /* Hilangkan overlay di desktop */
+    .nav-overlay {
+        display: none !important;
+    }
+
+    /* Animasi khusus untuk desktop */
+    @keyframes pixelGlow {
+        0%, 100% {
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
+                        0 0 5px rgba(116, 185, 255, 0.5);
+        }
+        50% {
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3),
+                        0 0 10px rgba(116, 185, 255, 0.8);
+        }
+    }
+
+    /* Tambah efek pixel border */
+    .nav-dropdown::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border: 2px dashed rgba(255, 234, 167, 0.3);
+        border-radius: 12px;
+        pointer-events: none;
+    }
+
+    /* Responsive adjustment untuk desktop besar */
+    @media (min-width: 1200px) {
+        .nav-dropdown {
+            min-width: 250px;
+        }
+        
+        .nav-text {
+            font-size: 0.55em;
+        }
+    }
+}
+
+/* ============================== */
+/* NAVBAR MOBILE - TETAP SAMA */
+/* ============================== */
+@media (max-width: 768px) {
+    /* Semua style mobile tetap persis seperti sebelumnya */
+    .navbar-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+    }
+
+    .toggle-btn {
+        display: flex; /* Tampilkan hamburger di mobile */
+        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        border: 4px solid #2d3436;
+        width: 60px;
+        height: 60px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+    }
+
+    .toggle-btn:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0px rgba(45, 52, 54, 0.3);
+    }
+
+    .toggle-btn.active {
+        background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+    }
+
+    .toggle-line {
+        width: 30px;
+        height: 4px;
+        background: #2d3436;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .toggle-btn.active .toggle-line {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+    }
+
+    .toggle-btn.active .toggle-line:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .toggle-btn.active .toggle-line:nth-child(2) {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    .toggle-btn.active .toggle-line:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .nav-dropdown {
+        position: fixed;
+        top: 90px;
+        left: 20px;
+        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        border: 4px solid #2d3436;
+        padding: 20px;
+        box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
+        z-index: 1000;
+        min-width: 250px;
+        display: none;
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    .nav-dropdown.active {
+        display: block;
+        animation: expandBox 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* ... dan semua style mobile lainnya tetap sama ... */
+}
+
+
+
+        /* Dropdown Menu - Pindah ke kiri */
         .nav-dropdown {
             position: fixed;
             top: 90px;
-            right: 20px;
+            left: 20px; /* Pindah ke kiri */
             background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
             border: 4px solid #2d3436;
             padding: 20px;
@@ -102,7 +394,7 @@
             z-index: 1000;
             min-width: 250px;
             display: none;
-            border-radius: 10px 0 10px 10px;
+            border-radius: 0 10px 10px 10px; /* Sudut diubah */
         }
 
         .nav-dropdown.active {
@@ -115,18 +407,18 @@
                 opacity: 0;
                 transform: scale(0.8) translateY(-20px);
             }
-
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
             }
         }
 
+        /* Pindah titik ke kiri */
         .nav-dropdown::before {
             content: '';
             position: absolute;
             top: 5px;
-            right: 5px;
+            left: 5px; /* Pindah ke kiri */
             width: 12px;
             height: 12px;
             background: #ffeaa7;
@@ -168,44 +460,21 @@
             animation: slideInLeft 0.5s ease forwards;
         }
 
-        .nav-dropdown.active .nav-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(4) {
-            animation-delay: 0.25s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(5) {
-            animation-delay: 0.3s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(6) {
-            animation-delay: 0.35s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(7) {
-            animation-delay: 0.4s;
-        }
-
-        .nav-dropdown.active .nav-item:nth-child(8) {
-            animation-delay: 0.45s;
-        }
+        /* Animasi untuk item navbar */
+        .nav-dropdown.active .nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .nav-dropdown.active .nav-item:nth-child(2) { animation-delay: 0.15s; }
+        .nav-dropdown.active .nav-item:nth-child(3) { animation-delay: 0.2s; }
+        .nav-dropdown.active .nav-item:nth-child(4) { animation-delay: 0.25s; }
+        .nav-dropdown.active .nav-item:nth-child(5) { animation-delay: 0.3s; }
+        .nav-dropdown.active .nav-item:nth-child(6) { animation-delay: 0.35s; }
+        .nav-dropdown.active .nav-item:nth-child(7) { animation-delay: 0.4s; }
+        .nav-dropdown.active .nav-item:nth-child(8) { animation-delay: 0.45s; }
 
         @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateX(30px);
+                transform: translateX(-30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -225,6 +494,7 @@
             box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
         }
 
+        /* Style khusus untuk menu Edit Profile */
         .nav-item.edit-mode-active {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
             animation: pulseEdit 1.5s infinite;
@@ -296,14 +566,14 @@
             display: block;
         }
 
-        /* Responsive */
+        /* Responsive untuk navbar di kiri */
         @media (max-width: 768px) {
             body {
                 padding-top: 70px;
             }
 
             .navbar-toggle {
-                right: 15px;
+                left: 15px;
                 top: 15px;
             }
 
@@ -314,7 +584,7 @@
 
             .nav-dropdown {
                 top: 80px;
-                right: 15px;
+                left: 15px;
                 min-width: 220px;
             }
 
@@ -333,7 +603,7 @@
             }
 
             .navbar-toggle {
-                right: 10px;
+                left: 10px;
                 top: 10px;
             }
 
@@ -350,7 +620,7 @@
 
             .nav-dropdown {
                 top: 70px;
-                right: 10px;
+                left: 10px;
                 min-width: 200px;
                 padding: 15px;
             }
@@ -373,7 +643,7 @@
         }
 
         /* ============================== */
-        /* STYLES SEBELUMNYA TETAP SAMA */
+        /* STYLES UNTUK KONTEN UTAMA */
         /* ============================== */
         .floating-shapes {
             position: fixed;
@@ -426,7 +696,7 @@
             z-index: 1;
         }
 
-        /* Edit Mode Simple Styles */
+        /* Edit Mode Styles */
         .edit-mode .editable {
             position: relative;
             cursor: pointer;
@@ -440,7 +710,7 @@
             margin: -2px;
         }
 
-        /* Login Panel Simple */
+        /* Login Panel */
         .login-panel {
             position: fixed;
             top: 50%;
@@ -490,7 +760,7 @@
             min-height: 15px;
         }
 
-        /* Upload Button Simple */
+        /* Upload Button */
         .upload-btn {
             background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
             border: 2px solid #2d3436;
@@ -999,6 +1269,7 @@
             display: block;
         }
 
+        /* Responsive styles tetap sama */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -1117,7 +1388,7 @@
 
 <body>
     <!-- ============================== -->
-    <!-- NAVBAR TOGGLE DI POJOK KANAN -->
+    <!-- NAVBAR TOGGLE DI POJOK KIRI ATAS -->
     <!-- ============================== -->
     <div class="navbar-toggle">
         <div class="toggle-btn" id="toggleBtn" onclick="toggleMenu()">
@@ -1157,8 +1428,8 @@
                     <span class="nav-icon">📧</span>
                     <span class="nav-text">KONTAK</span>
                 </div>
-                <!-- Edit Profile Menu Item -->
-                <div class="nav-item" id="editProfileMenuItem" onclick="toggleEditProfile()">
+                <!-- Edit Profile Menu Item dengan double click untuk logout -->
+                <div class="nav-item" id="editProfileMenuItem" ondblclick="handleLogout()" onclick="toggleEditProfile()">
                     <span class="nav-icon">🔐</span>
                     <span class="nav-text" id="editProfileText">EDIT PROFILE</span>
                 </div>
@@ -1197,7 +1468,8 @@
         <div class="profile-card">
             <div class="hero" id="hero">
                 <div class="avatar">
-                    <img src="avatar.png" alt="Avatar" id="avatarImg" onerror="this.src='https://placehold.co/120x120/2d3436/ffffff?text=AKU'">
+                    <!-- Ganti dengan link gambar online -->
+                    <img src="https://placehold.co/120x120/2d3436/ffffff?text=AKU" alt="Avatar" id="avatarImg">
                 </div>
                 <h1 id="nameText">Araku</h1>
                 <p id="taglineText">Suka Anime • Keren • Sop boi • Suka Gambar (kalau mau)</p>
@@ -1212,10 +1484,11 @@
             </div>
             <div class="about-box">
                 <div class="about-photo">
-                    <img src="about.jpeg" alt="Foto Profil" id="aboutImg" onerror="this.src='https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT'">
+                    <!-- Ganti dengan link gambar online -->
+                    <img src="https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT" alt="Foto Profil" id="aboutImg">
                 </div>
                 <div class="about-text">
-                    <p id="aboutText">ssasasas Saya pecinta anime dan seni yang passionate dalam menggambar. Saya percaya setiap goresan pensil adalah ekspresi jiwa, dan setiap karya adalah perjalanan menuju mimpi!</p>
+                    <p id="aboutText">Saya pecinta anime dan seni yang passionate dalam menggambar. Saya percaya setiap goresan pensil adalah ekspresi jiwa, dan setiap karya adalah perjalanan menuju mimpi!</p>
                 </div>
             </div>
         </div>
@@ -1250,14 +1523,14 @@
             </div>
         </div>
 
-        <!-- Gallery Section (SEKARANG TERPISAH DARI HOBI) -->
+        <!-- Gallery Section -->
         <div class="section" id="gallery-section">
             <div class="section-title">
                 <span>🖼️</span>
                 <span id="galleryTitleText">Sedikit gambaran ku</span>
             </div>
             <div class="gallery" id="galleryContainer">
-                <!-- Gallery items will be loaded here -->
+                <!-- Gallery items akan dimuat di sini -->
             </div>
         </div>
 
@@ -1425,10 +1698,12 @@
         // State variables
         let isLoggedIn = false;
         let isEditMode = false;
+        
+        // Gallery images dengan link online
         let galleryImages = [
-            { src: "gambar1.png", alt: "Karya 1" },
-            { src: "gambar2.png", alt: "Karya 2" },
-            { src: "gambar3.jpeg", alt: "Karya 3" }
+            { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+1", alt: "Karya 1" },
+            { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+2", alt: "Karya 2" },
+            { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+3", alt: "Karya 3" }
         ];
 
         // Element IDs mapping
@@ -1473,27 +1748,45 @@
             'footerText': 'footerText'
         };
 
+
+// Di bagian JavaScript, tambahkan fungsi ini:
+function setupDesktopNavbar() {
+    if (window.innerWidth > 768) {
+        // Di desktop, langsung tampilkan menu
+        document.getElementById('navDropdown').classList.add('active');
+        // Sembunyikan toggle button di desktop
+        document.getElementById('toggleBtn').style.display = 'none';
+    } else {
+        // Di mobile, kembalikan ke semula
+        document.getElementById('navDropdown').classList.remove('active');
+        document.getElementById('toggleBtn').style.display = 'flex';
+    }
+}
+
+// Panggil saat load dan resize
+document.addEventListener('DOMContentLoaded', function() {
+    setupDesktopNavbar();
+    window.addEventListener('resize', setupDesktopNavbar);
+});
+
+// Update fungsi toggleMenu untuk mobile only
+function toggleMenu() {
+    if (window.innerWidth <= 768) {
+        const toggleBtn = document.getElementById('toggleBtn');
+        const navDropdown = document.getElementById('navDropdown');
+        const navOverlay = document.getElementById('navOverlay');
+        toggleBtn.classList.toggle('active');
+        navDropdown.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+    }
+}
+
+        // Double click counter untuk logout
+        let clickCount = 0;
+        let clickTimer = null;
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if already logged in from localStorage
-            try {
-                const savedLogin = localStorage.getItem('araku_profile_logged_in');
-                if (savedLogin === 'true') {
-                    isLoggedIn = true;
-                    enableEditMode();
-                    updateEditProfileMenuItem();
-                }
-            } catch (e) {
-                console.log("LocalStorage tidak tersedia atau diblokir");
-            }
-
-            // Load saved content from localStorage
-            try {
-                loadSavedContent();
-            } catch (e) {
-                console.log("Gagal memuat data dari localStorage");
-            }
-
             // Setup event listeners
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
@@ -1616,18 +1909,55 @@
         }
 
         // ==============================
-        // EDIT PROFILE MENU FUNCTIONS
+        // EDIT PROFILE & LOGOUT FUNCTIONS
         // ==============================
-        // Toggle edit profile mode
+        // Toggle edit profile mode (single click)
         function toggleEditProfile() {
             if (!isLoggedIn) {
                 // Jika belum login, tampilkan login panel
                 showLogin();
                 return;
             }
-            toggleEditMode();
-            updateEditProfileMenuItem();
-            closeMenu();
+            
+            // Single click untuk toggle edit mode
+            if (clickTimer) {
+                clearTimeout(clickTimer);
+            }
+            
+            clickCount = 1;
+            clickTimer = setTimeout(function() {
+                // Ini adalah single click
+                toggleEditMode();
+                updateEditProfileMenuItem();
+                closeMenu();
+                clickCount = 0;
+            }, 250); // Delay 250ms untuk mendeteksi double click
+        }
+
+        // Handle logout (double click)
+        function handleLogout() {
+            if (!isLoggedIn) {
+                showLogin();
+                return;
+            }
+            
+            clickCount++;
+            if (clickCount === 1) {
+                clickTimer = setTimeout(function() {
+                    clickCount = 0;
+                }, 300); // Double click timeout
+            } else if (clickCount === 2) {
+                clearTimeout(clickTimer);
+                // Double click terdeteksi - lakukan logout
+                if (confirm('Yakin mau logout?')) {
+                    isLoggedIn = false;
+                    isEditMode = false;
+                    document.body.classList.remove('edit-mode');
+                    updateEditProfileMenuItem();
+                    alert('Anda telah logout!');
+                }
+                clickCount = 0;
+            }
         }
 
         // Update edit profile menu item appearance
@@ -1681,15 +2011,11 @@
 
             if (enteredPassword === CORRECT_PASSWORD) {
                 isLoggedIn = true;
-                try {
-                    localStorage.setItem('araku_profile_logged_in', 'true');
-                } catch (e) {
-                    console.log("LocalStorage tidak tersedia");
-                }
                 enableEditMode();
                 updateEditProfileMenuItem();
                 hideLogin();
                 errorMessage.textContent = "";
+                alert('Login berhasil! Klik sekali untuk edit, double klik untuk logout.');
             } else {
                 errorMessage.textContent = "Password salah!";
                 passwordInput.value = "";
@@ -1727,10 +2053,6 @@
             document.body.classList.toggle('edit-mode', isEditMode);
             // Show/hide delete buttons in gallery
             renderGallery();
-            if (!isEditMode) {
-                // Auto-save when turning off edit mode
-                saveAllContent();
-            }
         }
 
         // Add upload buttons to images
@@ -1804,7 +2126,7 @@
                 const newText = textarea.value.trim();
                 if (newText !== currentText) {
                     element.textContent = newText;
-                    saveContent(dataId, newText);
+                    // TANPA localStorage
                 }
                 // Remove textarea and show element again
                 textarea.remove();
@@ -1828,60 +2150,6 @@
             textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
         }
 
-        // Save all content
-        function saveAllContent() {
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
-                    saveContent(id, element.textContent);
-                }
-            });
-        }
-
-        // Save content to localStorage
-        function saveContent(id, value) {
-            try {
-                localStorage.setItem(`araku_profile_${id}`, value);
-            } catch (e) {
-                console.log("Gagal menyimpan ke localStorage");
-            }
-        }
-
-        // Load saved content from localStorage
-        function loadSavedContent() {
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
-                    try {
-                        const savedValue = localStorage.getItem(`araku_profile_${id}`);
-                        if (savedValue) {
-                            element.textContent = savedValue;
-                        }
-                    } catch (e) {
-                        // Skip jika localStorage tidak tersedia
-                    }
-                }
-            });
-
-            // Load saved images
-            try {
-                const savedAvatar = localStorage.getItem('araku_profile_avatar');
-                const savedAbout = localStorage.getItem('araku_profile_about');
-                const savedGallery = localStorage.getItem('araku_profile_gallery');
-                if (savedAvatar) {
-                    document.getElementById('avatarImg').src = savedAvatar;
-                }
-                if (savedAbout) {
-                    document.getElementById('aboutImg').src = savedAbout;
-                }
-                if (savedGallery) {
-                    galleryImages = JSON.parse(savedGallery);
-                }
-            } catch (e) {
-                console.log("Gagal memuat gambar dari localStorage");
-            }
-        }
-
         // Handle image upload
         function handleImageUpload(event, type) {
             const file = event.target.files[0];
@@ -1898,18 +2166,10 @@
                 const imageUrl = e.target.result;
                 if (type === 'avatar') {
                     document.getElementById('avatarImg').src = imageUrl;
-                    try {
-                        localStorage.setItem('araku_profile_avatar', imageUrl);
-                    } catch (error) {
-                        console.log("Gagal menyimpan avatar ke localStorage");
-                    }
+                    // TANPA localStorage
                 } else if (type === 'about') {
                     document.getElementById('aboutImg').src = imageUrl;
-                    try {
-                        localStorage.setItem('araku_profile_about', imageUrl);
-                    } catch (error) {
-                        console.log("Gagal menyimpan about ke localStorage");
-                    }
+                    // TANPA localStorage
                 }
             };
             reader.readAsDataURL(file);
@@ -1938,12 +2198,7 @@
                         alt: `Karya ${galleryImages.length + 1}`
                     });
 
-                    // Save to localStorage
-                    try {
-                        localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
-                    } catch (error) {
-                        console.log("Gagal menyimpan gallery ke localStorage");
-                    }
+                    // TANPA localStorage
 
                     // Re-render gallery
                     renderGallery();
@@ -1999,11 +2254,7 @@
         function deleteGalleryImage(index) {
             if (confirm('Hapus gambar ini?')) {
                 galleryImages.splice(index, 1);
-                try {
-                    localStorage.setItem('araku_profile_gallery', JSON.stringify(galleryImages));
-                } catch (error) {
-                    console.log("Gagal menghapus gambar dari localStorage");
-                }
+                // TANPA localStorage
                 renderGallery();
             }
         }
