@@ -90,6 +90,269 @@
         }
 
 
+/* ============================== */
+/* ANIMASI LOGIN/LOGOUT BARU */
+/* ============================== */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes pixelSuccess {
+    0% { 
+        transform: scale(0.8) rotate(-5deg);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes gameOver {
+    0% { 
+        transform: translateY(-50px) scale(0.5);
+        opacity: 0;
+        filter: blur(5px);
+    }
+    50% { 
+        transform: translateY(10px) scale(1.1);
+    }
+    100% { 
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes confetti {
+    0% { 
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% { 
+        box-shadow: 0 0 5px #ffeaa7, 
+                   0 0 10px #fdcb6e,
+                   0 0 15px #ff7675;
+    }
+    50% { 
+        box-shadow: 0 0 10px #ffeaa7, 
+                   0 0 20px #fdcb6e,
+                   0 0 30px #ff7675;
+    }
+}
+
+/* Login Panel Animation */
+.login-panel.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Success Popup */
+.success-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+    border: 4px solid #2d3436;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
+                0 0 20px rgba(255, 234, 167, 0.5);
+    text-align: center;
+    z-index: 1100;
+    display: none;
+    animation: pixelSuccess 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.success-popup.active {
+    display: block;
+}
+
+.success-popup::before {
+    content: '🎉';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    animation: bounce 1s infinite alternate;
+}
+
+.success-popup h2 {
+    color: #d63031;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+}
+
+.success-popup p {
+    color: #2d3436;
+    font-size: 0.45em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.success-btn {
+    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+    border: 3px solid #2d3436;
+    color: white;
+    padding: 12px 25px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5em;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: all 0.3s;
+    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+}
+
+.success-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0px rgba(45, 52, 54, 0.3);
+    background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+}
+
+/* Logout Confirmation Popup */
+.logout-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+    border: 4px solid #2d3436;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5),
+                0 0 20px rgba(255, 118, 117, 0.5);
+    text-align: center;
+    z-index: 1100;
+    display: none;
+    animation: gameOver 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logout-popup.active {
+    display: block;
+}
+
+.logout-popup::before {
+    content: '⚠️';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5em;
+    animation: pulse 1s infinite;
+}
+
+.logout-popup h2 {
+    color: white;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
+}
+
+.logout-popup p {
+    color: white;
+    font-size: 0.45em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+}
+
+.logout-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+    border: 3px solid #2d3436;
+    color: white;
+    padding: 12px 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.45em;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s;
+    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
+}
+
+.logout-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+}
+
+.logout-btn.cancel {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+}
+
+.logout-btn.confirm {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    animation: glowPulse 1.5s infinite;
+}
+
+/* Confetti Effect */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1001;
+    display: none;
+}
+
+.confetti-container.active {
+    display: block;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff6b6b;
+    top: -10px;
+    animation: confetti 3s linear forwards;
+}
+
+.confetti:nth-child(2n) {
+    background: #74b9ff;
+    animation-delay: 0.5s;
+}
+
+.confetti:nth-child(3n) {
+    background: #ffeaa7;
+    animation-delay: 1s;
+}
+
+.confetti:nth-child(4n) {
+    background: #a29bfe;
+    animation-delay: 1.5s;
+}
+
+.confetti:nth-child(5n) {
+    background: #fd79a8;
+    animation-delay: 2s;
+}
+
+
 
 /* ============================== */
 /* NAVBAR DESKTOP GAME STYLE */
@@ -1387,6 +1650,30 @@
 </head>
 
 <body>
+
+
+<!-- Success Popup -->
+<div id="successPopup" class="success-popup">
+    <h2>🎮 LOGIN BERHASIL! 🎮</h2>
+    <p>Selamat datang di mode edit! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
+    <p>💡 Tips: Klik 2x cepat pada menu EDIT PROFILE untuk logout!</p>
+    <button onclick="closeSuccessPopup()" class="success-btn">LANJUTKAN →</button>
+</div>
+
+<!-- Logout Confirmation Popup -->
+<div id="logoutPopup" class="logout-popup">
+    <h2>⏸️ PAUSE GAME? ⏸️</h2>
+    <p>Yakin mau keluar dari mode edit?</p>
+    <p>Semua perubahan yang belum disimpan akan hilang!</p>
+    <div class="logout-buttons">
+        <button onclick="cancelLogout()" class="logout-btn cancel">❌ BATAL</button>
+        <button onclick="confirmLogout()" class="logout-btn confirm">✅ LOGOUT</button>
+    </div>
+</div>
+
+<!-- Confetti Container -->
+<div id="confettiContainer" class="confetti-container"></div>
+
     <!-- ============================== -->
     <!-- NAVBAR TOGGLE DI POJOK KIRI ATAS -->
     <!-- ============================== -->
@@ -1747,6 +2034,160 @@
             'contact3Value': 'contact3ValueText',
             'footerText': 'footerText'
         };
+
+
+// ==============================
+// FUNGSI ANIMASI LOGIN/LOGOUT BARU
+// ==============================
+
+// Fungsi createConfetti untuk efek kemenangan
+function createConfetti() {
+    const container = document.getElementById('confettiContainer');
+    container.innerHTML = '';
+    container.classList.add('active');
+    
+    // Buat 50 confetti
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        confetti.style.width = (Math.random() * 10 + 5) + 'px';
+        confetti.style.height = confetti.style.width;
+        container.appendChild(confetti);
+    }
+    
+    // Hapus confetti setelah 3 detik
+    setTimeout(() => {
+        container.classList.remove('active');
+    }, 3000);
+}
+
+// Fungsi showSuccessPopup
+function showSuccessPopup() {
+    createConfetti();
+    document.getElementById('successPopup').classList.add('active');
+    // Auto close setelah 5 detik
+    setTimeout(closeSuccessPopup, 5000);
+}
+
+// Fungsi closeSuccessPopup
+function closeSuccessPopup() {
+    document.getElementById('successPopup').classList.remove('active');
+}
+
+// Fungsi showLogoutPopup
+function showLogoutPopup() {
+    document.getElementById('logoutPopup').classList.add('active');
+}
+
+// Fungsi cancelLogout
+function cancelLogout() {
+    document.getElementById('logoutPopup').classList.remove('active');
+}
+
+// Fungsi confirmLogout
+function confirmLogout() {
+    // Hapus confetti dulu
+    document.getElementById('confettiContainer').classList.remove('active');
+    
+    // Animasi logout
+    const logoutPopup = document.getElementById('logoutPopup');
+    logoutPopup.style.animation = 'gameOver 0.5s reverse forwards';
+    
+    setTimeout(() => {
+        logoutPopup.classList.remove('active');
+        logoutPopup.style.animation = '';
+        
+        // Proses logout
+        isLoggedIn = false;
+        isEditMode = false;
+        document.body.classList.remove('edit-mode');
+        updateEditProfileMenuItem();
+        
+        // Tampilkan alert sederhana
+        const alertDiv = document.createElement('div');
+        alertDiv.style.cssText = `
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+            border: 3px solid #2d3436;
+            padding: 15px 25px;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5em;
+            z-index: 1100;
+            box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+            animation: pixelSuccess 0.5s;
+        `;
+        alertDiv.textContent = '👋 LOGOUT BERHASIL!';
+        document.body.appendChild(alertDiv);
+        
+        setTimeout(() => {
+            alertDiv.style.animation = 'gameOver 0.5s reverse forwards';
+            setTimeout(() => alertDiv.remove(), 500);
+        }, 2000);
+        
+    }, 500);
+}
+
+// ==============================
+// UPDATE FUNGSI YANG SUDAH ADA
+// ==============================
+
+// Update fungsi checkLogin() - cari fungsi ini dan ganti dengan:
+function checkLogin() {
+    const passwordInput = document.getElementById('passwordInput');
+    const errorMessage = document.getElementById('loginError');
+    const enteredPassword = passwordInput.value;
+
+    if (enteredPassword === CORRECT_PASSWORD) {
+        isLoggedIn = true;
+        enableEditMode();
+        updateEditProfileMenuItem();
+        hideLogin();
+        errorMessage.textContent = "";
+        
+        // Tampilkan popup sukses dengan animasi
+        showSuccessPopup();
+        
+    } else {
+        // Animasi shake untuk password salah
+        const loginPanel = document.getElementById('loginPanel');
+        loginPanel.classList.add('shake');
+        errorMessage.textContent = "❌ Password salah! Coba lagi.";
+        passwordInput.value = "";
+        passwordInput.focus();
+        
+        // Hapus class shake setelah animasi selesai
+        setTimeout(() => {
+            loginPanel.classList.remove('shake');
+        }, 500);
+    }
+}
+
+// Update fungsi handleLogout() - cari fungsi ini dan ganti dengan:
+function handleLogout() {
+    if (!isLoggedIn) {
+        showLogin();
+        return;
+    }
+    
+    clickCount++;
+    if (clickCount === 1) {
+        clickTimer = setTimeout(function() {
+            clickCount = 0;
+        }, 300);
+    } else if (clickCount === 2) {
+        clearTimeout(clickTimer);
+        // Double click terdeteksi - tampilkan popup logout
+        showLogoutPopup();
+        clickCount = 0;
+    }
+}
+
 
 
 // Di bagian JavaScript, tambahkan fungsi ini:
