@@ -14,14 +14,14 @@
         }
 
         body {
-    font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%);
-    min-height: 100vh;
-    padding: 20px;
-    position: relative;
-    padding-top: 70px;              /* PERUBAHAN: 80px → 70px */
-    scroll-behavior: smooth;
-}
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            padding-top: 70px;
+            scroll-behavior: smooth;
+        }
 
         /* ============================== */
         /* NAVBAR DESKTOP GAME STYLE */
@@ -41,34 +41,34 @@
             }
 
             .nav-dropdown {
-    position: fixed;
-    top: 15px;              /* PERUBAHAN: 20px → 15px */
-    left: 15px;             /* PERUBAHAN: 20px → 15px */
-    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-    border: 3px solid #2d3436;      /* PERUBAHAN: 4px → 3px */
-    padding: 12px;                  /* PERUBAHAN: 15px → 12px */
-    box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);  /* PERUBAHAN: 8px → 6px */
-    z-index: 1000;
-    min-width: 180px;               /* PERUBAHAN: 220px → 180px */
-    display: block !important;
-    border-radius: 8px;             /* PERUBAHAN: 10px → 8px */
-    transform: none !important;
-    animation: none !important;
-    opacity: 1 !important;
-}
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+                border: 3px solid #2d3436;
+                padding: 12px;
+                box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
+                z-index: 1000;
+                min-width: 180px;
+                display: block !important;
+                border-radius: 8px;
+                transform: none !important;
+                animation: none !important;
+                opacity: 1 !important;
+            }
 
             .nav-brand {
-    color: white;
-    font-size: 0.65em;              /* PERUBAHAN: 0.8em → 0.65em */
-    text-align: center;
-    margin-bottom: 12px;            /* PERUBAHAN: 15px → 12px */
-    padding: 8px;                   /* PERUBAHAN: 10px → 8px */
-    border: 2px solid #2d3436;      /* PERUBAHAN: 3px → 2px */
-    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.5);  /* PERUBAHAN: 3px → 2px */
-    box-shadow: 3px 3px 0px rgba(45, 52, 54, 0.2);   /* PERUBAHAN: 4px → 3px */
-    position: relative;
-}
+                color: white;
+                font-size: 0.65em;
+                text-align: center;
+                margin-bottom: 12px;
+                padding: 8px;
+                border: 2px solid #2d3436;
+                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+                text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.5);
+                box-shadow: 3px 3px 0px rgba(45, 52, 54, 0.2);
+                position: relative;
+            }
 
             .nav-brand::before {
                 content: '🎮';
@@ -87,26 +87,27 @@
             }
 
             .nav-items {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;                       /* PERUBAHAN: 8px → 6px */
-}
-.nav-item {
-    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-    border: 2px solid #2d3436;      /* PERUBAHAN: 3px → 2px */
-    padding: 10px 12px;             /* PERUBAHAN: 12px 15px → 10px 12px */
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 3px 3px 0px rgba(45, 52, 54, 0.3);  /* PERUBAHAN: 4px → 3px */
-    display: flex;
-    align-items: center;
-    gap: 10px;                      /* PERUBAHAN: 12px → 10px */
-    text-decoration: none;
-    position: relative;
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-}
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .nav-item {
+                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+                border: 2px solid #2d3436;
+                padding: 10px 12px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 3px 3px 0px rgba(45, 52, 54, 0.3);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                position: relative;
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
 
             .nav-item::before {
                 content: '';
@@ -133,37 +134,38 @@
             }
 
             .nav-icon {
-    font-size: 1em;                 /* PERUBAHAN: 1.2em → 1em */
-    flex-shrink: 0;
-    min-width: 20px;                /* PERUBAHAN: 25px → 20px */
-    text-align: center;
-    text-shadow: 1px 1px 0px rgba(45, 52, 54, 0.3);  /* PERUBAHAN: 2px → 1px */
-}
-.nav-text {
-    font-size: 0.4em;               /* PERUBAHAN: 0.5em → 0.4em */
-    color: #2d3436;
-    font-weight: bold;
-    flex: 1;
-    line-height: 1.3;               /* PERUBAHAN: 1.4 → 1.3 */
-    text-transform: uppercase;
-    letter-spacing: 0.5px;          /* PERUBAHAN: 1px → 0.5px */
-}
+                font-size: 1em;
+                flex-shrink: 0;
+                min-width: 20px;
+                text-align: center;
+                text-shadow: 1px 1px 0px rgba(45, 52, 54, 0.3);
+            }
+            
+            .nav-text {
+                font-size: 0.4em;
+                color: #2d3436;
+                font-weight: bold;
+                flex: 1;
+                line-height: 1.3;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
 
             .nav-item.edit-mode-active {
                 background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
                 animation: pulseEdit 1.5s infinite;
             }
 
-           .nav-item::after {
-    content: '';
-    position: absolute;
-    top: 3px;                       /* PERUBAHAN: 4px → 3px */
-    right: 3px;                     /* PERUBAHAN: 4px → 3px */
-    width: 5px;                     /* PERUBAHAN: 6px → 5px */
-    height: 5px;                    /* PERUBAHAN: 6px → 5px */
-    background: #ff6b6b;
-    border: 1px solid #2d3436;      /* PERUBAHAN: 1.5px → 1px */
-}
+            .nav-item::after {
+                content: '';
+                position: absolute;
+                top: 3px;
+                right: 3px;
+                width: 5px;
+                height: 5px;
+                background: #ff6b6b;
+                border: 1px solid #2d3436;
+            }
 
             .nav-item.edit-mode-active::after {
                 background: #ffeaa7;
@@ -175,25 +177,26 @@
             }
 
             .nav-dropdown::before {
-    content: '';
-    position: absolute;
-    top: -6px;                      /* PERUBAHAN: -8px → -6px */
-    left: -6px;                     /* PERUBAHAN: -8px → -6px */
-    right: -6px;                    /* PERUBAHAN: -8px → -6px */
-    bottom: -6px;                   /* PERUBAHAN: -8px → -6px */
-    border: 2px dashed rgba(255, 234, 167, 0.3);
-    border-radius: 10px;            /* PERUBAHAN: 12px → 10px */
-    pointer-events: none;
-}
+                content: '';
+                position: absolute;
+                top: -6px;
+                left: -6px;
+                right: -6px;
+                bottom: -6px;
+                border: 2px dashed rgba(255, 234, 167, 0.3);
+                border-radius: 10px;
+                pointer-events: none;
+            }
+            
             @media (min-width: 1200px) {
-    .nav-dropdown {
-        min-width: 200px;           /* PERUBAHAN: 250px → 200px */
-    }
-    
-    .nav-text {
-        font-size: 0.45em;          /* PERUBAHAN: 0.55em → 0.45em */
-    }
-}
+                .nav-dropdown {
+                    min-width: 200px;
+                }
+                
+                .nav-text {
+                    font-size: 0.45em;
+                }
+            }
         }
 
         /* ============================== */
@@ -1884,12 +1887,12 @@
 
     <script>
         // Password sederhana
-        const CORRECT_PASSWORD = "arakukeren24";
+        const CORRECT_PASSWORD = "24";
 
-        // State variables
-        let isLoggedIn = false;
+        // State variables - PERSISTENSI DENGAN LOCALSTORAGE
+        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         let isEditMode = false;
-        let galleryImages = [
+        let galleryImages = JSON.parse(localStorage.getItem('galleryImages')) || [
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+1", alt: "Karya 1" },
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+2", alt: "Karya 2" },
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+3", alt: "Karya 3" }
@@ -1897,6 +1900,7 @@
 
         // Variables untuk delete image
         let currentImageIndex = -1;
+        let activeEditElement = null; // Untuk melacak elemen yang sedang diedit
 
         // Element IDs mapping
         const editableElements = {
@@ -1945,6 +1949,35 @@
         let clickTimer = null;
 
         // ============================== //
+        // FUNGSI PERSISTENSI DATA //
+        // ============================== //
+
+        function saveLoginState() {
+            localStorage.setItem('isLoggedIn', isLoggedIn);
+        }
+
+        function saveGalleryImages() {
+            localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+        }
+
+        function saveTextContent(elementId, content) {
+            localStorage.setItem(elementId, content);
+        }
+
+        function loadTextContent() {
+            Object.keys(editableElements).forEach(id => {
+                const elementId = editableElements[id];
+                const savedContent = localStorage.getItem(elementId);
+                if (savedContent) {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.textContent = savedContent;
+                    }
+                }
+            });
+        }
+
+        // ============================== //
         // FUNGSI POPUP RAPIH //
         // ============================== //
 
@@ -1990,7 +2023,6 @@
         function showSuccessPopup() {
             createConfetti();
             showPopup('successPopupContainer', 'successPopup');
-            // TIDAK ADA auto-hide, hanya close saat tombol ditekan
         }
 
         function closeSuccessPopup() {
@@ -2022,6 +2054,7 @@
         function confirmDeleteImage() {
             if (currentImageIndex >= 0) {
                 galleryImages.splice(currentImageIndex, 1);
+                saveGalleryImages();
                 renderGallery();
                 showDeleteSuccessNotification();
             }
@@ -2063,6 +2096,7 @@
             setTimeout(() => {
                 isLoggedIn = false;
                 isEditMode = false;
+                saveLoginState();
                 document.body.classList.remove('edit-mode');
                 updateEditProfileMenuItem();
                 
@@ -2083,7 +2117,7 @@
                     text-align: center;
                     animation: popupIn 0.3s forwards;
                 `;
-                notification.innerHTML = '<div>👋</div><div>LOGOUT BERHASIL!</div>';
+                notification.innerHTML = '<div></div><div>LOGOUT BERHASIL!</div>';
                 document.body.appendChild(notification);
                 
                 setTimeout(() => {
@@ -2136,6 +2170,7 @@
             if (enteredPassword === CORRECT_PASSWORD) {
                 // LOGIN BERHASIL
                 isLoggedIn = true;
+                saveLoginState();
                 enableEditMode();
                 updateEditProfileMenuItem();
                 
@@ -2320,13 +2355,13 @@
             } else {
                 editProfileItem.classList.remove('edit-mode-active');
                 editProfileItem.classList.remove('active');
-                editProfileText.textContent = "🔐 EDIT PROFILE";
+                editProfileText.textContent = "EDIT PROFILE";
                 editProfileItem.querySelector('.nav-icon').textContent = "🔐";
             }
         }
 
         // ============================== //
-        // EDIT MODE FUNCTIONS //
+        // EDIT MODE FUNCTIONS - DIPERBAIKI //
         // ============================== //
 
         function enableEditMode() {
@@ -2384,40 +2419,80 @@
         }
 
         function handleEditClick(event) {
-            if (!isLoggedIn || !document.body.classList.contains('edit-mode')) return;
+            if (!isLoggedIn || !document.body.classList.contains('edit-mode') || activeEditElement) return;
+            
             const element = event.currentTarget;
             const currentText = element.textContent;
             const dataId = element.getAttribute('data-id');
 
+            // Set elemen aktif
+            activeEditElement = element;
+
+            // Cek jika sudah ada textarea untuk elemen ini
+            if (element.nextElementSibling && element.nextElementSibling.tagName === 'TEXTAREA') {
+                return; // Sudah ada textarea, tidak buat baru
+            }
+
+            // Buat textarea untuk edit
             const textarea = document.createElement('textarea');
             textarea.value = currentText;
             textarea.className = 'login-input';
-            textarea.style.cssText = 'width: 100%; height: 100px; font-size: 0.7em; font-family: "Press Start 2P", cursive;';
+            textarea.style.cssText = 'width: 100%; height: 100px; font-size: 0.7em; font-family: "Press Start 2P", cursive; margin-top: 10px; display: block;';
 
+            // Sembunyikan elemen asli
             element.style.display = 'none';
-            element.parentNode.insertBefore(textarea, element);
+            
+            // Sisipkan textarea setelah elemen
+            element.parentNode.insertBefore(textarea, element.nextSibling);
             textarea.focus();
 
-            function saveEdit() {
+            // Hapus tombol save yang mungkin sudah ada sebelumnya
+            const existingSaveBtn = element.parentNode.querySelector('.save-edit-btn');
+            if (existingSaveBtn) {
+                existingSaveBtn.remove();
+            }
+
+            // Buat tombol save baru
+            const saveBtn = document.createElement('button');
+            saveBtn.className = 'upload-btn save-edit-btn';
+            saveBtn.textContent = '💾 Save';
+            saveBtn.style.marginTop = '5px';
+            saveBtn.onclick = function() {
+                saveEdit(textarea, element, dataId, saveBtn);
+            };
+
+            // Sisipkan tombol save setelah textarea
+            textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
+
+            // Fungsi untuk save edit
+            function saveEdit(textarea, element, dataId, saveBtn) {
                 const newText = textarea.value.trim();
                 if (newText !== currentText) {
                     element.textContent = newText;
+                    saveTextContent(editableElements[dataId], newText);
                 }
+                
+                // Hapus textarea dan tombol save
                 textarea.remove();
+                saveBtn.remove();
+                
+                // Tampilkan kembali elemen asli
                 element.style.display = '';
+                
+                // Reset elemen aktif
+                activeEditElement = null;
             }
 
-            textarea.addEventListener('blur', saveEdit);
+            // Event listener untuk textarea
             textarea.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && e.ctrlKey) saveEdit();
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    saveEdit(textarea, element, dataId, saveBtn);
+                }
             });
 
-            const saveBtn = document.createElement('button');
-            saveBtn.className = 'upload-btn';
-            saveBtn.textContent = '💾 Save';
-            saveBtn.style.marginTop = '5px';
-            saveBtn.onclick = saveEdit;
-            textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
+            textarea.addEventListener('blur', function() {
+                // Tidak langsung save saat blur, biarkan user klik save manual
+            });
         }
 
         // ============================== //
@@ -2438,8 +2513,10 @@
                 const imageUrl = e.target.result;
                 if (type === 'avatar') {
                     document.getElementById('avatarImg').src = imageUrl;
+                    localStorage.setItem('avatarImg', imageUrl);
                 } else if (type === 'about') {
                     document.getElementById('aboutImg').src = imageUrl;
+                    localStorage.setItem('aboutImg', imageUrl);
                 }
             };
             reader.readAsDataURL(file);
@@ -2463,6 +2540,7 @@
                         src: imageUrl,
                         alt: `Karya ${galleryImages.length + 1}`
                     });
+                    saveGalleryImages();
                     renderGallery();
                 };
                 reader.readAsDataURL(file);
@@ -2537,6 +2615,21 @@
         // ============================== //
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Load saved content
+            loadTextContent();
+            
+            // Load saved images
+            const savedAvatar = localStorage.getItem('avatarImg');
+            if (savedAvatar) {
+                document.getElementById('avatarImg').src = savedAvatar;
+            }
+            
+            const savedAbout = localStorage.getItem('aboutImg');
+            if (savedAbout) {
+                document.getElementById('aboutImg').src = savedAbout;
+            }
+
+            // Setup event listeners
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') checkLogin();
             });
@@ -2552,6 +2645,12 @@
             document.getElementById('galleryUpload').addEventListener('change', function(e) {
                 handleGalleryUpload(e);
             });
+
+            // Auto login jika sudah login sebelumnya
+            if (isLoggedIn) {
+                enableEditMode();
+                updateEditProfileMenuItem();
+            }
 
             setupDesktopNavbar();
             setupNavbarScroll();
