@@ -14,14 +14,14 @@
         }
 
         body {
-            font-family: 'Press Start 2P', cursive;
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%);
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            padding-top: 80px;
-            scroll-behavior: smooth;
-        }
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%);
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    padding-top: 70px;              /* PERUBAHAN: 80px → 70px */
+    scroll-behavior: smooth;
+}
 
         /* ============================== */
         /* NAVBAR DESKTOP GAME STYLE */
@@ -29,8 +29,8 @@
         @media (min-width: 769px) {
             .navbar-toggle {
                 position: fixed;
-                top: 20px;
-                left: 20px;
+                top: 15px;
+                left: 15px;
                 z-index: 1001;
                 width: auto;
                 height: auto;
@@ -41,34 +41,34 @@
             }
 
             .nav-dropdown {
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
-                border: 4px solid #2d3436;
-                padding: 15px;
-                box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.3);
-                z-index: 1000;
-                min-width: 220px;
-                display: block !important;
-                border-radius: 10px;
-                transform: none !important;
-                animation: none !important;
-                opacity: 1 !important;
-            }
+    position: fixed;
+    top: 15px;              /* PERUBAHAN: 20px → 15px */
+    left: 15px;             /* PERUBAHAN: 20px → 15px */
+    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+    border: 3px solid #2d3436;      /* PERUBAHAN: 4px → 3px */
+    padding: 12px;                  /* PERUBAHAN: 15px → 12px */
+    box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);  /* PERUBAHAN: 8px → 6px */
+    z-index: 1000;
+    min-width: 180px;               /* PERUBAHAN: 220px → 180px */
+    display: block !important;
+    border-radius: 8px;             /* PERUBAHAN: 10px → 8px */
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+}
 
             .nav-brand {
-                color: white;
-                font-size: 0.8em;
-                text-align: center;
-                margin-bottom: 15px;
-                padding: 10px;
-                border: 3px solid #2d3436;
-                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-                text-shadow: 3px 3px 0px rgba(45, 52, 54, 0.5);
-                box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.2);
-                position: relative;
-            }
+    color: white;
+    font-size: 0.65em;              /* PERUBAHAN: 0.8em → 0.65em */
+    text-align: center;
+    margin-bottom: 12px;            /* PERUBAHAN: 15px → 12px */
+    padding: 8px;                   /* PERUBAHAN: 10px → 8px */
+    border: 2px solid #2d3436;      /* PERUBAHAN: 3px → 2px */
+    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+    text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.5);  /* PERUBAHAN: 3px → 2px */
+    box-shadow: 3px 3px 0px rgba(45, 52, 54, 0.2);   /* PERUBAHAN: 4px → 3px */
+    position: relative;
+}
 
             .nav-brand::before {
                 content: '🎮';
@@ -87,27 +87,26 @@
             }
 
             .nav-items {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .nav-item {
-                background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-                border: 3px solid #2d3436;
-                padding: 12px 15px;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                text-decoration: none;
-                position: relative;
-                opacity: 1 !important;
-                transform: none !important;
-                animation: none !important;
-            }
+    display: flex;
+    flex-direction: column;
+    gap: 6px;                       /* PERUBAHAN: 8px → 6px */
+}
+.nav-item {
+    background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+    border: 2px solid #2d3436;      /* PERUBAHAN: 3px → 2px */
+    padding: 10px 12px;             /* PERUBAHAN: 12px 15px → 10px 12px */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 0px rgba(45, 52, 54, 0.3);  /* PERUBAHAN: 4px → 3px */
+    display: flex;
+    align-items: center;
+    gap: 10px;                      /* PERUBAHAN: 12px → 10px */
+    text-decoration: none;
+    position: relative;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
 
             .nav-item::before {
                 content: '';
@@ -134,38 +133,37 @@
             }
 
             .nav-icon {
-                font-size: 1.2em;
-                flex-shrink: 0;
-                min-width: 25px;
-                text-align: center;
-                text-shadow: 2px 2px 0px rgba(45, 52, 54, 0.3);
-            }
-
-            .nav-text {
-                font-size: 0.5em;
-                color: #2d3436;
-                font-weight: bold;
-                flex: 1;
-                line-height: 1.4;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
+    font-size: 1em;                 /* PERUBAHAN: 1.2em → 1em */
+    flex-shrink: 0;
+    min-width: 20px;                /* PERUBAHAN: 25px → 20px */
+    text-align: center;
+    text-shadow: 1px 1px 0px rgba(45, 52, 54, 0.3);  /* PERUBAHAN: 2px → 1px */
+}
+.nav-text {
+    font-size: 0.4em;               /* PERUBAHAN: 0.5em → 0.4em */
+    color: #2d3436;
+    font-weight: bold;
+    flex: 1;
+    line-height: 1.3;               /* PERUBAHAN: 1.4 → 1.3 */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;          /* PERUBAHAN: 1px → 0.5px */
+}
 
             .nav-item.edit-mode-active {
                 background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
                 animation: pulseEdit 1.5s infinite;
             }
 
-            .nav-item::after {
-                content: '';
-                position: absolute;
-                top: 4px;
-                right: 4px;
-                width: 6px;
-                height: 6px;
-                background: #ff6b6b;
-                border: 1.5px solid #2d3436;
-            }
+           .nav-item::after {
+    content: '';
+    position: absolute;
+    top: 3px;                       /* PERUBAHAN: 4px → 3px */
+    right: 3px;                     /* PERUBAHAN: 4px → 3px */
+    width: 5px;                     /* PERUBAHAN: 6px → 5px */
+    height: 5px;                    /* PERUBAHAN: 6px → 5px */
+    background: #ff6b6b;
+    border: 1px solid #2d3436;      /* PERUBAHAN: 1.5px → 1px */
+}
 
             .nav-item.edit-mode-active::after {
                 background: #ffeaa7;
@@ -177,26 +175,25 @@
             }
 
             .nav-dropdown::before {
-                content: '';
-                position: absolute;
-                top: -8px;
-                left: -8px;
-                right: -8px;
-                bottom: -8px;
-                border: 2px dashed rgba(255, 234, 167, 0.3);
-                border-radius: 12px;
-                pointer-events: none;
-            }
-
+    content: '';
+    position: absolute;
+    top: -6px;                      /* PERUBAHAN: -8px → -6px */
+    left: -6px;                     /* PERUBAHAN: -8px → -6px */
+    right: -6px;                    /* PERUBAHAN: -8px → -6px */
+    bottom: -6px;                   /* PERUBAHAN: -8px → -6px */
+    border: 2px dashed rgba(255, 234, 167, 0.3);
+    border-radius: 10px;            /* PERUBAHAN: 12px → 10px */
+    pointer-events: none;
+}
             @media (min-width: 1200px) {
-                .nav-dropdown {
-                    min-width: 250px;
-                }
-                
-                .nav-text {
-                    font-size: 0.55em;
-                }
-            }
+    .nav-dropdown {
+        min-width: 200px;           /* PERUBAHAN: 250px → 200px */
+    }
+    
+    .nav-text {
+        font-size: 0.45em;          /* PERUBAHAN: 0.55em → 0.45em */
+    }
+}
         }
 
         /* ============================== */
@@ -1577,16 +1574,15 @@
     <!-- Login Panel -->
     <div id="loginOverlay" class="popup-overlay"></div>
     <div id="loginPanel" class="login-panel">
-        <h2 style="font-size: 0.8em; margin-bottom: 20px;">LOGIN ADMIN</h2>
+        <h2 style="font-size: 0.8em; margin-bottom: 20px;">LOGIN ATMIN</h2>
         <div class="error-message" id="loginError"></div>
-        <input type="password" id="passwordInput" class="login-input" placeholder="Password" autocomplete="off">
+        <input type="password" id="passwordInput" class="login-input" placeholder="Password nya apa coba hayoo" autocomplete="off">
         <div style="display: flex; gap: 10px;">
             <button onclick="checkLogin()" class="login-btn">LOGIN</button>
             <button onclick="hideLogin()" class="login-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">BATAL</button>
         </div>
         <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">
-            Password: arakuganteng
-        </p>
+          yang ytta tau ajah!
     </div>
 
     <!-- Success Popup -->
@@ -1598,8 +1594,8 @@
                 <div class="popup-title">LOGIN BERHASIL!</div>
             </div>
             <div class="popup-content">
-                <p class="popup-message">Selamat datang di mode edit! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
-                <p class="popup-message">💡 Tips: Klik 2x cepat pada menu EDIT PROFILE untuk logout!</p>
+                <p class="popup-message">Selamat datang di mode edit min! Sekarang kamu bisa mengedit semua konten dengan klik pada teks.</p>
+                <p class="popup-message">Klik 2x cepet pada menu EDIT PROFILE buat logout!</p>
             </div>
             <div class="popup-buttons">
                 <button onclick="closeSuccessPopup()" class="popup-btn primary">LANJUTKAN →</button>
@@ -1616,11 +1612,11 @@
                 <div class="popup-title">PAUSE GAME?</div>
             </div>
             <div class="popup-content">
-                <p class="popup-message">Yakin mau keluar dari mode edit?</p>
-                <p class="popup-message">Semua perubahan yang belum disimpan akan hilang!</p>
+                <p class="popup-message">Yakin mau keluar dari mode edit nih?</p>
+                <p class="popup-message">Semua perubahan yang belum disimpan bakal hilang lo!</p>
             </div>
             <div class="popup-buttons">
-                <button onclick="cancelLogout()" class="popup-btn secondary">❌ BATAL</button>
+                <button onclick="cancelLogout()" class="popup-btn secondary">❌ GAK JADI</button>
                 <button onclick="confirmLogout()" class="popup-btn danger">✅ LOGOUT</button>
             </div>
         </div>
@@ -1635,8 +1631,8 @@
                 <div class="popup-title">HAPUS GAMBAR?</div>
             </div>
             <div class="popup-content">
-                <p class="popup-message" id="deleteImageMessage">Apakah kamu yakin ingin menghapus gambar ini?</p>
-                <p class="popup-message">Gambar yang sudah dihapus tidak dapat dikembalikan!</p>
+                <p class="popup-message" id="deleteImageMessage">Apa kamu yakin pengen hapus gambar ini?</p>
+                <p class="popup-message">Gambar yang udah dihapus gak bisa dikembalikan!</p>
             </div>
             <div class="popup-buttons">
                 <button onclick="cancelDeleteImage()" class="popup-btn secondary">❌ BATAL</button>
@@ -1888,7 +1884,7 @@
 
     <script>
         // Password sederhana
-        const CORRECT_PASSWORD = "arakuganteng";
+        const CORRECT_PASSWORD = "arakukeren24";
 
         // State variables
         let isLoggedIn = false;
@@ -2162,7 +2158,7 @@
                 loginPanel.style.animation = 'shakePanel 0.5s ease-in-out';
                 
                 // Tampilkan error message dengan animasi
-                errorMessage.textContent = "❌ Password salah! Coba lagi.";
+                errorMessage.textContent = " Password salah kocak! Coba lagi.";
                 errorMessage.style.display = 'block';
                 errorMessage.style.animation = 'shakeError 0.5s ease-in-out';
                 
@@ -2313,12 +2309,12 @@
                 if (isEditMode) {
                     editProfileItem.classList.add('edit-mode-active');
                     editProfileItem.classList.remove('active');
-                    editProfileText.textContent = "💾 EDIT MODE ON";
+                    editProfileText.textContent = "EDIT MODE ON";
                     editProfileItem.querySelector('.nav-icon').textContent = "💾";
                 } else {
                     editProfileItem.classList.remove('edit-mode-active');
                     editProfileItem.classList.remove('active');
-                    editProfileText.textContent = "🔓 EDIT PROFILE";
+                    editProfileText.textContent = "EDIT PROFILE";
                     editProfileItem.querySelector('.nav-icon').textContent = "🔓";
                 }
             } else {
