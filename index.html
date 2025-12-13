@@ -522,102 +522,6 @@
         }
 
         /* ============================== */
-        /* GOOGLE SHEETS STYLES */
-        /* ============================== */
-        .sheets-info {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-            border: 3px solid #2d3436;
-            padding: 15px;
-            box-shadow: 6px 6px 0px rgba(45, 52, 54, 0.3);
-            z-index: 1000;
-            max-width: 300px;
-            display: none;
-        }
-
-        .sheets-info.active {
-            display: block;
-            animation: popupIn 0.3s ease-out;
-        }
-
-        .sheets-title {
-            color: white;
-            font-size: 0.5em;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .sheets-status {
-            color: #2d3436;
-            font-size: 0.35em;
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .sheets-btn {
-            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
-            border: 2px solid #2d3436;
-            color: white;
-            padding: 8px 12px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.35em;
-            cursor: pointer;
-            margin: 5px 2px;
-            width: calc(50% - 4px);
-            display: inline-block;
-        }
-
-        .setup-box {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 4px solid #2d3436;
-            padding: 30px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5);
-            z-index: 1100;
-            display: none;
-        }
-
-        .setup-box.active {
-            display: block;
-            animation: popupIn 0.3s ease-out;
-        }
-
-        .setup-title {
-            color: #d63031;
-            font-size: 0.7em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .setup-input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 3px solid #2d3436;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5em;
-        }
-
-        .setup-btn {
-            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
-            border: 3px solid #2d3436;
-            color: white;
-            padding: 12px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.5em;
-            cursor: pointer;
-            margin: 10px 5px;
-            width: calc(50% - 10px);
-        }
-
-        /* ============================== */
         /* ANIMASI POPUP RAPIH */
         /* ============================== */
 
@@ -1680,7 +1584,8 @@
             <button onclick="checkLogin()" class="login-btn">LOGIN</button>
             <button onclick="hideLogin()" class="login-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">BATAL</button>
         </div>
-        <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">yang ytta tau ajah!</p>
+        <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">
+          yang ytta tau ajah!
     </div>
 
     <!-- Success Popup -->
@@ -1736,30 +1641,6 @@
                 <button onclick="cancelDeleteImage()" class="popup-btn secondary">❌ BATAL</button>
                 <button onclick="confirmDeleteImage()" class="popup-btn danger">🗑️ HAPUS</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Setup Box -->
-    <div id="setupBox" class="setup-box">
-        <div class="setup-title">⚙️ SETUP GOOGLE SHEETS</div>
-        <p style="font-size: 0.4em; color: #2d3436; margin-bottom: 15px; line-height: 1.6;">
-            Masukkan Sheet ID dari Google Sheets kamu:
-        </p>
-        <input type="text" id="sheetIdInput" class="setup-input" placeholder="Contoh: ABCD1234efgh5678">
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button onclick="saveSheetConfig()" class="setup-btn">💾 SIMPAN</button>
-            <button onclick="showTutorial()" class="setup-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">❓ TUTORIAL</button>
-        </div>
-        <button onclick="hideSetup()" class="setup-btn" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); margin-top: 10px; width: 100%;">✖ TUTUP</button>
-    </div>
-
-    <!-- Sheets Info Panel -->
-    <div id="sheetsInfo" class="sheets-info">
-        <div class="sheets-title">✅ TERHUBUNG KE GOOGLE SHEETS</div>
-        <div class="sheets-status" id="sheetsStatus">Data tersimpan online!</div>
-        <div>
-            <button onclick="syncToSheets()" class="sheets-btn">🔄 SYNC</button>
-            <button onclick="showSetup()" class="sheets-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">⚙️ SETUP</button>
         </div>
     </div>
 
@@ -2005,17 +1886,10 @@
     </div>
 
     <script>
-        // ============================== //
-        // GOOGLE SHEETS CONFIGURATION //
-        // ============================== //
-        
-        // SHEET ID ARAKU
-        const SHEET_ID = "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA";
-        
-        // Password
+        // Password sederhana
         const CORRECT_PASSWORD = "24";
-        
-        // State variables
+
+        // State variables - PERSISTENSI DENGAN LOCALSTORAGE
         let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         let isEditMode = false;
         let galleryImages = JSON.parse(localStorage.getItem('galleryImages')) || [
@@ -2023,11 +1897,11 @@
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+2", alt: "Karya 2" },
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+3", alt: "Karya 3" }
         ];
-        
+
         // Variables untuk delete image
         let currentImageIndex = -1;
-        let activeEditElement = null;
-        
+        let activeEditElement = null; // Untuk melacak elemen yang sedang diedit
+
         // Element IDs mapping
         const editableElements = {
             'name': 'nameText',
@@ -2069,243 +1943,126 @@
             'contact3Value': 'contact3ValueText',
             'footerText': 'footerText'
         };
-        
+
         // Double click counter untuk logout
         let clickCount = 0;
         let clickTimer = null;
-        
+
         // ============================== //
-        // GOOGLE SHEETS FUNCTIONS //
+        // FUNGSI PERSISTENSI DATA //
         // ============================== //
-        
-        async function loadFromGoogleSheets() {
-            try {
-                showNotification("🔄 Memuat data dari Google Sheets...");
-                
-                // Format URL untuk Google Sheets API
-                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&t=${Date.now()}`;
-                
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error("Tidak dapat mengakses Google Sheets");
-                }
-                
-                const text = await response.text();
-                // Parse response Google Sheets
-                const json = JSON.parse(text.substring(47).slice(0, -2));
-                
-                if (json.table && json.table.rows) {
-                    const data = {};
-                    json.table.rows.forEach(row => {
-                        if (row.c && row.c[0] && row.c[1]) {
-                            const key = row.c[0].v;
-                            const value = row.c[1].v;
-                            data[key] = value;
-                        }
-                    });
-                    
-                    // Apply data ke halaman
-                    applyDataToPage(data);
-                    
-                    // Simpan ke localStorage sebagai backup
-                    saveToLocalStorage(data);
-                    
-                    showNotification("✅ Data berhasil dimuat dari Google Sheets!");
-                    return true;
-                }
-            } catch (error) {
-                console.error("Error loading from Google Sheets:", error);
-                showNotification("⚠️ Gagal memuat dari Google Sheets. Menggunakan data lokal.");
-                
-                // Fallback ke localStorage
-                loadFromLocalStorage();
-                return false;
-            }
+
+        function saveLoginState() {
+            localStorage.setItem('isLoggedIn', isLoggedIn);
         }
-        
-        async function saveToGoogleSheets() {
-            if (!isLoggedIn) {
-                showNotification("⚠️ Login dulu untuk menyimpan!");
-                return false;
-            }
-            
-            try {
-                showNotification("🔄 Menyimpan ke Google Sheets...");
-                
-                // Kumpulkan semua data
-                const data = collectAllData();
-                
-                // Simpan ke localStorage sebagai backup
-                saveToLocalStorage(data);
-                
-                // Tampilkan data yang bisa dicopy ke Google Sheets
-                const jsonData = JSON.stringify(data, null, 2);
-                showDataForCopy(jsonData);
-                
-                // Update status
-                document.getElementById('sheetsStatus').textContent = `Terakhir update: ${new Date().toLocaleTimeString()}`;
-                
-                showNotification("✅ Data siap disimpan! Copy data di bawah.");
-                return true;
-                
-            } catch (error) {
-                console.error("Error saving to Google Sheets:", error);
-                showNotification("❌ Gagal menyimpan ke Google Sheets.");
-                return false;
-            }
+
+        function saveGalleryImages() {
+            localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
         }
-        
-        function showDataForCopy(jsonData) {
-            // Buat popup untuk menampilkan data
-            const copyPopup = document.createElement('div');
-            copyPopup.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-                border: 4px solid #2d3436;
-                padding: 20px;
-                width: 90%;
-                max-width: 500px;
-                max-height: 80vh;
-                overflow-y: auto;
-                z-index: 1100;
-                box-shadow: 8px 8px 0px rgba(45, 52, 54, 0.5);
-            `;
-            
-            copyPopup.innerHTML = `
-                <div style="color: #d63031; font-size: 0.7em; margin-bottom: 15px; text-align: center;">
-                    📋 COPY DATA UNTUK GOOGLE SHEETS
-                </div>
-                <div style="font-size: 0.35em; margin-bottom: 15px; color: #2d3436;">
-                    Copy data di bawah dan paste ke Google Sheets (kolom A = key, kolom B = value):
-                </div>
-                <textarea id="copyDataText" style="width: 100%; height: 200px; font-family: monospace; font-size: 0.4em; padding: 10px; border: 2px solid #2d3436; margin-bottom: 15px;">${jsonData}</textarea>
-                <div style="display: flex; gap: 10px;">
-                    <button onclick="copyToClipboard()" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%); border: 2px solid #2d3436; color: white; font-family: 'Press Start 2P', cursive; font-size: 0.35em; cursor: pointer;">
-                        📋 COPY DATA
-                    </button>
-                    <button onclick="this.parentElement.parentElement.remove()" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); border: 2px solid #2d3436; color: white; font-family: 'Press Start 2P', cursive; font-size: 0.35em; cursor: pointer;">
-                        ✖ TUTUP
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(copyPopup);
+
+        function saveTextContent(elementId, content) {
+            localStorage.setItem(elementId, content);
         }
-        
-        function copyToClipboard() {
-            const textarea = document.getElementById('copyDataText');
-            textarea.select();
-            document.execCommand('copy');
-            showNotification('✅ Data berhasil dicopy! Paste ke Google Sheets.');
-        }
-        
-        function collectAllData() {
-            const data = {};
-            
-            // Kumpulkan semua teks
+
+        function loadTextContent() {
             Object.keys(editableElements).forEach(id => {
                 const elementId = editableElements[id];
-                const element = document.getElementById(elementId);
-                if (element) {
-                    data[elementId] = element.textContent;
-                }
-            });
-            
-            // Tambahkan gallery
-            data.gallery = JSON.stringify(galleryImages);
-            data.lastUpdate = new Date().toISOString();
-            data.lastUpdateReadable = new Date().toLocaleString();
-            
-            return data;
-        }
-        
-        function applyDataToPage(data) {
-            // Apply semua teks
-            Object.keys(editableElements).forEach(id => {
-                const elementId = editableElements[id];
-                if (data[elementId]) {
+                const savedContent = localStorage.getItem(elementId);
+                if (savedContent) {
                     const element = document.getElementById(elementId);
                     if (element) {
-                        element.textContent = data[elementId];
+                        element.textContent = savedContent;
                     }
                 }
             });
-            
-            // Apply gallery jika ada
-            if (data.gallery) {
-                try {
-                    galleryImages = JSON.parse(data.gallery);
-                    renderGallery();
-                } catch (e) {
-                    console.log('Error parsing gallery data:', e);
-                }
-            }
-            
-            // Update status
-            if (data.lastUpdateReadable) {
-                document.getElementById('sheetsStatus').textContent = `Update terakhir: ${data.lastUpdateReadable}`;
-            }
         }
-        
+
         // ============================== //
-        // LOCALSTORAGE FUNCTIONS //
+        // FUNGSI POPUP RAPIH //
         // ============================== //
-        
-        function saveToLocalStorage(data) {
-            // Simpan semua data teks
-            Object.keys(data).forEach(key => {
-                if (typeof data[key] === 'string' && key !== 'gallery') {
-                    localStorage.setItem(key, data[key]);
-                }
-            });
+
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.innerHTML = '';
+            container.classList.add('active');
             
-            // Simpan gallery
-            if (data.gallery) {
-                localStorage.setItem('galleryImages', data.gallery);
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = confetti.style.width;
+                container.appendChild(confetti);
             }
             
-            // Simpan timestamp
-            localStorage.setItem('lastSync', new Date().toISOString());
+            setTimeout(() => {
+                container.classList.remove('active');
+            }, 3000);
         }
-        
-        function loadFromLocalStorage() {
-            // Load semua teks
-            Object.keys(editableElements).forEach(id => {
-                const elementId = editableElements[id];
-                const saved = localStorage.getItem(elementId);
-                if (saved) {
-                    const element = document.getElementById(elementId);
-                    if (element) element.textContent = saved;
-                }
-            });
-            
-            // Load gallery
-            const savedGallery = localStorage.getItem('galleryImages');
-            if (savedGallery) {
-                try {
-                    galleryImages = JSON.parse(savedGallery);
-                    renderGallery();
-                } catch (e) {
-                    console.log('Error loading gallery from localStorage:', e);
-                }
-            }
-            
-            // Update status
-            const lastSync = localStorage.getItem('lastSync');
-            if (lastSync) {
-                const time = new Date(lastSync).toLocaleTimeString();
-                document.getElementById('sheetsStatus').textContent = `Data lokal: ${time}`;
-            }
+
+        function showPopup(popupId, overlayId) {
+            document.getElementById(overlayId).classList.add('active');
+            const popup = document.getElementById(popupId);
+            popup.classList.remove('closing');
+            popup.classList.add('active');
         }
-        
-        // ============================== //
-        // NOTIFICATION FUNCTION //
-        // ============================== //
-        
-        function showNotification(message) {
+
+        function closePopup(popupId, overlayId) {
+            const popup = document.getElementById(popupId);
+            popup.classList.add('closing');
+            
+            setTimeout(() => {
+                popup.classList.remove('active');
+                popup.classList.remove('closing');
+                document.getElementById(overlayId).classList.remove('active');
+            }, 200);
+        }
+
+        // Login Success Popup
+        function showSuccessPopup() {
+            createConfetti();
+            showPopup('successPopupContainer', 'successPopup');
+        }
+
+        function closeSuccessPopup() {
+            closePopup('successPopupContainer', 'successPopup');
+        }
+
+        // Logout Confirm Popup
+        function showLogoutPopup() {
+            showPopup('logoutPopupContainer', 'logoutPopup');
+        }
+
+        function cancelLogout() {
+            closePopup('logoutPopupContainer', 'logoutPopup');
+        }
+
+        // Delete Image Popup
+        function showDeleteImagePopup(index, alt) {
+            currentImageIndex = index;
+            document.getElementById('deleteImageMessage').textContent = 
+                `Apakah kamu yakin ingin menghapus gambar "${alt}"?`;
+            showPopup('deleteImagePopupContainer', 'deleteImagePopup');
+        }
+
+        function cancelDeleteImage() {
+            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
+            currentImageIndex = -1;
+        }
+
+        function confirmDeleteImage() {
+            if (currentImageIndex >= 0) {
+                galleryImages.splice(currentImageIndex, 1);
+                saveGalleryImages();
+                renderGallery();
+                showDeleteSuccessNotification();
+            }
+            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
+            currentImageIndex = -1;
+        }
+
+        function showDeleteSuccessNotification() {
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
@@ -2323,58 +2080,291 @@
                 text-align: center;
                 animation: popupIn 0.3s forwards;
             `;
-            notification.innerHTML = `<div>${message}</div>`;
+            notification.innerHTML = '<div>✅</div><div>Gambar berhasil dihapus!</div>';
             document.body.appendChild(notification);
             
             setTimeout(() => {
                 notification.style.animation = 'popupOut 0.3s forwards';
                 setTimeout(() => notification.remove(), 300);
-            }, 2000);
+            }, 1500);
         }
-        
+
+        // Logout Function
+        function confirmLogout() {
+            closePopup('logoutPopupContainer', 'logoutPopup');
+            
+            setTimeout(() => {
+                isLoggedIn = false;
+                isEditMode = false;
+                saveLoginState();
+                document.body.classList.remove('edit-mode');
+                updateEditProfileMenuItem();
+                
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+                    border: 3px solid #2d3436;
+                    padding: 15px 25px;
+                    color: white;
+                    font-family: 'Press Start 2P', cursive;
+                    font-size: 0.4em;
+                    z-index: 1100;
+                    box-shadow: 4px 4px 0px rgba(45, 52, 54, 0.3);
+                    text-align: center;
+                    animation: popupIn 0.3s forwards;
+                `;
+                notification.innerHTML = '<div></div><div>LOGOUT BERHASIL!</div>';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'popupOut 0.3s forwards';
+                    setTimeout(() => notification.remove(), 300);
+                }, 1500);
+            }, 300);
+        }
+
         // ============================== //
-        // LOGIN & EDIT FUNCTIONS //
+        // LOGIN FUNCTIONS - FIXED //
         // ============================== //
-        
+
+        function showLogin() {
+            closeMenu();
+            document.getElementById('loginOverlay').classList.add('active');
+            document.getElementById('loginPanel').classList.add('active');
+            
+            // Reset error message setiap kali login panel dibuka
+            const errorMessage = document.getElementById('loginError');
+            errorMessage.textContent = "";
+            errorMessage.style.display = 'none';
+            errorMessage.style.animation = '';
+            
+            document.getElementById('passwordInput').focus();
+        }
+
+        function hideLogin() {
+            document.getElementById('loginOverlay').classList.remove('active');
+            document.getElementById('loginPanel').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            
+            // Reset error message secara total
+            const errorMessage = document.getElementById('loginError');
+            errorMessage.textContent = "";
+            errorMessage.style.display = 'none';
+            errorMessage.style.animation = '';
+        }
+
         function checkLogin() {
             const passwordInput = document.getElementById('passwordInput');
             const errorMessage = document.getElementById('loginError');
             const loginPanel = document.getElementById('loginPanel');
             const enteredPassword = passwordInput.value;
 
+            // Reset tampilan error message
             errorMessage.textContent = "";
             errorMessage.style.display = 'block';
 
             if (enteredPassword === CORRECT_PASSWORD) {
+                // LOGIN BERHASIL
                 isLoggedIn = true;
-                localStorage.setItem('isLoggedIn', 'true');
+                saveLoginState();
                 enableEditMode();
                 updateEditProfileMenuItem();
+                
+                // Sembunyikan panel login
                 hideLogin();
+                
+                // Tampilkan popup sukses
                 setTimeout(() => {
-                    createConfetti();
-                    showPopup('successPopupContainer', 'successPopup');
+                    showSuccessPopup();
                 }, 300);
+                
             } else {
+                // PASSWORD SALAH
+                
+                // Reset animasi dulu
                 loginPanel.style.animation = 'none';
-                void loginPanel.offsetWidth;
+                void loginPanel.offsetWidth; // Trigger reflow
+                
+                // Terapkan animasi shake ke panel
                 loginPanel.style.animation = 'shakePanel 0.5s ease-in-out';
+                
+                // Tampilkan error message dengan animasi
                 errorMessage.textContent = " Password salah kocak! Coba lagi.";
                 errorMessage.style.display = 'block';
                 errorMessage.style.animation = 'shakeError 0.5s ease-in-out';
+                
+                // Kosongkan input dan fokus kembali
                 passwordInput.value = "";
                 passwordInput.focus();
+                
+                // Hapus animasi setelah selesai
                 setTimeout(() => {
                     loginPanel.style.animation = '';
                     errorMessage.style.animation = '';
                 }, 500);
             }
         }
-        
-        function enableEditMode() {
-            isEditMode = true;
-            document.body.classList.add('edit-mode');
+
+        // ============================== //
+        // NAVBAR FUNCTIONS //
+        // ============================== //
+
+        function setupDesktopNavbar() {
+            if (window.innerWidth > 768) {
+                document.getElementById('navDropdown').classList.add('active');
+                document.getElementById('toggleBtn').style.display = 'none';
+            } else {
+                document.getElementById('navDropdown').classList.remove('active');
+                document.getElementById('toggleBtn').style.display = 'flex';
+            }
+        }
+
+        function toggleMenu() {
+            if (window.innerWidth <= 768) {
+                const toggleBtn = document.getElementById('toggleBtn');
+                const navDropdown = document.getElementById('navDropdown');
+                const navOverlay = document.getElementById('navOverlay');
+                toggleBtn.classList.toggle('active');
+                navDropdown.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+            }
+        }
+
+        function closeMenu() {
+            const toggleBtn = document.getElementById('toggleBtn');
+            const navDropdown = document.getElementById('navDropdown');
+            const navOverlay = document.getElementById('navOverlay');
+            toggleBtn.classList.remove('active');
+            navDropdown.classList.remove('active');
+            navOverlay.classList.remove('active');
+        }
+
+        function setupNavbarScroll() {
+            window.addEventListener('scroll', updateActiveNavItem);
+            updateActiveNavItem();
+        }
+
+        function updateActiveNavItem() {
+            const sections = ['hero', 'about', 'hobi', 'gallery-section', 'dream', 'social', 'contact'];
+            const navItems = document.querySelectorAll('.nav-item:not(#editProfileMenuItem)');
+            let currentSection = '';
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetHeight = element.offsetHeight;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        currentSection = section;
+                    }
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const section = getSectionFromNavItem(item);
+                if (section === currentSection) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        function getSectionFromNavItem(navItem) {
+            const text = navItem.querySelector('.nav-text').textContent.toLowerCase();
+            const sectionMap = {
+                'home': 'hero',
+                'about me': 'about',
+                'hobi': 'hobi',
+                'karya': 'gallery-section',
+                'cita-cita': 'dream',
+                'social media': 'social',
+                'kontak': 'contact'
+            };
+            return sectionMap[text] || '';
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                closeMenu();
+                window.scrollTo({
+                    top: element.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                setTimeout(updateActiveNavItem, 500);
+            }
+        }
+
+        // ============================== //
+        // EDIT PROFILE & LOGOUT FUNCTIONS //
+        // ============================== //
+
+        function toggleEditProfile() {
+            if (!isLoggedIn) {
+                showLogin();
+                return;
+            }
             
+            if (clickTimer) clearTimeout(clickTimer);
+            
+            clickCount = 1;
+            clickTimer = setTimeout(function() {
+                toggleEditMode();
+                updateEditProfileMenuItem();
+                closeMenu();
+                clickCount = 0;
+            }, 250);
+        }
+
+        function handleLogout() {
+            if (!isLoggedIn) {
+                showLogin();
+                return;
+            }
+            
+            clickCount++;
+            if (clickCount === 1) {
+                clickTimer = setTimeout(() => clickCount = 0, 300);
+            } else if (clickCount === 2) {
+                clearTimeout(clickTimer);
+                showLogoutPopup();
+                clickCount = 0;
+            }
+        }
+
+        function updateEditProfileMenuItem() {
+            const editProfileItem = document.getElementById('editProfileMenuItem');
+            const editProfileText = document.getElementById('editProfileText');
+            if (isLoggedIn) {
+                if (isEditMode) {
+                    editProfileItem.classList.add('edit-mode-active');
+                    editProfileItem.classList.remove('active');
+                    editProfileText.textContent = "EDIT MODE ON";
+                    editProfileItem.querySelector('.nav-icon').textContent = "💾";
+                } else {
+                    editProfileItem.classList.remove('edit-mode-active');
+                    editProfileItem.classList.remove('active');
+                    editProfileText.textContent = "EDIT PROFILE";
+                    editProfileItem.querySelector('.nav-icon').textContent = "🔓";
+                }
+            } else {
+                editProfileItem.classList.remove('edit-mode-active');
+                editProfileItem.classList.remove('active');
+                editProfileText.textContent = "EDIT PROFILE";
+                editProfileItem.querySelector('.nav-icon').textContent = "🔐";
+            }
+        }
+
+        // ============================== //
+        // EDIT MODE FUNCTIONS - DIPERBAIKI //
+        // ============================== //
+
+        function enableEditMode() {
             Object.keys(editableElements).forEach(id => {
                 const element = document.getElementById(editableElements[id]);
                 if (element) {
@@ -2383,33 +2373,86 @@
                     element.addEventListener('click', handleEditClick);
                 }
             });
-            
             addUploadButtons();
         }
-        
+
+        function toggleEditMode() {
+            if (!isLoggedIn) return;
+            isEditMode = !isEditMode;
+            document.body.classList.toggle('edit-mode', isEditMode);
+            renderGallery();
+        }
+
+        function addUploadButtons() {
+            // Avatar upload button
+            const avatarContainer = document.querySelector('.avatar');
+            if (!avatarContainer.querySelector('.upload-btn')) {
+                const avatarBtn = document.createElement('button');
+                avatarBtn.className = 'upload-btn';
+                avatarBtn.textContent = 'Ganti Foto';
+                avatarBtn.style.cssText = 'position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 10;';
+                avatarBtn.onclick = () => document.getElementById('avatarUpload').click();
+                avatarContainer.appendChild(avatarBtn);
+            }
+
+            // About photo upload button
+            const aboutContainer = document.querySelector('.about-photo');
+            if (!aboutContainer.querySelector('.upload-btn')) {
+                const aboutBtn = document.createElement('button');
+                aboutBtn.className = 'upload-btn';
+                aboutBtn.textContent = 'Ganti Foto';
+                aboutBtn.style.cssText = 'position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 10;';
+                aboutBtn.onclick = () => document.getElementById('aboutUpload').click();
+                aboutContainer.appendChild(aboutBtn);
+            }
+
+            // Gallery upload button
+            const galleryTitle = document.getElementById('galleryTitleText').parentElement;
+            if (!galleryTitle.querySelector('.upload-btn')) {
+                const galleryBtn = document.createElement('button');
+                galleryBtn.className = 'upload-btn';
+                galleryBtn.textContent = '+ Tambah Gambar';
+                galleryBtn.style.marginLeft = '20px';
+                galleryBtn.onclick = () => document.getElementById('galleryUpload').click();
+                galleryTitle.appendChild(galleryBtn);
+            }
+        }
+
         function handleEditClick(event) {
             if (!isLoggedIn || !document.body.classList.contains('edit-mode') || activeEditElement) return;
             
             const element = event.currentTarget;
             const currentText = element.textContent;
             const dataId = element.getAttribute('data-id');
+
+            // Set elemen aktif
             activeEditElement = element;
 
+            // Cek jika sudah ada textarea untuk elemen ini
             if (element.nextElementSibling && element.nextElementSibling.tagName === 'TEXTAREA') {
-                return;
+                return; // Sudah ada textarea, tidak buat baru
             }
 
+            // Buat textarea untuk edit
             const textarea = document.createElement('textarea');
             textarea.value = currentText;
             textarea.className = 'login-input';
             textarea.style.cssText = 'width: 100%; height: 100px; font-size: 0.7em; font-family: "Press Start 2P", cursive; margin-top: 10px; display: block;';
+
+            // Sembunyikan elemen asli
             element.style.display = 'none';
+            
+            // Sisipkan textarea setelah elemen
             element.parentNode.insertBefore(textarea, element.nextSibling);
             textarea.focus();
 
+            // Hapus tombol save yang mungkin sudah ada sebelumnya
             const existingSaveBtn = element.parentNode.querySelector('.save-edit-btn');
-            if (existingSaveBtn) existingSaveBtn.remove();
+            if (existingSaveBtn) {
+                existingSaveBtn.remove();
+            }
 
+            // Buat tombol save baru
             const saveBtn = document.createElement('button');
             saveBtn.className = 'upload-btn save-edit-btn';
             saveBtn.textContent = '💾 Save';
@@ -2417,235 +2460,99 @@
             saveBtn.onclick = function() {
                 saveEdit(textarea, element, dataId, saveBtn);
             };
+
+            // Sisipkan tombol save setelah textarea
             textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
 
+            // Fungsi untuk save edit
             function saveEdit(textarea, element, dataId, saveBtn) {
                 const newText = textarea.value.trim();
                 if (newText !== currentText) {
                     element.textContent = newText;
-                    localStorage.setItem(editableElements[dataId], newText);
-                    // Auto sync ke Google Sheets setelah edit
-                    if (isLoggedIn) {
-                        setTimeout(saveToGoogleSheets, 1000);
-                    }
+                    saveTextContent(editableElements[dataId], newText);
                 }
+                
+                // Hapus textarea dan tombol save
                 textarea.remove();
                 saveBtn.remove();
+                
+                // Tampilkan kembali elemen asli
                 element.style.display = '';
+                
+                // Reset elemen aktif
                 activeEditElement = null;
             }
 
+            // Event listener untuk textarea
             textarea.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && e.ctrlKey) {
                     saveEdit(textarea, element, dataId, saveBtn);
                 }
             });
-        }
-        
-        function toggleEditProfile() {
-            if (isLoggedIn) {
-                // Jika sudah login, toggle edit mode
-                isEditMode = !isEditMode;
-                document.body.classList.toggle('edit-mode', isEditMode);
-                updateEditProfileMenuItem();
-                
-                if (isEditMode) {
-                    showNotification("✏️ Mode edit diaktifkan!");
-                } else {
-                    showNotification("👀 Mode edit dimatikan!");
-                }
-            } else {
-                // Jika belum login, tampilkan login panel
-                showLogin();
-            }
-        }
-        
-        function updateEditProfileMenuItem() {
-            const menuItem = document.getElementById('editProfileMenuItem');
-            const menuText = document.getElementById('editProfileText');
-            
-            if (isLoggedIn) {
-                menuItem.classList.add('edit-mode-active');
-                menuText.textContent = isEditMode ? 'EDIT MODE ON' : 'EDIT MODE OFF';
-            } else {
-                menuItem.classList.remove('edit-mode-active');
-                menuText.textContent = 'EDIT PROFILE';
-            }
-        }
-        
-        function handleLogout() {
-            clickCount++;
-            
-            if (clickCount === 1) {
-                clickTimer = setTimeout(() => {
-                    clickCount = 0;
-                }, 500);
-            } else if (clickCount === 2) {
-                clearTimeout(clickTimer);
-                clickCount = 0;
-                
-                if (isLoggedIn) {
-                    showPopup('logoutPopupContainer', 'logoutPopup');
-                }
-            }
-        }
-        
-        function confirmLogout() {
-            isLoggedIn = false;
-            isEditMode = false;
-            localStorage.setItem('isLoggedIn', 'false');
-            document.body.classList.remove('edit-mode');
-            updateEditProfileMenuItem();
-            
-            // Remove edit mode classes
-            Object.keys(editableElements).forEach(id => {
-                const element = document.getElementById(editableElements[id]);
-                if (element) {
-                    element.classList.remove('editable');
-                    element.removeEventListener('click', handleEditClick);
-                }
+
+            textarea.addEventListener('blur', function() {
+                // Tidak langsung save saat blur, biarkan user klik save manual
             });
-            
-            // Remove upload buttons
-            document.querySelectorAll('.upload-btn-container').forEach(el => el.remove());
-            
-            closePopup('logoutPopupContainer', 'logoutPopup');
-            showNotification("👋 Logout berhasil!");
         }
-        
-        function cancelLogout() {
-            closePopup('logoutPopupContainer', 'logoutPopup');
-        }
-        
+
         // ============================== //
         // IMAGE UPLOAD FUNCTIONS //
         // ============================== //
-        
-        function addUploadButtons() {
-            // Add upload button to avatar
-            if (!document.getElementById('avatarUploadBtn')) {
-                const avatarContainer = document.querySelector('.avatar');
-                const avatarUploadBtn = document.createElement('button');
-                avatarUploadBtn.id = 'avatarUploadBtn';
-                avatarUploadBtn.className = 'upload-btn';
-                avatarUploadBtn.textContent = '📷 Ganti Avatar';
-                avatarUploadBtn.onclick = () => document.getElementById('avatarUpload').click();
-                avatarUploadBtn.style.cssText = 'position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); z-index: 10;';
-                avatarContainer.appendChild(avatarUploadBtn);
-            }
-            
-            // Add upload button to about photo
-            if (!document.getElementById('aboutUploadBtn')) {
-                const aboutPhoto = document.querySelector('.about-photo');
-                const aboutUploadBtn = document.createElement('button');
-                aboutUploadBtn.id = 'aboutUploadBtn';
-                aboutUploadBtn.className = 'upload-btn';
-                aboutUploadBtn.textContent = '📷 Ganti Foto';
-                aboutUploadBtn.onclick = () => document.getElementById('aboutUpload').click();
-                aboutUploadBtn.style.cssText = 'position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); z-index: 10;';
-                aboutPhoto.appendChild(aboutUploadBtn);
-            }
-            
-            // Add upload button to gallery
-            if (!document.getElementById('galleryUploadBtn')) {
-                const gallerySection = document.querySelector('.gallery');
-                const galleryUploadBtn = document.createElement('button');
-                galleryUploadBtn.id = 'galleryUploadBtn';
-                galleryUploadBtn.className = 'upload-btn';
-                galleryUploadBtn.textContent = '➕ Tambah Gambar';
-                galleryUploadBtn.onclick = () => document.getElementById('galleryUpload').click();
-                galleryUploadBtn.style.cssText = 'margin: 20px auto; display: block;';
-                gallerySection.parentNode.insertBefore(galleryUploadBtn, gallerySection.nextSibling);
-            }
-        }
-        
+
         function handleImageUpload(event, type) {
             const file = event.target.files[0];
             if (!file) return;
-            
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = function(e) {
-                const imgSrc = e.target.result;
-                
+                const imageUrl = e.target.result;
                 if (type === 'avatar') {
-                    document.getElementById('avatarImg').src = imgSrc;
-                    localStorage.setItem('avatarImg', imgSrc);
+                    document.getElementById('avatarImg').src = imageUrl;
+                    localStorage.setItem('avatarImg', imageUrl);
                 } else if (type === 'about') {
-                    document.getElementById('aboutImg').src = imgSrc;
-                    localStorage.setItem('aboutImg', imgSrc);
-                }
-                
-                showNotification("✅ Gambar berhasil diupload!");
-                
-                // Auto save ke Google Sheets
-                if (isLoggedIn) {
-                    setTimeout(saveToGoogleSheets, 1000);
+                    document.getElementById('aboutImg').src = imageUrl;
+                    localStorage.setItem('aboutImg', imageUrl);
                 }
             };
-            
             reader.readAsDataURL(file);
+            event.target.value = '';
         }
-        
+
         function handleGalleryUpload(event) {
             const files = event.target.files;
             if (!files.length) return;
-            
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
+
+            Array.from(files).forEach(file => {
+                if (file.size > 5 * 1024 * 1024) {
+                    alert(`File ${file.name} terlalu besar! Maksimal 5MB.`);
+                    return;
+                }
+
                 const reader = new FileReader();
-                
                 reader.onload = function(e) {
+                    const imageUrl = e.target.result;
                     galleryImages.push({
-                        src: e.target.result,
+                        src: imageUrl,
                         alt: `Karya ${galleryImages.length + 1}`
                     });
-                    
-                    localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+                    saveGalleryImages();
                     renderGallery();
-                    
-                    // Auto save ke Google Sheets
-                    if (isLoggedIn) {
-                        setTimeout(saveToGoogleSheets, 1000);
-                    }
                 };
-                
                 reader.readAsDataURL(file);
-            }
-            
-            showNotification(`✅ ${files.length} gambar berhasil ditambahkan ke gallery!`);
+            });
+
+            event.target.value = '';
         }
-        
-        function showDeleteImagePopup(index, alt) {
-            currentImageIndex = index;
-            document.getElementById('deleteImageMessage').textContent = `Hapus gambar: "${alt}"?`;
-            showPopup('deleteImagePopupContainer', 'deleteImagePopup');
-        }
-        
-        function confirmDeleteImage() {
-            if (currentImageIndex >= 0 && currentImageIndex < galleryImages.length) {
-                galleryImages.splice(currentImageIndex, 1);
-                localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
-                renderGallery();
-                showNotification("🗑️ Gambar berhasil dihapus!");
-                
-                // Auto save ke Google Sheets
-                if (isLoggedIn) {
-                    setTimeout(saveToGoogleSheets, 1000);
-                }
-            }
-            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
-            currentImageIndex = -1;
-        }
-        
-        function cancelDeleteImage() {
-            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
-            currentImageIndex = -1;
-        }
-        
+
         // ============================== //
         // GALLERY FUNCTIONS //
         // ============================== //
-        
+
         function renderGallery() {
             const galleryContainer = document.getElementById('galleryContainer');
             galleryContainer.innerHTML = '';
@@ -2653,7 +2560,7 @@
             galleryImages.forEach((image, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
-                galleryItem.onclick = () => openModal(image.src);
+                galleryItem.onclick = () => openModal(galleryItem);
 
                 const img = document.createElement('img');
                 img.src = image.src;
@@ -2662,6 +2569,7 @@
                     this.src = `https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+${index + 1}`;
                 };
 
+                // Add delete button in edit mode
                 if (isEditMode && isLoggedIn) {
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'upload-btn';
@@ -2685,112 +2593,30 @@
                 galleryContainer.appendChild(galleryItem);
             });
         }
-        
-        function openModal(imageSrc) {
-            document.getElementById('modalImage').src = imageSrc;
+
+        // ============================== //
+        // MODAL FUNCTIONS //
+        // ============================== //
+
+        function openModal(element) {
+            const img = element.querySelector('img');
+            if (!img) return;
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('modalImage').alt = img.alt;
             document.getElementById('galleryModal').classList.add('active');
         }
-        
+
         function closeModal() {
             document.getElementById('galleryModal').classList.remove('active');
         }
-        
+
         // ============================== //
-        // POPUP FUNCTIONS //
+        // INITIALIZE //
         // ============================== //
-        
-        function showPopup(containerId, overlayId) {
-            document.getElementById(overlayId).classList.add('active');
-            document.getElementById(containerId).classList.add('active');
-        }
-        
-        function closePopup(containerId, overlayId) {
-            document.getElementById(containerId).classList.remove('active');
-            document.getElementById(overlayId).classList.remove('active');
-        }
-        
-        function showLogin() {
-            showPopup('loginPanel', 'loginOverlay');
-            document.getElementById('passwordInput').focus();
-        }
-        
-        function hideLogin() {
-            closePopup('loginPanel', 'loginOverlay');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('loginError').style.display = 'none';
-        }
-        
-        function closeSuccessPopup() {
-            closePopup('successPopupContainer', 'successPopup');
-        }
-        
-        // ============================== //
-        // CONFETTI EFFECT //
-        // ============================== //
-        
-        function createConfetti() {
-            const container = document.getElementById('confettiContainer');
-            container.innerHTML = '';
-            container.classList.add('active');
-            
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(confetti);
-            }
-            
-            setTimeout(() => {
-                container.classList.remove('active');
-            }, 3000);
-        }
-        
-        // ============================== //
-        // NAVBAR FUNCTIONS //
-        // ============================== //
-        
-        function toggleMenu() {
-            const toggleBtn = document.getElementById('toggleBtn');
-            const navDropdown = document.getElementById('navDropdown');
-            const navOverlay = document.getElementById('navOverlay');
-            
-            toggleBtn.classList.toggle('active');
-            navDropdown.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-        }
-        
-        function closeMenu() {
-            const toggleBtn = document.getElementById('toggleBtn');
-            const navDropdown = document.getElementById('navDropdown');
-            const navOverlay = document.getElementById('navOverlay');
-            
-            toggleBtn.classList.remove('active');
-            navDropdown.classList.remove('active');
-            navOverlay.classList.remove('active');
-        }
-        
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-                closeMenu();
-            }
-        }
-        
-        // ============================== //
-        // INITIALIZATION //
-        // ============================== //
-        
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Tampilkan info panel Google Sheets
-            document.getElementById('sheetsInfo').classList.add('active');
-            
-            // Load data dari Google Sheets
-            setTimeout(loadFromGoogleSheets, 1000);
-            
-            // Load data lokal sebagai fallback
-            loadFromLocalStorage();
+            // Load saved content
+            loadTextContent();
             
             // Load saved images
             const savedAvatar = localStorage.getItem('avatarImg');
@@ -2802,13 +2628,7 @@
             if (savedAbout) {
                 document.getElementById('aboutImg').src = savedAbout;
             }
-            
-            // Auto login jika sudah login sebelumnya
-            if (isLoggedIn) {
-                enableEditMode();
-                updateEditProfileMenuItem();
-            }
-            
+
             // Setup event listeners
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') checkLogin();
@@ -2825,23 +2645,20 @@
             document.getElementById('galleryUpload').addEventListener('change', function(e) {
                 handleGalleryUpload(e);
             });
-            
-            // Close modal dengan ESC
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-            });
-            
-            // Auto sync setiap 30 detik jika logged in
-            setInterval(() => {
-                if (isLoggedIn) {
-                    saveToGoogleSheets();
-                }
-            }, 30000);
-            
-            // Setup gallery
+
+            // Auto login jika sudah login sebelumnya
+            if (isLoggedIn) {
+                enableEditMode();
+                updateEditProfileMenuItem();
+            }
+
+            setupDesktopNavbar();
+            setupNavbarScroll();
             renderGallery();
+        });
+
+        window.addEventListener('resize', function() {
+            setupDesktopNavbar();
         });
     </script>
 </body>
