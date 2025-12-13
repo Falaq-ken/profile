@@ -23,9 +23,7 @@
             scroll-behavior: smooth;
         }
 
-        /* ============================== */
-        /* NAVBAR DESKTOP GAME STYLE */
-        /* ============================== */
+        /* NAVBAR STYLE */
         @media (min-width: 769px) {
             .navbar-toggle {
                 position: fixed;
@@ -199,9 +197,7 @@
             }
         }
 
-        /* ============================== */
         /* NAVBAR MOBILE */
-        /* ============================== */
         @media (max-width: 768px) {
             .navbar-toggle {
                 position: fixed;
@@ -521,10 +517,7 @@
             }
         }
 
-        /* ============================== */
-        /* ANIMASI POPUP RAPIH */
-        /* ============================== */
-
+        /* ANIMASI POPUP */
         @keyframes shake {
             0%, 100% { transform: translate(-50%, -50%) translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) translateX(-8px); }
@@ -567,9 +560,7 @@
             }
         }
 
-        /* ============================== */
-        /* ERROR MESSAGE STYLE - FIXED */
-        /* ============================== */
+        /* ERROR MESSAGE */
         .error-message {
             color: #ff6b6b;
             font-size: 0.35em;
@@ -609,10 +600,7 @@
             animation: shakePanel 0.5s ease-in-out;
         }
 
-        /* ============================== */
-        /* STYLE UNTUK SEMUA POPUP */
-        /* ============================== */
-
+        /* POPUP STYLE */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -647,7 +635,6 @@
             animation: popupOut 0.2s ease-in forwards;
         }
 
-        /* Base Popup Style */
         .popup {
             background: white;
             border: 4px solid #2d3436;
@@ -659,7 +646,6 @@
             position: relative;
         }
 
-        /* Popup Header */
         .popup-header {
             margin-bottom: 20px;
             position: relative;
@@ -680,7 +666,6 @@
             line-height: 1.4;
         }
 
-        /* Popup Content */
         .popup-content {
             margin-bottom: 25px;
         }
@@ -692,7 +677,6 @@
             margin-bottom: 10px;
         }
 
-        /* Popup Buttons */
         .popup-buttons {
             display: flex;
             gap: 15px;
@@ -732,7 +716,6 @@
             animation: buttonPulse 1.5s infinite;
         }
 
-        /* Specific Popup Styles */
         .login-success-popup .popup {
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
         }
@@ -745,7 +728,6 @@
             background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);
         }
 
-        /* Confetti Effect */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -786,9 +768,7 @@
         .confetti:nth-child(4n) { background: #a29bfe; animation-delay: 1.5s; }
         .confetti:nth-child(5n) { background: #fd79a8; animation-delay: 2s; }
 
-        /* ============================== */
         /* LOGIN PANEL */
-        /* ============================== */
         .login-panel {
             position: fixed;
             top: 50%;
@@ -832,9 +812,7 @@
             width: calc(50% - 10px);
         }
 
-        /* ============================== */
-        /* STYLES SEBELUMNYA TETAP SAMA */
-        /* ============================== */
+        /* MAIN STYLES */
         .floating-shapes {
             position: fixed;
             width: 100%;
@@ -1520,9 +1498,7 @@
 </head>
 
 <body>
-    <!-- ============================== -->
-    <!-- NAVBAR TOGGLE DI POJOK KIRI ATAS -->
-    <!-- ============================== -->
+    <!-- NAVBAR -->
     <div class="navbar-toggle">
         <div class="toggle-btn" id="toggleBtn" onclick="toggleMenu()">
             <div class="toggle-line"></div>
@@ -1561,7 +1537,6 @@
                     <span class="nav-icon">📧</span>
                     <span class="nav-text">KONTAK</span>
                 </div>
-                <!-- Edit Profile Menu Item -->
                 <div class="nav-item" id="editProfileMenuItem" ondblclick="handleLogout()" onclick="toggleEditProfile()">
                     <span class="nav-icon">🔐</span>
                     <span class="nav-text" id="editProfileText">EDIT PROFILE</span>
@@ -1570,11 +1545,7 @@
         </div>
     </div>
 
-    <!-- ============================== -->
-    <!-- SEMUA POPUP DI SINI -->
-    <!-- ============================== -->
-    
-    <!-- Login Panel -->
+    <!-- POPUP -->
     <div id="loginOverlay" class="popup-overlay"></div>
     <div id="loginPanel" class="login-panel">
         <h2 style="font-size: 0.8em; margin-bottom: 20px;">LOGIN ATMIN</h2>
@@ -1584,11 +1555,9 @@
             <button onclick="checkLogin()" class="login-btn">LOGIN</button>
             <button onclick="hideLogin()" class="login-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">BATAL</button>
         </div>
-        <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">
-          yang ytta tau ajah!
+        <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">yang ytta tau ajah!(ini masih gimik)</p>
     </div>
 
-    <!-- Success Popup -->
     <div id="successPopup" class="popup-overlay"></div>
     <div id="successPopupContainer" class="popup-container login-success-popup">
         <div class="popup">
@@ -1606,7 +1575,6 @@
         </div>
     </div>
 
-    <!-- Logout Confirm Popup -->
     <div id="logoutPopup" class="popup-overlay"></div>
     <div id="logoutPopupContainer" class="popup-container logout-confirm-popup">
         <div class="popup">
@@ -1625,7 +1593,6 @@
         </div>
     </div>
 
-    <!-- Delete Image Confirm Popup -->
     <div id="deleteImagePopup" class="popup-overlay"></div>
     <div id="deleteImagePopupContainer" class="popup-container delete-confirm-popup">
         <div class="popup">
@@ -1644,17 +1611,15 @@
         </div>
     </div>
 
-    <!-- Confetti Container -->
     <div id="confettiContainer" class="confetti-container"></div>
 
-    <!-- Floating Shapes -->
     <div class="floating-shapes">
         <div class="shape" style="font-size: 80px;">🌸</div>
         <div class="shape" style="font-size: 70px;">💮</div>
         <div class="shape" style="font-size: 90px;">🌺</div>
     </div>
 
-    <!-- File Input Hidden -->
+    <!-- File Input untuk upload gambar TANPA localStorage -->
     <input type="file" id="avatarUpload" class="hidden" accept="image/*">
     <input type="file" id="aboutUpload" class="hidden" accept="image/*">
     <input type="file" id="galleryUpload" class="hidden" accept="image/*" multiple>
@@ -1664,7 +1629,8 @@
         <div class="profile-card">
             <div class="hero" id="hero">
                 <div class="avatar">
-                    <img src="https://placehold.co/120x120/2d3436/ffffff?text=AKU" alt="Avatar" id="avatarImg">
+                    <!-- GANTI LINK INI dengan URL gambar avatar Anda di GitHub -->
+                    <img src="avatar.png" alt="Avatar" id="avatarImg">
                 </div>
                 <h1 id="nameText">Araku</h1>
                 <p id="taglineText">Suka Anime • Keren • Sop boi • Suka Gambar (kalau mau)</p>
@@ -1675,14 +1641,17 @@
         <div class="section" id="about">
             <div class="section-title">
                 <span>👤</span>
-                <span id="aboutTitleText">About Me</span>
+                <span id="aboutTitleText">About Me aku guwe</span>
             </div>
             <div class="about-box">
                 <div class="about-photo">
-                    <img src="https://placehold.co/270x290/74b9ff/ffffff?text=ABOUT" alt="Foto Profil" id="aboutImg">
+                    <!-- GANTI LINK INI dengan URL gambar about Anda di GitHub -->
+                    <img src="about.jpeg" alt="Foto Profil" id="aboutImg">
                 </div>
                 <div class="about-text">
-                    <p id="aboutText">Saya pecinta anime dan seni yang passionate dalam menggambar. Saya percaya setiap goresan pensil adalah ekspresi jiwa, dan setiap karya adalah perjalanan menuju mimpi!</p>
+                    <p id="aboutText">Halo! Namaku Araku, lahir tahun 2006. Dari kecil aku udah akrab banget sama dunia gambar, walaupun sekarang aku lagi jarang ngelakuin itu karena kadang ngerasa males atau kerasa susah banget. Sampai sekarang aku masih cuma bisa gambar kalau ada referensi, tapi aku tetap nyoba buat ningkatin skill aku pelan-pelan… itu pun kalau nggak males, hehe.</p>
+                    <p id="aboutText">Dulu aku sempat lumayan wibu, tapi sekarang udah jarang banget ngikutin anime. Walaupun begitu, inspirasinya masih suka nempel tanpa aku sadari. Sekarang aku lebih gambar sesuai mood aja—lebih santai dan nggak maksa, yang penting aku tetep menikmati prosesnya.</p>
+                    <p id="aboutText">Buat aku, gambar tetap jadi tempat yang nyaman. Walaupun sekarang nggak se-frequent dulu, setiap kali aku mulai lagi, rasanya tuh kayak balik ke rumah. Perjalanan aku buat ningkatin kemampuan menggambar masih panjang banget, tapi aku tetep coba, semampu aku, dengan hati yang setengah niat setengah mager… tapi masih maju kok, pelan-pelan (kayaknya).</p>
                 </div>
             </div>
         </div>
@@ -1691,7 +1660,7 @@
         <div class="section" id="hobi">
             <div class="section-title">
                 <span>🎨</span>
-                <span id="hobiTitleText">Hobi</span>
+                <span id="hobiTitleText">My Hobi aku</span>
             </div>
             <div class="hobi-list">
                 <div class="hobi-item">
@@ -1702,17 +1671,17 @@
                 <div class="hobi-item">
                     <div class="icon">📺</div>
                     <h3 id="hobi2TitleText">Nonton Anime</h3>
-                    <p id="hobi2DescText">Penyuka genre Action & Romance cuiiii</p>
+                    <p id="hobi2DescText">Dulu suka nonton anime sekarang mah males, ohh iya hobi gambar juga salah satu nya dari sinih.</p>
                 </div>
                 <div class="hobi-item">
                     <div class="icon">📖</div>
                     <h3 id="hobi3TitleText">Baca Manga</h3>
-                    <p id="hobi3DescText">Suka baca manga juga buat liat karya dari para mangaka dan menikmati karya nya</p>
+                    <p id="hobi3DescText">Suka baca manga juga buat liat karya dari para mangaka dan nikmatin karya-karyanya nya mereka.</p>
                 </div>
                 <div class="hobi-item">
                     <div class="icon">🎮</div>
                     <h3 id="hobi4TitleText">Main Game</h3>
-                    <p id="hobi4DescText">siapa coba yang gak suka main game, game favoritku ituh ZZZ</p>
+                    <p id="hobi4DescText">siapa coba di dunia ini yang gak suka main game, game favoritku ituh ZZZ seru woilaa.</p>
                 </div>
             </div>
         </div>
@@ -1724,7 +1693,7 @@
                 <span id="galleryTitleText">Sedikit gambaran ku</span>
             </div>
             <div class="gallery" id="galleryContainer">
-                <!-- Gallery items akan dimuat di sini -->
+                <!-- Gallery items akan dimuat di sini dari array galleryImages -->
             </div>
         </div>
 
@@ -1732,7 +1701,7 @@
         <div class="section" id="dream">
             <div class="section-title">
                 <span>⭐</span>
-                <span id="dreamTitleText">Cita-Cita</span>
+                <span id="dreamTitleText">My Cita-Cita aku</span>
             </div>
             <div class="dream-box">
                 <h3 id="dreamSubtitleText">Mimpi Besar akuh 🌟</h3>
@@ -1889,20 +1858,23 @@
         // Password sederhana
         const CORRECT_PASSWORD = "24";
 
-        // State variables - PERSISTENSI DENGAN LOCALSTORAGE
+        // State variables - TANPA localStorage UNTUK GAMBAR
         let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         let isEditMode = false;
-        let galleryImages = JSON.parse(localStorage.getItem('galleryImages')) || [
-            { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+1", alt: "Karya 1" },
-            { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+2", alt: "Karya 2" },
-            { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+3", alt: "Karya 3" }
+        
+        // GALLERY: Gunakan link langsung dari GitHub (bukan localStorage)
+        let galleryImages = [
+            // GANTI LINK-LINK INI dengan URL gambar gallery Anda di GitHub
+            { src: "gambar1.png", alt: "Karya 1" },
+            { src: "gambar2.png", alt: "Karya 2" },
+            { src: "gambar3.jpeg", alt: "Karya 3" }
         ];
 
         // Variables untuk delete image
         let currentImageIndex = -1;
-        let activeEditElement = null; // Untuk melacak elemen yang sedang diedit
+        let activeEditElement = null;
 
-        // Element IDs mapping
+        // Element IDs mapping (untuk edit teks)
         const editableElements = {
             'name': 'nameText',
             'tagline': 'taglineText',
@@ -1949,20 +1921,15 @@
         let clickTimer = null;
 
         // ============================== //
-        // FUNGSI PERSISTENSI DATA //
+        // FUNGSI PERSISTENSI DATA TEKS SAJA //
         // ============================== //
 
         function saveLoginState() {
             localStorage.setItem('isLoggedIn', isLoggedIn);
         }
 
-        function saveGalleryImages() {
-            localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
-        }
-
-        function saveTextContent(elementId, content) {
-            localStorage.setItem(elementId, content);
-        }
+        // HAPUS: Tidak ada saveGalleryImages ke localStorage
+        // HAPUS: Tidak ada saveTextContent ke localStorage untuk gambar
 
         function loadTextContent() {
             Object.keys(editableElements).forEach(id => {
@@ -2038,7 +2005,7 @@
             closePopup('logoutPopupContainer', 'logoutPopup');
         }
 
-        // Delete Image Popup
+        // Delete Image Popup (UNTUK EDIT MODE SAJA)
         function showDeleteImagePopup(index, alt) {
             currentImageIndex = index;
             document.getElementById('deleteImageMessage').textContent = 
@@ -2054,7 +2021,7 @@
         function confirmDeleteImage() {
             if (currentImageIndex >= 0) {
                 galleryImages.splice(currentImageIndex, 1);
-                saveGalleryImages();
+                // TIDAK DISIMPAN KE localStorage
                 renderGallery();
                 showDeleteSuccessNotification();
             }
@@ -2128,7 +2095,7 @@
         }
 
         // ============================== //
-        // LOGIN FUNCTIONS - FIXED //
+        // LOGIN FUNCTIONS //
         // ============================== //
 
         function showLogin() {
@@ -2136,7 +2103,6 @@
             document.getElementById('loginOverlay').classList.add('active');
             document.getElementById('loginPanel').classList.add('active');
             
-            // Reset error message setiap kali login panel dibuka
             const errorMessage = document.getElementById('loginError');
             errorMessage.textContent = "";
             errorMessage.style.display = 'none';
@@ -2150,7 +2116,6 @@
             document.getElementById('loginPanel').classList.remove('active');
             document.getElementById('passwordInput').value = '';
             
-            // Reset error message secara total
             const errorMessage = document.getElementById('loginError');
             errorMessage.textContent = "";
             errorMessage.style.display = 'none';
@@ -2163,45 +2128,34 @@
             const loginPanel = document.getElementById('loginPanel');
             const enteredPassword = passwordInput.value;
 
-            // Reset tampilan error message
             errorMessage.textContent = "";
             errorMessage.style.display = 'block';
 
             if (enteredPassword === CORRECT_PASSWORD) {
-                // LOGIN BERHASIL
                 isLoggedIn = true;
                 saveLoginState();
                 enableEditMode();
                 updateEditProfileMenuItem();
                 
-                // Sembunyikan panel login
                 hideLogin();
                 
-                // Tampilkan popup sukses
                 setTimeout(() => {
                     showSuccessPopup();
                 }, 300);
                 
             } else {
-                // PASSWORD SALAH
-                
-                // Reset animasi dulu
                 loginPanel.style.animation = 'none';
-                void loginPanel.offsetWidth; // Trigger reflow
+                void loginPanel.offsetWidth;
                 
-                // Terapkan animasi shake ke panel
                 loginPanel.style.animation = 'shakePanel 0.5s ease-in-out';
                 
-                // Tampilkan error message dengan animasi
                 errorMessage.textContent = " Password salah kocak! Coba lagi.";
                 errorMessage.style.display = 'block';
                 errorMessage.style.animation = 'shakeError 0.5s ease-in-out';
                 
-                // Kosongkan input dan fokus kembali
                 passwordInput.value = "";
                 passwordInput.focus();
                 
-                // Hapus animasi setelah selesai
                 setTimeout(() => {
                     loginPanel.style.animation = '';
                     errorMessage.style.animation = '';
@@ -2361,7 +2315,7 @@
         }
 
         // ============================== //
-        // EDIT MODE FUNCTIONS - DIPERBAIKI //
+        // EDIT MODE FUNCTIONS - HANYA TEKS //
         // ============================== //
 
         function enableEditMode() {
@@ -2384,7 +2338,7 @@
         }
 
         function addUploadButtons() {
-            // Avatar upload button
+            // Avatar upload button (HANYA UNTUK TAMPILAN SAAT EDIT MODE)
             const avatarContainer = document.querySelector('.avatar');
             if (!avatarContainer.querySelector('.upload-btn')) {
                 const avatarBtn = document.createElement('button');
@@ -2395,7 +2349,7 @@
                 avatarContainer.appendChild(avatarBtn);
             }
 
-            // About photo upload button
+            // About photo upload button (HANYA UNTUK TAMPILAN SAAT EDIT MODE)
             const aboutContainer = document.querySelector('.about-photo');
             if (!aboutContainer.querySelector('.upload-btn')) {
                 const aboutBtn = document.createElement('button');
@@ -2406,7 +2360,7 @@
                 aboutContainer.appendChild(aboutBtn);
             }
 
-            // Gallery upload button
+            // Gallery upload button (HANYA UNTUK TAMPILAN SAAT EDIT MODE)
             const galleryTitle = document.getElementById('galleryTitleText').parentElement;
             if (!galleryTitle.querySelector('.upload-btn')) {
                 const galleryBtn = document.createElement('button');
@@ -2425,34 +2379,27 @@
             const currentText = element.textContent;
             const dataId = element.getAttribute('data-id');
 
-            // Set elemen aktif
             activeEditElement = element;
 
-            // Cek jika sudah ada textarea untuk elemen ini
             if (element.nextElementSibling && element.nextElementSibling.tagName === 'TEXTAREA') {
-                return; // Sudah ada textarea, tidak buat baru
+                return;
             }
 
-            // Buat textarea untuk edit
             const textarea = document.createElement('textarea');
             textarea.value = currentText;
             textarea.className = 'login-input';
             textarea.style.cssText = 'width: 100%; height: 100px; font-size: 0.7em; font-family: "Press Start 2P", cursive; margin-top: 10px; display: block;';
 
-            // Sembunyikan elemen asli
             element.style.display = 'none';
             
-            // Sisipkan textarea setelah elemen
             element.parentNode.insertBefore(textarea, element.nextSibling);
             textarea.focus();
 
-            // Hapus tombol save yang mungkin sudah ada sebelumnya
             const existingSaveBtn = element.parentNode.querySelector('.save-edit-btn');
             if (existingSaveBtn) {
                 existingSaveBtn.remove();
             }
 
-            // Buat tombol save baru
             const saveBtn = document.createElement('button');
             saveBtn.className = 'upload-btn save-edit-btn';
             saveBtn.textContent = '💾 Save';
@@ -2461,29 +2408,23 @@
                 saveEdit(textarea, element, dataId, saveBtn);
             };
 
-            // Sisipkan tombol save setelah textarea
             textarea.parentNode.insertBefore(saveBtn, textarea.nextSibling);
 
-            // Fungsi untuk save edit
             function saveEdit(textarea, element, dataId, saveBtn) {
                 const newText = textarea.value.trim();
                 if (newText !== currentText) {
                     element.textContent = newText;
-                    saveTextContent(editableElements[dataId], newText);
+                    // Simpan teks ke localStorage (hanya teks)
+                    localStorage.setItem(editableElements[dataId], newText);
                 }
                 
-                // Hapus textarea dan tombol save
                 textarea.remove();
                 saveBtn.remove();
                 
-                // Tampilkan kembali elemen asli
                 element.style.display = '';
-                
-                // Reset elemen aktif
                 activeEditElement = null;
             }
 
-            // Event listener untuk textarea
             textarea.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && e.ctrlKey) {
                     saveEdit(textarea, element, dataId, saveBtn);
@@ -2491,12 +2432,12 @@
             });
 
             textarea.addEventListener('blur', function() {
-                // Tidak langsung save saat blur, biarkan user klik save manual
+                // Tidak langsung save saat blur
             });
         }
 
         // ============================== //
-        // IMAGE UPLOAD FUNCTIONS //
+        // IMAGE UPLOAD FUNCTIONS - TANPA localStorage //
         // ============================== //
 
         function handleImageUpload(event, type) {
@@ -2513,10 +2454,10 @@
                 const imageUrl = e.target.result;
                 if (type === 'avatar') {
                     document.getElementById('avatarImg').src = imageUrl;
-                    localStorage.setItem('avatarImg', imageUrl);
+                    // TIDAK DISIMPAN KE localStorage
                 } else if (type === 'about') {
                     document.getElementById('aboutImg').src = imageUrl;
-                    localStorage.setItem('aboutImg', imageUrl);
+                    // TIDAK DISIMPAN KE localStorage
                 }
             };
             reader.readAsDataURL(file);
@@ -2540,7 +2481,7 @@
                         src: imageUrl,
                         alt: `Karya ${galleryImages.length + 1}`
                     });
-                    saveGalleryImages();
+                    // TIDAK DISIMPAN KE localStorage
                     renderGallery();
                 };
                 reader.readAsDataURL(file);
@@ -2569,7 +2510,7 @@
                     this.src = `https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+${index + 1}`;
                 };
 
-                // Add delete button in edit mode
+                // Add delete button in edit mode (HANYA UNTUK TAMPILAN)
                 if (isEditMode && isLoggedIn) {
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'upload-btn';
@@ -2615,19 +2556,11 @@
         // ============================== //
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Load saved content
+            // Load saved content (hanya teks)
             loadTextContent();
             
-            // Load saved images
-            const savedAvatar = localStorage.getItem('avatarImg');
-            if (savedAvatar) {
-                document.getElementById('avatarImg').src = savedAvatar;
-            }
-            
-            const savedAbout = localStorage.getItem('aboutImg');
-            if (savedAbout) {
-                document.getElementById('aboutImg').src = savedAbout;
-            }
+            // TIDAK ADA LOAD GAMBAR DARI localStorage
+            // Gambar langsung pakai URL dari kode HTML
 
             // Setup event listeners
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
