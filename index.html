@@ -1680,8 +1680,7 @@
             <button onclick="checkLogin()" class="login-btn">LOGIN</button>
             <button onclick="hideLogin()" class="login-btn" style="background: linear-gradient(135deg, #fab1a0 0%, #ffeaa7 100%);">BATAL</button>
         </div>
-        <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">
-          yang ytta tau ajah!
+        <p style="font-size: 0.3em; color: #2d3436; margin-top: 15px; opacity: 0.7;">yang ytta tau ajah!</p>
     </div>
 
     <!-- Success Popup -->
@@ -2010,9 +2009,8 @@
         // GOOGLE SHEETS CONFIGURATION //
         // ============================== //
         
-        // GANTI INI DENGAN SHEET ID KAMU!
-        // Contoh: "1XyZ123abc456def789ghi"
-        const DEFAULT_SHEET_ID = "YOUR_SHEET_ID_HERE";
+        // SHEET ID ARAKU
+        const SHEET_ID = "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA";
         
         // Password
         const CORRECT_PASSWORD = "24";
@@ -2025,9 +2023,6 @@
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+2", alt: "Karya 2" },
             { src: "https://placehold.co/300x300/74b9ff/ffffff?text=KARYA+3", alt: "Karya 3" }
         ];
-        
-        // Sheet ID dari localStorage atau default
-        let SHEET_ID = localStorage.getItem('sheetId') || DEFAULT_SHEET_ID;
         
         // Variables untuk delete image
         let currentImageIndex = -1;
@@ -2084,12 +2079,6 @@
         // ============================== //
         
         async function loadFromGoogleSheets() {
-            if (!SHEET_ID || SHEET_ID === "YOUR_SHEET_ID_HERE") {
-                showNotification("⚠️ Sheet ID belum diatur!");
-                showSetup();
-                return false;
-            }
-            
             try {
                 showNotification("🔄 Memuat data dari Google Sheets...");
                 
@@ -2135,12 +2124,6 @@
         }
         
         async function saveToGoogleSheets() {
-            if (!SHEET_ID || SHEET_ID === "YOUR_SHEET_ID_HERE") {
-                showNotification("❌ Sheet ID belum diatur!");
-                showSetup();
-                return false;
-            }
-            
             if (!isLoggedIn) {
                 showNotification("⚠️ Login dulu untuk menyimpan!");
                 return false;
@@ -2152,13 +2135,10 @@
                 // Kumpulkan semua data
                 const data = collectAllData();
                 
-                // Untuk Google Sheets, kita perlu menggunakan Google Apps Script
-                // Tapi untuk versi sederhana, kita simpan ke localStorage dulu
-                // dan beri tahu user untuk copy data manual
-                
+                // Simpan ke localStorage sebagai backup
                 saveToLocalStorage(data);
                 
-                // Tampilkan data yang bisa dicopy
+                // Tampilkan data yang bisa dicopy ke Google Sheets
                 const jsonData = JSON.stringify(data, null, 2);
                 showDataForCopy(jsonData);
                 
@@ -2322,109 +2302,6 @@
         }
         
         // ============================== //
-        // SETUP FUNCTIONS //
-        // ============================== //
-        
-        function showSetup() {
-            document.getElementById('setupBox').classList.add('active');
-            document.getElementById('sheetIdInput').value = SHEET_ID;
-        }
-        
-        function hideSetup() {
-            document.getElementById('setupBox').classList.remove('active');
-        }
-        
-        function saveSheetConfig() {
-            const sheetId = document.getElementById('sheetIdInput').value.trim();
-            if (!sheetId) {
-                showNotification('❌ Sheet ID tidak boleh kosong!');
-                return;
-            }
-            
-            SHEET_ID = sheetId;
-            localStorage.setItem('sheetId', sheetId);
-            
-            // Test koneksi
-            testSheetConnection(sheetId);
-        }
-        
-        async function testSheetConnection(sheetId) {
-            showNotification('🔗 Menguji koneksi ke Google Sheets...');
-            
-            try {
-                const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
-                const response = await fetch(url);
-                
-                if (response.ok) {
-                    hideSetup();
-                    document.getElementById('sheetsInfo').classList.add('active');
-                    showNotification('✅ Koneksi berhasil!');
-                    
-                    // Load data dari Google Sheets
-                    setTimeout(loadFromGoogleSheets, 1000);
-                } else {
-                    showNotification('❌ Sheet tidak ditemukan! Cek Sheet ID lagi.');
-                }
-            } catch (error) {
-                showNotification('⚠️ Tidak bisa mengakses Sheet. Pastikan sudah di-share publik!');
-            }
-        }
-        
-        function syncToSheets() {
-            saveToGoogleSheets();
-        }
-        
-        // ============================== //
-        // TUTORIAL FUNCTION //
-        // ============================== //
-        
-        function showTutorial() {
-            const tutorial = `
-🎯 **TUTORIAL SETUP GOOGLE SHEETS:**
-
-**STEP 1: BUAT GOOGLE SHEETS**
-1. Buka: https://sheets.google.com
-2. Login dengan akun Google
-3. Klik "+ Blank" (Buat sheet baru)
-4. Beri nama: "Profil Araku"
-
-**STEP 2: ISI DATA AWAL**
-- Kolom A: key (contoh: nameText)
-- Kolom B: value (contoh: Araku)
-- Kolom C: last_update
-
-**STEP 3: SHARE KE PUBLIK**
-1. Klik tombol "Share" (pojok kanan atas)
-2. Klik "Change to anyone with the link"
-3. Pilih "Viewer"
-4. Klik "Copy link"
-
-**STEP 4: DAPATKAN SHEET ID**
-Dari link: https://docs.google.com/spreadsheets/d/ABCD1234efgh5678/edit
-Sheet ID: ABCD1234efgh5678
-
-**STEP 5: MASUKKAN SHEET ID**
-1. Masukkan Sheet ID di box setup
-2. Klik "SIMPAN"
-
-✅ **SELESAI!** Orang lain bisa langsung lihat data kamu!
-
-**CARA SIMPAN DATA:**
-1. Edit teks di website
-2. Klik tombol "SYNC" (pojok kanan bawah)
-3. Copy data yang muncul
-4. Paste ke Google Sheets
-
-📌 **TIPS:**
-- Orang lain gak perlu setup, cukup buka website ini
-- Data auto load dari Google Sheets
-- Refresh untuk lihat update terbaru
-            `;
-            
-            alert(tutorial);
-        }
-        
-        // ============================== //
         // NOTIFICATION FUNCTION //
         // ============================== //
         
@@ -2456,14 +2333,9 @@ Sheet ID: ABCD1234efgh5678
         }
         
         // ============================== //
-        // SEMUA FUNGSI LAINNYA YANG SUDAH ADA //
+        // LOGIN & EDIT FUNCTIONS //
         // ============================== //
         
-        // (TEMPATKAN SEMUA FUNGSI LAINNYA YANG SUDAH ADA DI SINI)
-        // Fungsi-fungsi seperti: checkLogin(), toggleEditProfile(), handleEditClick(), 
-        // renderGallery(), dll. tetap sama seperti code sebelumnya
-        
-        // Contoh: (kamu harus copy semua fungsi dari code sebelumnya)
         function checkLogin() {
             const passwordInput = document.getElementById('passwordInput');
             const errorMessage = document.getElementById('loginError');
@@ -2500,6 +2372,9 @@ Sheet ID: ABCD1234efgh5678
         }
         
         function enableEditMode() {
+            isEditMode = true;
+            document.body.classList.add('edit-mode');
+            
             Object.keys(editableElements).forEach(id => {
                 const element = document.getElementById(editableElements[id]);
                 if (element) {
@@ -2508,6 +2383,7 @@ Sheet ID: ABCD1234efgh5678
                     element.addEventListener('click', handleEditClick);
                 }
             });
+            
             addUploadButtons();
         }
         
@@ -2566,6 +2442,210 @@ Sheet ID: ABCD1234efgh5678
             });
         }
         
+        function toggleEditProfile() {
+            if (isLoggedIn) {
+                // Jika sudah login, toggle edit mode
+                isEditMode = !isEditMode;
+                document.body.classList.toggle('edit-mode', isEditMode);
+                updateEditProfileMenuItem();
+                
+                if (isEditMode) {
+                    showNotification("✏️ Mode edit diaktifkan!");
+                } else {
+                    showNotification("👀 Mode edit dimatikan!");
+                }
+            } else {
+                // Jika belum login, tampilkan login panel
+                showLogin();
+            }
+        }
+        
+        function updateEditProfileMenuItem() {
+            const menuItem = document.getElementById('editProfileMenuItem');
+            const menuText = document.getElementById('editProfileText');
+            
+            if (isLoggedIn) {
+                menuItem.classList.add('edit-mode-active');
+                menuText.textContent = isEditMode ? 'EDIT MODE ON' : 'EDIT MODE OFF';
+            } else {
+                menuItem.classList.remove('edit-mode-active');
+                menuText.textContent = 'EDIT PROFILE';
+            }
+        }
+        
+        function handleLogout() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                }, 500);
+            } else if (clickCount === 2) {
+                clearTimeout(clickTimer);
+                clickCount = 0;
+                
+                if (isLoggedIn) {
+                    showPopup('logoutPopupContainer', 'logoutPopup');
+                }
+            }
+        }
+        
+        function confirmLogout() {
+            isLoggedIn = false;
+            isEditMode = false;
+            localStorage.setItem('isLoggedIn', 'false');
+            document.body.classList.remove('edit-mode');
+            updateEditProfileMenuItem();
+            
+            // Remove edit mode classes
+            Object.keys(editableElements).forEach(id => {
+                const element = document.getElementById(editableElements[id]);
+                if (element) {
+                    element.classList.remove('editable');
+                    element.removeEventListener('click', handleEditClick);
+                }
+            });
+            
+            // Remove upload buttons
+            document.querySelectorAll('.upload-btn-container').forEach(el => el.remove());
+            
+            closePopup('logoutPopupContainer', 'logoutPopup');
+            showNotification("👋 Logout berhasil!");
+        }
+        
+        function cancelLogout() {
+            closePopup('logoutPopupContainer', 'logoutPopup');
+        }
+        
+        // ============================== //
+        // IMAGE UPLOAD FUNCTIONS //
+        // ============================== //
+        
+        function addUploadButtons() {
+            // Add upload button to avatar
+            if (!document.getElementById('avatarUploadBtn')) {
+                const avatarContainer = document.querySelector('.avatar');
+                const avatarUploadBtn = document.createElement('button');
+                avatarUploadBtn.id = 'avatarUploadBtn';
+                avatarUploadBtn.className = 'upload-btn';
+                avatarUploadBtn.textContent = '📷 Ganti Avatar';
+                avatarUploadBtn.onclick = () => document.getElementById('avatarUpload').click();
+                avatarUploadBtn.style.cssText = 'position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); z-index: 10;';
+                avatarContainer.appendChild(avatarUploadBtn);
+            }
+            
+            // Add upload button to about photo
+            if (!document.getElementById('aboutUploadBtn')) {
+                const aboutPhoto = document.querySelector('.about-photo');
+                const aboutUploadBtn = document.createElement('button');
+                aboutUploadBtn.id = 'aboutUploadBtn';
+                aboutUploadBtn.className = 'upload-btn';
+                aboutUploadBtn.textContent = '📷 Ganti Foto';
+                aboutUploadBtn.onclick = () => document.getElementById('aboutUpload').click();
+                aboutUploadBtn.style.cssText = 'position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); z-index: 10;';
+                aboutPhoto.appendChild(aboutUploadBtn);
+            }
+            
+            // Add upload button to gallery
+            if (!document.getElementById('galleryUploadBtn')) {
+                const gallerySection = document.querySelector('.gallery');
+                const galleryUploadBtn = document.createElement('button');
+                galleryUploadBtn.id = 'galleryUploadBtn';
+                galleryUploadBtn.className = 'upload-btn';
+                galleryUploadBtn.textContent = '➕ Tambah Gambar';
+                galleryUploadBtn.onclick = () => document.getElementById('galleryUpload').click();
+                galleryUploadBtn.style.cssText = 'margin: 20px auto; display: block;';
+                gallerySection.parentNode.insertBefore(galleryUploadBtn, gallerySection.nextSibling);
+            }
+        }
+        
+        function handleImageUpload(event, type) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgSrc = e.target.result;
+                
+                if (type === 'avatar') {
+                    document.getElementById('avatarImg').src = imgSrc;
+                    localStorage.setItem('avatarImg', imgSrc);
+                } else if (type === 'about') {
+                    document.getElementById('aboutImg').src = imgSrc;
+                    localStorage.setItem('aboutImg', imgSrc);
+                }
+                
+                showNotification("✅ Gambar berhasil diupload!");
+                
+                // Auto save ke Google Sheets
+                if (isLoggedIn) {
+                    setTimeout(saveToGoogleSheets, 1000);
+                }
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        function handleGalleryUpload(event) {
+            const files = event.target.files;
+            if (!files.length) return;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    galleryImages.push({
+                        src: e.target.result,
+                        alt: `Karya ${galleryImages.length + 1}`
+                    });
+                    
+                    localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+                    renderGallery();
+                    
+                    // Auto save ke Google Sheets
+                    if (isLoggedIn) {
+                        setTimeout(saveToGoogleSheets, 1000);
+                    }
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            showNotification(`✅ ${files.length} gambar berhasil ditambahkan ke gallery!`);
+        }
+        
+        function showDeleteImagePopup(index, alt) {
+            currentImageIndex = index;
+            document.getElementById('deleteImageMessage').textContent = `Hapus gambar: "${alt}"?`;
+            showPopup('deleteImagePopupContainer', 'deleteImagePopup');
+        }
+        
+        function confirmDeleteImage() {
+            if (currentImageIndex >= 0 && currentImageIndex < galleryImages.length) {
+                galleryImages.splice(currentImageIndex, 1);
+                localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+                renderGallery();
+                showNotification("🗑️ Gambar berhasil dihapus!");
+                
+                // Auto save ke Google Sheets
+                if (isLoggedIn) {
+                    setTimeout(saveToGoogleSheets, 1000);
+                }
+            }
+            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
+            currentImageIndex = -1;
+        }
+        
+        function cancelDeleteImage() {
+            closePopup('deleteImagePopupContainer', 'deleteImagePopup');
+            currentImageIndex = -1;
+        }
+        
+        // ============================== //
+        // GALLERY FUNCTIONS //
+        // ============================== //
+        
         function renderGallery() {
             const galleryContainer = document.getElementById('galleryContainer');
             galleryContainer.innerHTML = '';
@@ -2573,7 +2653,7 @@ Sheet ID: ABCD1234efgh5678
             galleryImages.forEach((image, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
-                galleryItem.onclick = () => openModal(galleryItem);
+                galleryItem.onclick = () => openModal(image.src);
 
                 const img = document.createElement('img');
                 img.src = image.src;
@@ -2606,28 +2686,122 @@ Sheet ID: ABCD1234efgh5678
             });
         }
         
+        function openModal(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('galleryModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('galleryModal').classList.remove('active');
+        }
+        
+        // ============================== //
+        // POPUP FUNCTIONS //
+        // ============================== //
+        
+        function showPopup(containerId, overlayId) {
+            document.getElementById(overlayId).classList.add('active');
+            document.getElementById(containerId).classList.add('active');
+        }
+        
+        function closePopup(containerId, overlayId) {
+            document.getElementById(containerId).classList.remove('active');
+            document.getElementById(overlayId).classList.remove('active');
+        }
+        
+        function showLogin() {
+            showPopup('loginPanel', 'loginOverlay');
+            document.getElementById('passwordInput').focus();
+        }
+        
+        function hideLogin() {
+            closePopup('loginPanel', 'loginOverlay');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        }
+        
+        function closeSuccessPopup() {
+            closePopup('successPopupContainer', 'successPopup');
+        }
+        
+        // ============================== //
+        // CONFETTI EFFECT //
+        // ============================== //
+        
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.innerHTML = '';
+            container.classList.add('active');
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(confetti);
+            }
+            
+            setTimeout(() => {
+                container.classList.remove('active');
+            }, 3000);
+        }
+        
+        // ============================== //
+        // NAVBAR FUNCTIONS //
+        // ============================== //
+        
+        function toggleMenu() {
+            const toggleBtn = document.getElementById('toggleBtn');
+            const navDropdown = document.getElementById('navDropdown');
+            const navOverlay = document.getElementById('navOverlay');
+            
+            toggleBtn.classList.toggle('active');
+            navDropdown.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        }
+        
+        function closeMenu() {
+            const toggleBtn = document.getElementById('toggleBtn');
+            const navDropdown = document.getElementById('navDropdown');
+            const navOverlay = document.getElementById('navOverlay');
+            
+            toggleBtn.classList.remove('active');
+            navDropdown.classList.remove('active');
+            navOverlay.classList.remove('active');
+        }
+        
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                closeMenu();
+            }
+        }
+        
         // ============================== //
         // INITIALIZATION //
         // ============================== //
         
         document.addEventListener('DOMContentLoaded', function() {
-            // Setup Google Sheets
-            if (!SHEET_ID || SHEET_ID === "YOUR_SHEET_ID_HERE") {
-                // Tampilkan setup box jika Sheet ID belum diatur
-                setTimeout(() => {
-                    showSetup();
-                    showTutorial();
-                }, 1000);
-            } else {
-                // Tampilkan info panel
-                document.getElementById('sheetsInfo').classList.add('active');
-                
-                // Load data dari Google Sheets
-                setTimeout(loadFromGoogleSheets, 1000);
-            }
+            // Tampilkan info panel Google Sheets
+            document.getElementById('sheetsInfo').classList.add('active');
+            
+            // Load data dari Google Sheets
+            setTimeout(loadFromGoogleSheets, 1000);
             
             // Load data lokal sebagai fallback
             loadFromLocalStorage();
+            
+            // Load saved images
+            const savedAvatar = localStorage.getItem('avatarImg');
+            if (savedAvatar) {
+                document.getElementById('avatarImg').src = savedAvatar;
+            }
+            
+            const savedAbout = localStorage.getItem('aboutImg');
+            if (savedAbout) {
+                document.getElementById('aboutImg').src = savedAbout;
+            }
             
             // Auto login jika sudah login sebelumnya
             if (isLoggedIn) {
@@ -2652,51 +2826,23 @@ Sheet ID: ABCD1234efgh5678
                 handleGalleryUpload(e);
             });
             
+            // Close modal dengan ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+            
             // Auto sync setiap 30 detik jika logged in
             setInterval(() => {
-                if (isLoggedIn && SHEET_ID && SHEET_ID !== "YOUR_SHEET_ID_HERE") {
+                if (isLoggedIn) {
                     saveToGoogleSheets();
                 }
             }, 30000);
             
-            // Setup lainnya
-            setupDesktopNavbar();
-            setupNavbarScroll();
+            // Setup gallery
             renderGallery();
         });
-        
-        // ============================== //
-        // FUNGSI-FUNGSI TAMBAHAN YANG DIBUTUHKAN //
-        // ============================== //
-        
-        // Fungsi-fungsi berikut harus ada (dari code sebelumnya):
-        // - createConfetti()
-        // - showPopup(), closePopup()
-        // - hideLogin(), showLogin()
-        // - toggleEditProfile(), updateEditProfileMenuItem()
-        // - handleLogout(), confirmLogout()
-        // - addUploadButtons()
-        // - handleImageUpload()
-        // - handleGalleryUpload()
-        // - showDeleteImagePopup(), confirmDeleteImage(), cancelDeleteImage()
-        // - openModal(), closeModal()
-        // - setupDesktopNavbar(), toggleMenu(), closeMenu()
-        // - setupNavbarScroll(), updateActiveNavItem()
-        // - scrollToSection(), getSectionFromNavItem()
-        
-        // Karena keterbatasan ruang, saya tidak bisa menampilkan semua fungsi di sini
-        // TAPI semua fungsi itu sudah ada di code yang kamu kirim sebelumnya!
-        
-        // CARA PAKAI:
-        // 1. Copy semua code ini ke file HTML baru
-        // 2. Ganti YOUR_SHEET_ID_HERE dengan Sheet ID kamu
-        // 3. Save dan buka di browser
-        // 4. Ikuti tutorial setup
-        // 5. Edit profile dan klik SYNC untuk simpan ke Google Sheets
-        
-        // Orang lain cukup buka file HTML yang sama, 
-        // dan data akan otomatis load dari Google Sheets!
-        
     </script>
 </body>
 </html>
