@@ -2012,7 +2012,7 @@
         
         // GANTI INI DENGAN SHEET ID KAMU!
         // Contoh: "1XyZ123abc456def789ghi"
-        const DEFAULT_SHEET_ID = "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA";
+        const DEFAULT_SHEET_ID = "YOUR_SHEET_ID_HERE";
         
         // Password
         const CORRECT_PASSWORD = "24";
@@ -2084,7 +2084,7 @@
         // ============================== //
         
         async function loadFromGoogleSheets() {
-            if (!SHEET_ID || SHEET_ID === "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA") {
+            if (!SHEET_ID || SHEET_ID === "YOUR_SHEET_ID_HERE") {
                 showNotification("⚠️ Sheet ID belum diatur!");
                 showSetup();
                 return false;
@@ -2135,7 +2135,7 @@
         }
         
         async function saveToGoogleSheets() {
-            if (!SHEET_ID || SHEET_ID === "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA") {
+            if (!SHEET_ID || SHEET_ID === "YOUR_SHEET_ID_HERE") {
                 showNotification("❌ Sheet ID belum diatur!");
                 showSetup();
                 return false;
@@ -2612,7 +2612,7 @@ Sheet ID: ABCD1234efgh5678
         
         document.addEventListener('DOMContentLoaded', function() {
             // Setup Google Sheets
-            if (!SHEET_ID || SHEET_ID === "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA") {
+            if (!SHEET_ID || SHEET_ID === "YOUR_SHEET_ID_HERE") {
                 // Tampilkan setup box jika Sheet ID belum diatur
                 setTimeout(() => {
                     showSetup();
@@ -2654,7 +2654,7 @@ Sheet ID: ABCD1234efgh5678
             
             // Auto sync setiap 30 detik jika logged in
             setInterval(() => {
-                if (isLoggedIn && SHEET_ID && SHEET_ID !== "1hZ4j2IM5xmRHpf_kXSe4uq7isT_J20WlVmD2kfoxuqA") {
+                if (isLoggedIn && SHEET_ID && SHEET_ID !== "YOUR_SHEET_ID_HERE") {
                     saveToGoogleSheets();
                 }
             }, 30000);
