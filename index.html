@@ -568,6 +568,48 @@
         }
 
         /* ============================== */
+        /* ERROR MESSAGE STYLE - FIXED */
+        /* ============================== */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.35em;
+            margin-bottom: 15px;
+            min-height: 18px;
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 107, 107, 0.1);
+            border: 3px solid #ff6b6b;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 3px 3px 0px rgba(255, 107, 107, 0.3);
+            font-family: 'Press Start 2P', cursive;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .error-message::before {
+            content: '❌';
+            margin-right: 8px;
+        }
+
+        @keyframes shakeError {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes shakePanel {
+            0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) translateX(-8px); }
+            20%, 40%, 60%, 80% { transform: translate(-50%, -50%) translateX(8px); }
+        }
+
+        .login-panel.shake {
+            animation: shakePanel 0.5s ease-in-out;
+        }
+
+        /* ============================== */
         /* STYLE UNTUK SEMUA POPUP */
         /* ============================== */
 
@@ -768,10 +810,6 @@
             animation: popupIn 0.3s ease-out;
         }
 
-        .login-panel.shake {
-            animation: shake 0.5s ease-in-out;
-        }
-
         .login-input {
             width: 100%;
             padding: 12px;
@@ -792,13 +830,6 @@
             cursor: pointer;
             margin: 5px;
             width: calc(50% - 10px);
-        }
-
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.35em;
-            margin-bottom: 10px;
-            min-height: 15px;
         }
 
         /* ============================== */
@@ -1963,7 +1994,7 @@
         function showSuccessPopup() {
             createConfetti();
             showPopup('successPopupContainer', 'successPopup');
-            setTimeout(() => closeSuccessPopup(), 5000);
+            // TIDAK ADA auto-hide, hanya close saat tombol ditekan
         }
 
         function closeSuccessPopup() {
@@ -2066,28 +2097,86 @@
             }, 300);
         }
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') checkLogin();
-            });
+        // ============================== //
+        // LOGIN FUNCTIONS - FIXED //
+        // ============================== //
 
-            document.getElementById('avatarUpload').addEventListener('change', function(e) {
-                handleImageUpload(e, 'avatar');
-            });
+        function showLogin() {
+            closeMenu();
+            document.getElementById('loginOverlay').classList.add('active');
+            document.getElementById('loginPanel').classList.add('active');
+            
+            // Reset error message setiap kali login panel dibuka
+            const errorMessage = document.getElementById('loginError');
+            errorMessage.textContent = "";
+            errorMessage.style.display = 'none';
+            errorMessage.style.animation = '';
+            
+            document.getElementById('passwordInput').focus();
+        }
 
-            document.getElementById('aboutUpload').addEventListener('change', function(e) {
-                handleImageUpload(e, 'about');
-            });
+        function hideLogin() {
+            document.getElementById('loginOverlay').classList.remove('active');
+            document.getElementById('loginPanel').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            
+            // Reset error message secara total
+            const errorMessage = document.getElementById('loginError');
+            errorMessage.textContent = "";
+            errorMessage.style.display = 'none';
+            errorMessage.style.animation = '';
+        }
 
-            document.getElementById('galleryUpload').addEventListener('change', function(e) {
-                handleGalleryUpload(e);
-            });
+        function checkLogin() {
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('loginError');
+            const loginPanel = document.getElementById('loginPanel');
+            const enteredPassword = passwordInput.value;
 
-            setupDesktopNavbar();
-            setupNavbarScroll();
-            renderGallery();
-        });
+            // Reset tampilan error message
+            errorMessage.textContent = "";
+            errorMessage.style.display = 'block';
+
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // LOGIN BERHASIL
+                isLoggedIn = true;
+                enableEditMode();
+                updateEditProfileMenuItem();
+                
+                // Sembunyikan panel login
+                hideLogin();
+                
+                // Tampilkan popup sukses
+                setTimeout(() => {
+                    showSuccessPopup();
+                }, 300);
+                
+            } else {
+                // PASSWORD SALAH
+                
+                // Reset animasi dulu
+                loginPanel.style.animation = 'none';
+                void loginPanel.offsetWidth; // Trigger reflow
+                
+                // Terapkan animasi shake ke panel
+                loginPanel.style.animation = 'shakePanel 0.5s ease-in-out';
+                
+                // Tampilkan error message dengan animasi
+                errorMessage.textContent = "❌ Password salah! Coba lagi.";
+                errorMessage.style.display = 'block';
+                errorMessage.style.animation = 'shakeError 0.5s ease-in-out';
+                
+                // Kosongkan input dan fokus kembali
+                passwordInput.value = "";
+                passwordInput.focus();
+                
+                // Hapus animasi setelah selesai
+                setTimeout(() => {
+                    loginPanel.style.animation = '';
+                    errorMessage.style.animation = '';
+                }, 500);
+            }
+        }
 
         // ============================== //
         // NAVBAR FUNCTIONS //
@@ -2237,62 +2326,6 @@
                 editProfileItem.classList.remove('active');
                 editProfileText.textContent = "🔐 EDIT PROFILE";
                 editProfileItem.querySelector('.nav-icon').textContent = "🔐";
-            }
-        }
-
-        // ============================== //
-        // LOGIN FUNCTIONS //
-        // ============================== //
-
-        function showLogin() {
-            closeMenu();
-            document.getElementById('loginOverlay').classList.add('active');
-            document.getElementById('loginPanel').classList.add('active');
-            document.getElementById('passwordInput').focus();
-        }
-
-        function hideLogin() {
-            document.getElementById('loginOverlay').classList.remove('active');
-            document.getElementById('loginPanel').classList.remove('active');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('loginError').textContent = '';
-        }
-
-        function checkLogin() {
-            const passwordInput = document.getElementById('passwordInput');
-            const errorMessage = document.getElementById('loginError');
-            const enteredPassword = passwordInput.value;
-
-            if (enteredPassword === CORRECT_PASSWORD) {
-                isLoggedIn = true;
-                enableEditMode();
-                updateEditProfileMenuItem();
-                hideLogin();
-                errorMessage.textContent = "";
-                
-                setTimeout(() => {
-                    showSuccessPopup();
-                }, 300);
-                
-            } else {
-                const loginPanel = document.getElementById('loginPanel');
-                
-                // Reset animation
-                loginPanel.style.animation = 'none';
-                loginPanel.offsetHeight;
-                
-                // Apply shake animation
-                loginPanel.style.animation = 'shake 0.5s ease-in-out';
-                
-                errorMessage.textContent = "❌ Password salah! Coba lagi.";
-                errorMessage.style.animation = 'shake 0.5s ease-in-out';
-                passwordInput.value = "";
-                passwordInput.focus();
-                
-                setTimeout(() => {
-                    loginPanel.style.animation = '';
-                    errorMessage.style.animation = '';
-                }, 500);
             }
         }
 
@@ -2504,12 +2537,34 @@
         }
 
         // ============================== //
-        // WINDOW RESIZE HANDLER //
+        // INITIALIZE //
         // ============================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkLogin();
+            });
+
+            document.getElementById('avatarUpload').addEventListener('change', function(e) {
+                handleImageUpload(e, 'avatar');
+            });
+
+            document.getElementById('aboutUpload').addEventListener('change', function(e) {
+                handleImageUpload(e, 'about');
+            });
+
+            document.getElementById('galleryUpload').addEventListener('change', function(e) {
+                handleGalleryUpload(e);
+            });
+
+            setupDesktopNavbar();
+            setupNavbarScroll();
+            renderGallery();
+        });
 
         window.addEventListener('resize', function() {
             setupDesktopNavbar();
         });
     </script>
 </body>
-</html>
+                        </html>
